@@ -6,11 +6,12 @@
 #    By: lchan <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2021/12/09 18:36:51 by lchan            ###   ########.fr        #
+#    Updated: 2022/02/22 18:06:59 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	ft_atoi.c\
+			ft_atol.c\
 			ft_bzero.c\
 			ft_calloc.c\
 			ft_isalnum.c\

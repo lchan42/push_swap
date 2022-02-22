@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/22 16:58:31 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/22 20:24:02 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ void	del_print_tab(char **tab)
 		printf("%s\n", tab[i]);
 }
 
+void	del_print_tab_int(int *tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		printf("%d\n", tab[i]);
+}
+
 char	*from_av_to_str(int ac, char **av)
 {
 	int		i;
@@ -77,14 +86,34 @@ char	*from_av_to_str(int ac, char **av)
 /**********************************************
  *this function's purpose is to turn multiple av into a single string
  *the returned str is then used by ft_split
- **/
+ **********************************************/
 
-int	**tab_init(int ac, char **av)
+int	*tab_int_init(char **tab_char)
+{
+	int	tab_len;
+	int	i;
+	int	*tab_int;
+
+	tab_len = 0;
+	i = -1;
+	while (*(tab_char++))
+		tab_len++;
+	tab_int = (int *)malloc(tab_len * sizeof(int));
+	if (!tab_int)
+		return (0);
+	tab_char -= tab_len + 1;
+	while (++i < tab_len)
+		tab_int[i] = ft_atol(tab_char[i]);
+	return (tab_int);
+}
+
+char	**tab_char_init(int ac, char **av)
 {
 	char	**tab_char;
-	int		**tab_int
+	int		*tab_int;
 
-	tab = NULL;
+	tab_char = NULL;
+	tab_int = 0;
 	if (ac == 0 || !check_isnumber_or_space(av))
 	{
 		printf("entry error");
@@ -95,25 +124,29 @@ int	**tab_init(int ac, char **av)
 	else if (ac > 1)
 		tab_char = ft_split(from_av_to_str(ac, av), ' ');
 	if (tab_char)
+		tab_int = tab_int_init(tab_char);
+	if (tab_int)
+		del_print_tab_int(tab_int);
 		//del_print_tab(tab_char);
-	return (return tab_int);
+	return (tab_char);
 }
+
 
 /**********************************************
  * check if entry is correct
  * parse into tab via either split or 
 */
-
+/*
 int	check_duplicate()
 {
 
 }
-
+*/
 int main (int ac, char **av)
 {
-	int	**tab;
+	char	**tab_char;
 
-	tab = tab_init(ac - 1, av);
+	tab_char = tab_char_init(ac - 1, av);
 }
 
 /**********************************************
@@ -124,4 +157,6 @@ int main (int ac, char **av)
 
 
 /* TO DO LIST
+ * check school corrector;
  * garbage colector;
+ * */
