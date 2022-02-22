@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/21 16:47:21 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/22 16:58:47 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
 # include <string.h>
 # include <stdio.h>
 # include <stdarg.h>
+# include "libft/libft.h"
 
-typedef struct s_list
+typedef struct s_stack
 {
 	int				value;
 	struct s_list   *next;
-}t_list;
+}t_stack;
 
 typedef struct s_struct
 {
