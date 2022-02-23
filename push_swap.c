@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/23 17:12:54 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/23 18:26:52 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,20 @@ int	check_duplicate(int ac, char **av)
 	int	k;
 
 	i = -1;
-	j = -1;
+	j = 0;
 	while (++i < ac - 1)
 	{
-		k = i + 1;
-		while (av[k++][j])
-			while (av[i][++j] && av[k][j] && av[i][j] == av[k][j])
+		k = i;
+		while (av[++k])
+		{
+			while (av[i][j] && av[k][j] && av[i][j] == av[k][j])
+			{
 				if (!av[i][j + 1] && !av[k][j + 1])
 					return (0);
+				j++;
+			}
+			j = 0;
+		}
 	}
 	return (1);
 }
