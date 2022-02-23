@@ -6,11 +6,11 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 18:09:38 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/22 18:06:33 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/23 22:07:34 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long int	ft_atoi(const char *str)
+long int	ft_atol(const char *str)
 {
 	int sign;
 	long int result;

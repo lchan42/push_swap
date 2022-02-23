@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/23 18:26:52 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/23 23:43:26 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,32 @@ int	check_ascii(char **av)
 	int	i;
 	int	j;
 
-	i = 1;
-	j = -1;
-	while (av[i])
+	i = -1;
+	j = 0;
+	while (av[++i])
 	{
-		while (av[i][++j])
+		while (av[i][j])
 		{
-			while (strchr_booleen(av[i][j], " -+"))
+			if (strchr_booleen(av[i][j], "-+"))
 				j++;
 			if (!av[i][j] || av[i][j] > '9' || av[i][j] < '0')
 				return (0);
+			while (ft_isdigit(av[i][j]))
+				j++;
+			while (av[i][j] == ' ')
+				j++;
 		}
 		j = 0;
-		i++;
 	}
 	return (1);
 }
 /*********************************************
- * this functions allows signs and space before numbers
+ * this functions allows only one sign before numbers
  * Will then  return 0 if :
  * 		there's only sign
  * 		non_digit ascii is encountered
  * */	
-/*
+
 int	check_overflow(char **av)
 {
 	int			i;
@@ -76,12 +79,12 @@ int	check_overflow(char **av)
 			return (0);
 	}
 	return (1);
-}*/
+}
 /*******************************************
  * This function is here to prevent overflows
  * 		11 represent max len of an integer
  * 		*/
-
+/*
 int	check_duplicate(int ac, char **av)
 {
 	int	i;
@@ -106,6 +109,31 @@ int	check_duplicate(int ac, char **av)
 	}
 	return (1);
 }
+*/
+int	check_duplicate(int ac, char **av)
+{
+	char	*tmp;
+	int		integer_a;
+	int		integer_b;
+
+	tmp = *av;
+	while (*tmp)
+	{
+		integer_a = ft_atoi(*av);
+		while (ft_isdigit(**av) && **av == ' ')
+			*((*av)++);
+		if (!*av)
+		{
+			(*av)++;
+			integer_b = ft_atoi(av);
+		}
+		else 
+			interger_b = ft_atoi(av);
+		if ()
+	}
+	av -= ac -1;
+	return (1);
+}
 
 int	entry_check(int ac, char **av)
 {
@@ -121,11 +149,11 @@ int	entry_check(int ac, char **av)
 		printf("check_ascii found an issue\n");
 		return (0);
 	}
-//	else if (!check_overflow(av))
-//	{
-//		printf("check_overflow found an issue\n");
-//		return (0);
-//		}
+	else if (!check_overflow(av))
+	{
+		printf("check_overflow found an issue\n");
+		return (0);
+		}
 	else if (!check_duplicate(ac, av))
 	{
 		printf("check_duplicate found an issue\n");
@@ -156,4 +184,6 @@ int main (int ac, char **av)
 /* TO DO LIST
  * check school corrector;
  * garbage colector;
+ * cd /Users/lchan/Downloads
+ * echo -n "" | ./checker_Mac "- 1" 2 3 "7  +5 6" 8
  * */
