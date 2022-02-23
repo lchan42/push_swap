@@ -6,12 +6,12 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/22 20:24:04 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/23 17:12:55 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <stddef.h>
 # include <stdlib.h>
@@ -24,6 +24,7 @@
 typedef struct s_stack
 {
 	int				value;
+	int				rank;
 	struct s_list   *next;
 }t_stack;
 
