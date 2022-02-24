@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/24 17:57:25 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/24 19:54:26 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_ascii(char **av)
  * 		there's only sign
  * 		non_digit ascii is encountered
  * */	
-
+/*
 int	check_overflow(char **av)
 {
 	int			i;
@@ -79,7 +79,7 @@ int	check_overflow(char **av)
 			return (0);
 	}
 	return (1);
-}
+}*/
 /*******************************************
  * This function is here to prevent overflows
  * 		11 represent max len of an integer
@@ -105,27 +105,32 @@ char	*case_multi_number_str(char *current_position, int *line, char **av)
 	}
 }
 
-char	*case_multi_number_str(char *current_position, int *line, char **av)
+int	check_overflow(int ac, char **av)
 {
-	char	*tmp;
+	int			i;
+	char		*tmp;
+	int			count;
+	long int	number;
 
-	if (!current_position && *line == 0)
-		return (*(av + *line));
-	tmp = current_position;
-	if (tmp)
+	i = 0;
+	tmp = NULL;
+	while (i < ac)
 	{
-		while (ft_isdigit(*tmp))
+		tmp = case_multi_number_str(tmp, &i, av);
+		count = 0;
+		while(*tmp == ' ')
 			tmp++;
-		while (*tmp == ' ')
-			tmp++;
-		if (*tmp)
-			return (tmp);
-		else
-		{
-			*line = *line + 1;
-			return (*(av + *line));
-		}
+		if (ft_strchr(*(tmp + count), "-+"))
+			count++;
+		while (ft_isdigit(tmp + count))
+			count++;
+		if (count > 11)
+			return (0);
+		number = ft_atol(tmp);
+   		if (number > 2147483647 || number < -2147483648)
+			return (0);
 	}
+	return (1);
 }
 
 int	check_duplicate(int ac, char **av)
@@ -137,7 +142,7 @@ int	check_duplicate(int ac, char **av)
 
 	i = 0;
 	j = 0;
-	tmp = NULL;;
+	tmp = NULL;
 	while (i < ac)
 	{
 		tmp = case_multi_number_str(tmp, &i, av);
@@ -174,7 +179,7 @@ int	entry_check(int ac, char **av)
 		printf("check_overflow found an issue\n");
 		return (0);
 	}*/
-	else if (!check_duplicate(ac, av))
+	else if (!check_duplicate(ac, av)) //CHECK DUPLICATE DO NOT WORK WITH ANEGATIVE ENTRY
 	{
 		printf("check_duplicate found an issue\n");
 		return (0);
