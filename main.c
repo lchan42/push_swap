@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/25 14:33:07 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/26 01:14:36 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,27 @@
 
 int     main(int ac, char **av)
 {
-        if (!entry_check(ac - 1, (++av)))
+        if (!entry_check(--ac, (++av)))
         {
-                printf("error");
+                printf("ENTRY ERROR\n");
                 return (0);
         }
         else
-                printf("entry is ok");
+                printf(">>> entry is ok <<<\n");
+		ft_ps_build_stack(ac, av);
 }
 /**********************************************
- * ac - 1 coz we do not care about the first entry.
+ * --ac coz we do not care about the first entry.
+ * ++av for the same reason.
  */
 
 /* TO DO LIST
- * check school corrector;
+ * check school corrector; DOWN
+ * check entry; DOWN
+ * build stack : NEEDS TO ADD THE RANK;
  * garbage colector ?;
  * cd /Users/lchan/Downloads
  * echo -n "" | ./checker_Mac "- 1" 2 3 "7  +5 6" 8
  * echo "rra" | ./checker_Mac "2 3" "4 5 6 1"
+ * gcc -g3 -fsanitize=address *.c libraries/libft/libft.a
  * */

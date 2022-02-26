@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/25 15:26:09 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/26 01:13:43 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ typedef struct s_stack
 {
 	int				value;
 	int				rank;
-	struct s_list   *next;
+	int				index;
+	struct s_stack  *next;
 }t_stack;
 
 //push_swap_del.c
 void	del_print_tab(char **tab);
+void	del_print_stack(t_stack *head, int option);
 
 //push_swap_utils.c
 int		strchr_booleen(char c, char *str);
@@ -41,4 +43,8 @@ int		check_overflow(int ac, char **av);
 int		check_duplicate(int ac, char **av);
 int		entry_check(int ac, char **av);
 
+//push_swap_buildstack.c
+t_stack	*ft_ps_nod_init(int value, int index);
+t_stack	*ft_ps_stack_new_addback(t_stack **head, int value, int index);
+t_stack *ft_ps_build_stack(int ac, char **av);
 #endif

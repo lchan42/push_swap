@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/25 15:25:10 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/26 01:13:47 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	check_duplicate(int ac, char **av)
 
 int	entry_check(int ac, char **av)
 {
-	del_print_tab(av);
+//	del_print_tab(av);
 	if (ac < 3 || !check_ascii(av)
 		|| !check_overflow(ac, av) || !check_duplicate(ac, av))
 		return (0);
