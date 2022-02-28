@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/26 01:12:34 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/28 19:51:27 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,19 @@ void	del_print_stack(t_stack *head, int option)
 			printf("% d\n", head->value);
 			head = head->next;
 		}
+}
+
+void	del_back_print(t_stack *head)
+{
+	t_stack	*tmp;
+
+	tmp = head->previous;
+	while (tmp != head)
+	{
+		printf("nod %-4d : ", tmp->index);
+		printf("% d\n", tmp->value);
+		tmp = tmp->previous;
+	}
+	printf("nod %-4d : ", tmp->index);
+	printf("% d\n", tmp->value);
 }

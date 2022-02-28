@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/26 01:14:36 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/28 17:02:40 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int     main(int ac, char **av)
 /* TO DO LIST
  * check school corrector; DOWN
  * check entry; DOWN
- * build stack : NEEDS TO ADD THE RANK;
+ * build stack rank; DOWN;
+ * BEDIRECTIONNAL CHAINLIST;
+ * moving functions; 
  * garbage colector ?;
  * cd /Users/lchan/Downloads
  * echo -n "" | ./checker_Mac "- 1" 2 3 "7  +5 6" 8
