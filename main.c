@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/28 17:02:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/02/28 23:34:39 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int     main(int ac, char **av)
 {
+	t_stack	*stack;
         if (!entry_check(--ac, (++av)))
         {
                 printf("ENTRY ERROR\n");
@@ -21,7 +22,7 @@ int     main(int ac, char **av)
         }
         else
                 printf(">>> entry is ok <<<\n");
-		ft_ps_build_stack(ac, av);
+		stack = ft_ps_buildstack(ac, av);
 }
 /**********************************************
  * --ac coz we do not care about the first entry.
@@ -31,8 +32,8 @@ int     main(int ac, char **av)
 /* TO DO LIST
  * check school corrector; DOWN
  * check entry; DOWN
- * build stack rank; DOWN;
- * BEDIRECTIONNAL CHAINLIST;
+ * build stack rank; DOWN 28/02;
+ * bedirectional chainlst; DOWN 28/02;
  * moving functions; 
  * garbage colector ?;
  * cd /Users/lchan/Downloads
