@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/28 23:39:56 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/02 22:59:40 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int     main(int ac, char **av)
 {
-	t_stack	*stack;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
         if (!entry_check(--ac, (++av)))
         {
                 printf("ENTRY ERROR\n");
@@ -22,7 +23,9 @@ int     main(int ac, char **av)
         }
         else
                 printf(">>> entry is ok <<<\n");
-		stack = ft_ps_buildstack(ac, av);
+		stack_a = ft_ps_buildstack(ac, av);
+		stack_b = NULL;
+
 }
 /**********************************************
  * --ac coz we do not care about the first entry.
@@ -34,7 +37,9 @@ int     main(int ac, char **av)
  * check entry; DOWN
  * build stack rank; DOWN 28/02;
  * bedirectional chainlst; DOWN 28/02;
- * moving functions; 
+ * moving functions;-->test funtions; 
+ * check what happens to the circular function if there only one element. i
+ * 		Apparently it should still be circular (head->next = head)
  * garbage colector ?;
  * cd /Users/lchan/Downloads
  * echo -n "" | ./checker_Mac "- 1" 2 3 "7  +5 6" 8
