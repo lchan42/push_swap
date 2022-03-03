@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/03 18:00:46 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/03 22:20:52 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,22 @@ void	del_print_singlenod(t_stack *nod, int i, int opt)
 	}
 }
 
-void	del_print_circular_lst(t_stack *head, int opt)
+void	del_print_circular_lst(t_stack *head, char c, int opt)
 {
 	t_stack	*tmp;
 	int	i;
 
-	tmp = head->next;
-	i = -1;
-	del_print_singlenod(head, ++i, opt);
-	while (tmp != head)
+	printf("stack_%c:\n", c);
+	if (head)
 	{
-		del_print_singlenod(tmp, ++i, opt);
-		tmp = tmp->next;
+		tmp = head->next;
+		i = -1;
+		del_print_singlenod(head, ++i, opt);
+		while (tmp != head)
+		{
+			del_print_singlenod(tmp, ++i, opt);
+			tmp = tmp->next;
+		}
 	}
 	printf("\n");
 //	del_print_singlenod(tmp, opt);
@@ -104,3 +108,33 @@ void	del_print_circular_lst(t_stack *head, int opt)
 /*******************************************************
  * the last print is to make sure that the list is circular
  */
+
+void	del_test_mvt(t_stack *stack_a, t_stack *stack_b)
+{
+	printf("----------------------original states---------------\n");
+	del_print_circular_lst(stack_a, 'a', 0);
+	del_print_circular_lst(stack_b, 'b', 0);
+	printf("--------------------------sa && sb-------------------\n");
+	swap(&stack_a); swap(&stack_b);
+	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
+	printf("-------------------after pa (from b to a)-----------\n");
+	push(&stack_a, &stack_b);
+	del_print_circular_lst(stack_a, 'a', 0);	del_print_circular_lst(stack_b, 'b', 0);
+	printf("----------------after pb (from a to b twice)--------\n");
+	push(&stack_b, &stack_a);	push(&stack_b, &stack_a);
+	push(&stack_b, &stack_a);	push(&stack_b, &stack_a);
+	push(&stack_b, &stack_a);	push(&stack_b, &stack_a);
+	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
+	printf("------------------------rotation of a----------------\n");
+	rotate(&stack_a, NULL);
+	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
+	printf("------------------------rotation of b----------------\n");
+	rotate(&stack_b, NULL);
+	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
+	printf("----------------------------rr------------------------------------\n");
+	rotate(&stack_b, &stack_a);
+	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
+	printf("---------------------------rrr------------------------------------\n");
+	reverse_rotate(&stack_b, &stack_a);
+	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
+}

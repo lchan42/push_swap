@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/03 18:01:57 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/03 21:10:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,17 @@ int     main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-        if (!entry_check(--ac, (++av)))
-        {
-                printf("ENTRY ERROR\n");
-                return (0);
-        }
-        else
-                printf(">>> entry is ok <<<\n");
-		stack_a = ft_ps_buildstack(ac, av);
-		stack_b = NULL;
-		del_print_circular_lst(stack_a, 0);
-//		swap(&stack_a);
-		push(stack_a, stack_b);
-		rotate(stack_a, NULL);
-		del_print_circular_lst(stack_a, 0);
+
+	if (!entry_check(--ac, (++av)))
+	{
+		printf("ENTRY ERROR\n");
+		return (0);
+	}
+	else
+		printf(">>> entry is ok <<<\n");
+	stack_a = ft_ps_buildstack(ac, av);
+	stack_b = NULL;
+	del_test_mvt(stack_a, stack_b);
 }
 /**********************************************
  * --ac coz we do not care about the first entry.

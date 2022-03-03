@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/03 22:20:57 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/03 22:17:18 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ pb (push b): Take the first element at the top of a and put it at the top of b.
 Do nothing if a is empty.
 */
 
-void	rotate(t_stack **head_a, t_stack **head_b) //need more check
+void	rotate(t_stack **head_a, t_stack **head_b) //there is an issue with this function;
 {
-	if (head_a && *head_a)
+	if (*head_a)
 		*head_a = (*head_a)->next;
-	if (head_b && *head_b)
+	if (*head_b)
 		*head_b = (*head_b)->next;
 }
 /*
