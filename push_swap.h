@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/02 22:59:41 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/03 18:02:00 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,10 @@ int		entry_check(int ac, char **av);
 t_stack	*ft_ps_nod_init(int value, int index);
 t_stack	*ft_ps_stack_new_addback(t_stack **head, int value, int index);
 t_stack *ft_ps_buildstack(int ac, char **av);
+
+//movement.c
+void	swap(t_stack **head);
+void	push(t_stack** head_a, t_stack **head_b);
+void	rotate(t_stack **head_a, t_stack **head_b);
+
 #endif

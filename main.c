@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/02 22:59:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/03 18:01:57 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ int     main(int ac, char **av)
                 printf(">>> entry is ok <<<\n");
 		stack_a = ft_ps_buildstack(ac, av);
 		stack_b = NULL;
-
+		del_print_circular_lst(stack_a, 0);
+//		swap(&stack_a);
+		push(stack_a, stack_b);
+		rotate(stack_a, NULL);
+		del_print_circular_lst(stack_a, 0);
 }
 /**********************************************
  * --ac coz we do not care about the first entry.

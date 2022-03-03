@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:58:49 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/28 23:38:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/03 17:46:35 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,7 @@ t_stack	*ft_ps_buildstack(int ac, char **av)
 	}
 	ft_ps_rank(&stack, i);
 	if (stack)
-	{
 		stack->previous->next = stack;
-		del_print_circular_lst(stack, 0);
-	}
 	else
 		printf("stack has an malloc issue and have been freed\n");
 	return (stack);

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/02 22:59:43 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/03 18:01:56 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	swap(t_stack **head)
 {
 	int		int_tmp;
-	s_stack	*lst_tmp;
+	t_stack	*lst_tmp;
 
 	lst_tmp = (*head)->next;
 	if (*head && *head != lst_tmp)
@@ -47,12 +47,12 @@ ss : sa and sb at the same time.
 
 void	push(t_stack **head_a, t_stack **head_b)
 {
-	s_stack	*tmp;
+	t_stack	*tmp;
 
 	if (*head_b)
 	{
 		tmp = *head_b;
-		if (*head_b = head_b->next)
+		if (*head_b == (*head_b)->next)
 			*head_b = NULL;
 		else 
 		{
@@ -77,9 +77,9 @@ Do nothing if a is empty.
 void	rotate(t_stack **head_a, t_stack **head_b)
 {
 	if (head_a)
-		*head_a = (*head)->next;
+		*head_a = (*head_a)->next;
 	if (head_b)
-		*head_b = (*head)->next;
+		*head_b = (*head_b)->next;
 }
 /*
 ra (rotate a): Shift up all elements of stack a by 1.
@@ -96,18 +96,18 @@ void	reverse_rotate(t_stack **head_a, t_stack **head_b)
 {
 	if (*head_a)
 	{
-		*head_a = (*head)->previous;
+		*head_a = (*head_a)->previous;
 		if (*head_a && !*head_b)
-			printf(rra);
+			printf("rra");
 	}
 	if (*head_b)
 	{
-		*head_b = (*head)->previous;
+		*head_b = (*head_b)->previous;
 		if (*head_b && !*head_a)
-			printf(rrb);
+			printf("rrb");
 	}
 	if (*head_a && head_b)
-		printf(rrr);
+		printf("rrr");
 }
 /*
 rra (reverse rotate a): Shift down all elements of stack a by 1.

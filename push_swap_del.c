@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/02/28 23:33:36 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/03 18:00:46 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,24 @@ void	del_back_print(t_stack *head) //not used anymore
 	printf("	%p\n", tmp);
 }
 
-void	del_print_singlenod(t_stack *nod, int opt)
+void	del_print_singlenod(t_stack *nod, int i, int opt)
 {
 	if (opt)
 	{
-		printf("------------nod %d-----------\n", nod->index);
+		printf("------------nod %d-----------\n", i);
 		printf("|| 	value = %-11d||\n", nod->value);
 		printf("||	 rank = %-11d||\n", nod->rank);
+		printf("||	 index = %-11d||\n", nod->index);
 		printf("-----------------------------\n");
 		if (nod->next)
 			printf("	|	|\n");
 	}
 	else
 	{
-			printf("nod %-4d : ", nod->index);
+			printf("nod %-4d : ", i);
 			printf("% -12d", nod->value);
 			printf("rank = %4d", nod->rank);
+			printf("	index = %4d", nod->index);
 			printf("	%p\n", nod);
 	}
 }
@@ -86,14 +88,17 @@ void	del_print_singlenod(t_stack *nod, int opt)
 void	del_print_circular_lst(t_stack *head, int opt)
 {
 	t_stack	*tmp;
+	int	i;
 
 	tmp = head->next;
-	del_print_singlenod(head, opt);
+	i = -1;
+	del_print_singlenod(head, ++i, opt);
 	while (tmp != head)
 	{
-		del_print_singlenod(tmp, opt);
+		del_print_singlenod(tmp, ++i, opt);
 		tmp = tmp->next;
 	}
+	printf("\n");
 //	del_print_singlenod(tmp, opt);
 }
 /*******************************************************
