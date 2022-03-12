@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/03 21:10:28 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/12 23:02:04 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int     main(int ac, char **av)
  * moving functions;-->test funtions; 
  * check what happens to the circular function if there only one element. i
  * 		Apparently it should still be circular (head->next = head)
+ * put all the possibilities of a combinaison of words into a tab, I have to think in term of factoral
+ * 		the size of the tab is a factorial of number: of numbers.
  * garbage colector ?;
  * cd /Users/lchan/Downloads
  * echo -n "" | ./checker_Mac "- 1" 2 3 "7  +5 6" 8

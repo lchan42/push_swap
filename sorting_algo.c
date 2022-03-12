@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/05 15:33:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/12 23:02:00 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ t_stack	*ft_ps_find_pivot(t_list *head)
 		head = head->next;
 	}
 }
+/****************************************
+ * this function is using a pivot of half the list
+ * it's returning the address of the pivot;
+ */
 
 int	ft_ps_sorted_checker(t_list *head)
 {
@@ -55,7 +59,46 @@ int	ft_ps_sorted_checker(t_list *head)
 		return (1);
 	return (0);
 }
+/*********************************************
+ * this function is checking if the function is sorted or not
+ */
 
+/***************************************************AFTER SICKNESS*******************************************/
+void	ft_ps_pick_rotation(s_stack **head)
+{
+	if ()
+		reserse_rotate 
+	else
+		rotate(head_a, NULL);
+}
+
+int	is_circle_sorted(s_stack *head)
+{
+	while (head->rank != 1)
+		head = head->next;
+	while (head->next->rank != 1)
+	{
+		if (head->next->rank != head->rank + 1)
+			return (0);
+		head = head->next;
+	}
+	return (1);
+}
+
+void	ft_ps_sort_five(s_stack **head)
+{
+	if (!(*head) || is_circle_sorted(*head))
+		return ;
+	while (1)
+	{
+		if ((*head)->next->rank > (*head)->rank)
+			swap(**head);
+		if (!is_circle_sorted(*head)) 
+			ft_ps_pick_rotation(s_stack **head);
+		else
+			break ;
+	}
+}
 /*********************************************
  * condition de backtracking
  * 		stack b empty, stack a has all the different digit
