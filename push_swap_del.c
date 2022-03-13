@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/03 22:20:52 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/13 18:50:12 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,32 +109,47 @@ void	del_print_circular_lst(t_stack *head, char c, int opt)
  * the last print is to make sure that the list is circular
  */
 
-void	del_test_mvt(t_stack *stack_a, t_stack *stack_b)
+void	del_print_mvtbook(t_list *head)
+{
+	printf("mvt book = \n");
+	while (head)
+	{
+		printf("%s", head->content);
+		if (head->next)
+			printf(" ");
+		head = head->next;
+	}
+}
+
+void	del_test_mvt(t_stack *stack_a, t_stack *stack_b, t_list **mvtbook)
 {
 	printf("----------------------original states---------------\n");
 	del_print_circular_lst(stack_a, 'a', 0);
 	del_print_circular_lst(stack_b, 'b', 0);
 	printf("--------------------------sa && sb-------------------\n");
-	swap(&stack_a); swap(&stack_b);
+	swap(&stack_a, mvtbook, "sa"); swap(&stack_b, mvtbook, "sb");
 	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
 	printf("-------------------after pa (from b to a)-----------\n");
-	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b, mvtbook, "pa");
 	del_print_circular_lst(stack_a, 'a', 0);	del_print_circular_lst(stack_b, 'b', 0);
 	printf("----------------after pb (from a to b twice)--------\n");
-	push(&stack_b, &stack_a);	push(&stack_b, &stack_a);
-	push(&stack_b, &stack_a);	push(&stack_b, &stack_a);
-	push(&stack_b, &stack_a);	push(&stack_b, &stack_a);
+	push(&stack_b, &stack_a, mvtbook, "pb");	push(&stack_b, &stack_a, mvtbook, "pb");
 	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
 	printf("------------------------rotation of a----------------\n");
-	rotate(&stack_a, NULL);
+	rotate(&stack_a, NULL, mvtbook, "ra");
 	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
 	printf("------------------------rotation of b----------------\n");
-	rotate(&stack_b, NULL);
+	rotate(&stack_b, NULL, mvtbook, "rb");
 	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
 	printf("----------------------------rr------------------------------------\n");
-	rotate(&stack_b, &stack_a);
+	rotate(&stack_b, &stack_a, mvtbook, "rr");
 	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
 	printf("---------------------------rrr------------------------------------\n");
-	reverse_rotate(&stack_b, &stack_a);
+	reverse_rotate(&stack_b, &stack_a, mvtbook, "rrr");
 	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
+	del_print_mvtbook(*mvtbook);
 }
+
+/*****************
+ * pa means from b to a. a is the destination
+ * */

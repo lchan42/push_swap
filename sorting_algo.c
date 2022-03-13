@@ -6,14 +6,14 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/12 23:02:00 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/13 18:09:20 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_ps_clst_len(t_list *head)
+int	ft_ps_stacklen(t_stack *head)
 {
 	int		len;
-	t_list	*tmp;
+	t_stack	*tmp;
 
 	len = 0;
 	if (*head)
@@ -25,24 +25,30 @@ int	ft_ps_clst_len(t_list *head)
 	return (len);
 }
 
-t_stack	*ft_ps_find_pivot(t_list *head)
+int	ft_ps_findpivot(t_stack *head)
 {
-	int	pivot;
+	t_stack	tmp;
+	int		pivot;
 
-	pivot = ft_ps_clst_len(head) / 2;
-	while (head)
+	tmp = head->next;
+	pivot = head->value;
+	while (tmp != head)
 	{
-		if (head->rank == pivot)
-			return (head);
-		head = head->next;
+		pivot += tmp->value;
+		tmp = tmp->next
 	}
+	return (pivot / ft_ps_stack_len(head));
 }
 /****************************************
- * this function is using a pivot of half the list
- * it's returning the address of the pivot;
+ * returns the aritmetic average of a stack;
  */
 
-int	ft_ps_sorted_checker(t_list *head)
+int	ft_ps_chuckpivot (void)
+{
+	return (0);
+}
+	
+int	ft_ps_sorted_checker(t_stack *head)
 {
 	int		len;
 	t_list	tmp;
@@ -60,17 +66,10 @@ int	ft_ps_sorted_checker(t_list *head)
 	return (0);
 }
 /*********************************************
- * this function is checking if the function is sorted or not
+ * this function is checking if the list is sorted or not
  */
 
 /***************************************************AFTER SICKNESS*******************************************/
-void	ft_ps_pick_rotation(s_stack **head)
-{
-	if ()
-		reserse_rotate 
-	else
-		rotate(head_a, NULL);
-}
 
 int	is_circle_sorted(s_stack *head)
 {
@@ -84,21 +83,62 @@ int	is_circle_sorted(s_stack *head)
 	}
 	return (1);
 }
+/**************************************************
+ * not sure it will be usefull;
+ * this function was meant to check if a stack only needs rotation to be sorted.
+ * it could be use for optimisation
+ */
+
+char	*ft_ps_findrotation(s_stack *head, int target)
+{
+	s_stack	tmp;
+	int		cnt_rota;
+	int		cnt_revrota;
+
+	cnt_rota = 0;
+	cnt_revrota = 0;
+	tmp = head;
+	while (tmp->rank != target && cnt_rota++)
+		tmp = tmp->next;
+	while (head->rank != target && cnt_revrota++)
+		head = head->previous;
+	if (cnt_rota > cnt_revrota++)
+		return ("REVERSE");
+	else if (cnt_rota < cnt_revrota)
+		return ("NORMAL");
+	return (NULL);
+}
+/***************************************************
+ * this function returns a string that will tell us what rotation to use to reach the target.
+ */
 
 void	ft_ps_sort_five(s_stack **head)
 {
-	if (!(*head) || is_circle_sorted(*head))
+	int		pivot;
+	s_stack	tmp;
+
+	if (!(*head) || ft_ps_sorted_checker(*head))
 		return ;
-	while (1)
-	{
-		if ((*head)->next->rank > (*head)->rank)
-			swap(**head);
-		if (!is_circle_sorted(*head)) 
-			ft_ps_pick_rotation(s_stack **head);
-		else
-			break ;
-	}
+	else if (is_circle_sorted(head))
+		ft_ps_findrotation(s_stack *head, 1);
+	else
+		ft_ps_quicksort_a(head);
 }
+
+void	ft_ps_quicksort_a(s_stack **head)
+{	
+	int		pivot;
+	int		len;
+	
+	pivot = ft_ps_findpivot(*head);
+	len = ft_ps_stacklen(*head);
+	while (--len)
+	{
+		if ((*head)->rank < pivot)
+			push()
+
+}
+
 /*********************************************
  * condition de backtracking
  * 		stack b empty, stack a has all the different digit

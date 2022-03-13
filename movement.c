@@ -6,13 +6,30 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/12 23:02:08 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/13 18:50:14 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	swap(t_stack **head)
+/*
+void	ft_ps_mvtexecutor(t_stack **stack_a, t_stack **stack_b, t_list movebook, char *mvt)
+{
+	if (mvt == "sa")
+		swap(stack_a);
+	if (mvt == "sb")
+		swap(stack_a);
+	if (mvt == "pa")
+		push(stack_a, stack_b);
+	if (mvt == "pb")
+	if (mvt == "ra")
+	if (mvt == "rb")
+	if (mvt == "rra")
+	if (mvt == "rrb")
+	if (mvt == "rrr")
+	ft_lstadd_back(&movebook, ft_lstnew(move));
+}//not sure that a forest of if is needed;
+*/
+void	swap(t_stack **head, t_list **mvtbook, char *mvt)
 {
 	int		int_tmp;
 	t_stack	*lst_tmp;
@@ -29,6 +46,7 @@ void	swap(t_stack **head)
 		int_tmp = (*head)->index;
 		(*head)->index = lst_tmp->index;
 		lst_tmp->index = int_tmp;
+		ft_lstadd_back(mvtbook, ft_lstnew(mvt));
 	}
 }
 /**************************************************
@@ -45,7 +63,7 @@ Do nothing if there is only one or no elements.
 ss : sa and sb at the same time.
 */
 
-void	push(t_stack **dst, t_stack **src)
+void	push(t_stack **dst, t_stack **src, t_list **mvtbook, char *mvt)
 {
 	t_stack	*tmp;
 
@@ -70,6 +88,7 @@ void	push(t_stack **dst, t_stack **src)
 			(*dst)->previous = tmp;
 		}
 		*dst = tmp;
+		ft_lstadd_back(mvtbook, ft_lstnew(mvt));
 	}
 }
 
@@ -81,12 +100,13 @@ pb (push b): Take the first element at the top of a and put it at the top of b.
 Do nothing if a is empty.
 */
 
-void	rotate(t_stack **head_a, t_stack **head_b) //need more check
+void	rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt) //need more check
 {
 	if (head_a && *head_a)
 		*head_a = (*head_a)->next;
 	if (head_b && *head_b)
 		*head_b = (*head_b)->next;
+	ft_lstadd_back(mvtbook, ft_lstnew(mvt));
 }
 /*
 ra (rotate a): Shift up all elements of stack a by 1.
@@ -99,22 +119,13 @@ rr : ra and rb at the same time.
 */
 
 
-void	reverse_rotate(t_stack **head_a, t_stack **head_b)
+void	reverse_rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt)
 {
 	if (*head_a)
-	{
 		*head_a = (*head_a)->previous;
-		if (*head_a && !*head_b)
-			printf("rra\n");
-	}
 	if (*head_b)
-	{
-	*head_b = (*head_b)->previous;
-		if (*head_b && !*head_a)
-			printf("rrb\n");
-	}
-	if (*head_a && head_b)
-		printf("rrr\n");
+		*head_b = (*head_b)->previous;
+	ft_lstadd_back(mvtbook, ft_lstnew(mvt));
 }
 /*
 rra (reverse rotate a): Shift down all elements of stack a by 1.

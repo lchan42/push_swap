@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/12 23:02:05 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/13 18:50:20 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	del_print_tab(char **tab);
 void	del_print_stack(t_stack *head, int option);
 void	del_back_print(t_stack *head);
 void	del_print_circular_lst(t_stack *head, char c, int opt);
-void	del_test_mvt(t_stack *stack_a, t_stack *stack_b);
+void	del_test_mvt(t_stack *stack_a, t_stack *stack_b, t_list **mvtbook);
 
 //push_swap_utils.c
 int		strchr_booleen(char c, char *str);
@@ -53,9 +53,15 @@ t_stack	*ft_ps_stack_new_addback(t_stack **head, int value, int index);
 t_stack *ft_ps_buildstack(int ac, char **av);
 
 //movement.c
-void	swap(t_stack **head);
-void	push(t_stack** head_a, t_stack **head_b);
-void	rotate(t_stack **head_a, t_stack **head_b);
-void	reverse_rotate(t_stack **head_a, t_stack **head_b);
+//void	swap(t_stack **head);
+//void	push(t_stack** head_a, t_stack **head_b);
+//void	rotate(t_stack **head_a, t_stack **head_b);
+//void	reverse_rotate(t_stack **head_a, t_stack **head_b);
+
+void	swap(t_stack **head, t_list **mvtbook, char *mvt);
+void	push(t_stack **dst, t_stack **src, t_list **mvtbook, char *mvt);
+void	rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt);
+void	reverse_rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt);
+
 
 #endif
