@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/13 18:50:14 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/13 22:16:08 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ void	rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt) //n
 		*head_a = (*head_a)->next;
 	if (head_b && *head_b)
 		*head_b = (*head_b)->next;
-	ft_lstadd_back(mvtbook, ft_lstnew(mvt));
+	if (head_a || head_b)
+		ft_lstadd_back(mvtbook, ft_lstnew(mvt));
 }
 /*
 ra (rotate a): Shift up all elements of stack a by 1.
@@ -121,11 +122,12 @@ rr : ra and rb at the same time.
 
 void	reverse_rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt)
 {
-	if (*head_a)
+	if (head_a && *head_a)
 		*head_a = (*head_a)->previous;
-	if (*head_b)
+	if (head_b && *head_b)
 		*head_b = (*head_b)->previous;
-	ft_lstadd_back(mvtbook, ft_lstnew(mvt));
+	if (head_a || head_b)
+		ft_lstadd_back(mvtbook, ft_lstnew(mvt));
 }
 /*
 rra (reverse rotate a): Shift down all elements of stack a by 1.

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/13 18:50:20 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/13 22:16:04 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	del_print_stack(t_stack *head, int option);
 void	del_back_print(t_stack *head);
 void	del_print_circular_lst(t_stack *head, char c, int opt);
 void	del_test_mvt(t_stack *stack_a, t_stack *stack_b, t_list **mvtbook);
+void	del_test_sort_small_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 //push_swap_utils.c
 int		strchr_booleen(char c, char *str);
@@ -63,5 +64,13 @@ void	push(t_stack **dst, t_stack **src, t_list **mvtbook, char *mvt);
 void	rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt);
 void	reverse_rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt);
 
+//sorting_algo.c
 
+int	ft_ps_stacklen(t_stack *head);
+int	ft_ps_findpivot(t_stack *head);
+int	ft_ps_sorted_checker(t_stack *head);
+int	is_circle_sorted(t_stack *head);
+void	ft_ps_goto_target_a(t_stack **head, int target, t_list **mvtbook);
+void	ft_ps_sort_small_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void	ft_ps_quicksort_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 #endif

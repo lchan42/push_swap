@@ -6,9 +6,11 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/13 18:09:20 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/13 22:16:02 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	ft_ps_stacklen(t_stack *head)
 {
@@ -16,7 +18,7 @@ int	ft_ps_stacklen(t_stack *head)
 	t_stack	*tmp;
 
 	len = 0;
-	if (*head)
+	if (head)
 	{
 		tmp = head->next;
 		while (++len && tmp != head)
@@ -27,17 +29,17 @@ int	ft_ps_stacklen(t_stack *head)
 
 int	ft_ps_findpivot(t_stack *head)
 {
-	t_stack	tmp;
+	t_stack	*tmp;
 	int		pivot;
 
 	tmp = head->next;
-	pivot = head->value;
+	pivot = head->rank;
 	while (tmp != head)
 	{
-		pivot += tmp->value;
-		tmp = tmp->next
+		pivot += tmp->rank;
+		tmp = tmp->next;
 	}
-	return (pivot / ft_ps_stack_len(head));
+	return (pivot / ft_ps_stacklen(head));
 }
 /****************************************
  * returns the aritmetic average of a stack;
@@ -51,17 +53,17 @@ int	ft_ps_chuckpivot (void)
 int	ft_ps_sorted_checker(t_stack *head)
 {
 	int		len;
-	t_list	tmp;
+	t_stack	*tmp;
 
-	len = ft_ps_clst_len(head);
+	len = ft_ps_stacklen(head);
 	tmp = head;
 	while (tmp->next != head)
 	{
-		if (tmp->rank != tmp->next->rank + 1)
+		if (tmp->rank != tmp->next->rank - 1)
 			return (0);
 		tmp = tmp->next;
 	}
-	if (tmp->rank = len)
+	if (tmp->rank == len)
 		return (1);
 	return (0);
 }
@@ -71,7 +73,7 @@ int	ft_ps_sorted_checker(t_stack *head)
 
 /***************************************************AFTER SICKNESS*******************************************/
 
-int	is_circle_sorted(s_stack *head)
+int	is_circle_sorted(t_stack *head)
 {
 	while (head->rank != 1)
 		head = head->next;
@@ -89,56 +91,73 @@ int	is_circle_sorted(s_stack *head)
  * it could be use for optimisation
  */
 
-char	*ft_ps_findrotation(s_stack *head, int target)
+void	ft_ps_goto_target_a(t_stack **head, int target, t_list **mvtbook)
 {
-	s_stack	tmp;
-	int		cnt_rota;
-	int		cnt_revrota;
+	t_stack	*tmp;
+	int		rota;
+	int		rev_rota;
 
-	cnt_rota = 0;
-	cnt_revrota = 0;
-	tmp = head;
-	while (tmp->rank != target && cnt_rota++)
+	rota = 0;
+	rev_rota = 0;
+	tmp = *head;
+	while (tmp->rank != target && ++rota)
 		tmp = tmp->next;
-	while (head->rank != target && cnt_revrota++)
-		head = head->previous;
-	if (cnt_rota > cnt_revrota++)
-		return ("REVERSE");
-	else if (cnt_rota < cnt_revrota)
-		return ("NORMAL");
-	return (NULL);
+	tmp = *head;
+	while (tmp->rank != target && ++rev_rota)
+		tmp = tmp->previous;
+	printf("%d %d", rota, rev_rota);
+	if (rota <= rev_rota)
+		while ((*head)->rank != target)
+			rotate (head, NULL, mvtbook, "ra");
+	else if (rev_rota < rota)
+		while ((*head)->rank != target)
+			reverse_rotate (head, NULL, mvtbook, "rra");
 }
+
+// void ft_ps_smart_rotation_a(t_stack **head, )
 /***************************************************
  * this function returns a string that will tell us what rotation to use to reach the target.
  */
 
-void	ft_ps_sort_five(s_stack **head)
+void	ft_ps_sort_small_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int		pivot;
-	s_stack	tmp;
-
-	if (!(*head) || ft_ps_sorted_checker(*head))
+	t_stack	tmp;
+	if (ft_ps_sorted_checker(*stack_a))
+	{
+		printf("already sorted\n");
 		return ;
-	else if (is_circle_sorted(head))
-		ft_ps_findrotation(s_stack *head, 1);
+	}
+	else if (is_circle_sorted(*stack_a))
+		ft_ps_goto_target_a(stack_a, 1, mvtbook);
 	else
-		ft_ps_quicksort_a(head);
+		ft_ps_quicksort_a(stack_a, stack_b, mvtbook);
 }
 
-void	ft_ps_quicksort_a(s_stack **head)
+void	ft_ps_quicksort_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {	
 	int		pivot;
 	int		len;
 	
-	pivot = ft_ps_findpivot(*head);
-	len = ft_ps_stacklen(*head);
-	while (--len)
+	pivot = ft_ps_findpivot(*stack_a);
+	len = ft_ps_stacklen(*stack_a);
+
+	printf("pivot = %d, \nlen = %d", pivot, len);
+	while (len > pivot)
 	{
-		if ((*head)->rank < pivot)
-			push()
+		if ((*stack_a)->rank < pivot)
+		{
+			push(stack_b, stack_a, mvtbook, "pa");
+			len--;
+		}
+		else
+			rotate(stack_a, NULL, mvtbook, "ra");
+	}
 
 }
 
+// might have to do a function that sort stack that are smaller than 5
+//
 /*********************************************
  * condition de backtracking
  * 		stack b empty, stack a has all the different digit
@@ -148,3 +167,4 @@ void	ft_ps_quicksort_a(s_stack **head)
  *	other
  *	 
  *		cost compilator and cost comparator;
+ *		*/
