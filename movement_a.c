@@ -6,37 +6,22 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/14 20:00:37 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/14 20:51:43 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
-void	ft_ps_mvtexecutor(t_stack **stack_a, t_stack **stack_b, t_list movebook, char *mvt)
-{
-	if (mvt == "sa")
-		swap(stack_a);
-	if (mvt == "sb")
-		swap(stack_a);
-	if (mvt == "pa")
-		push(stack_a, stack_b);
-	if (mvt == "pb")
-	if (mvt == "ra")
-	if (mvt == "rb")
-	if (mvt == "rra")
-	if (mvt == "rrb")
-	if (mvt == "rrr")
-	ft_lstadd_back(&movebook, ft_lstnew(move));
-}//not sure that a forest of if is needed;
-*/
+
 void	ft_ps_swap_a(t_stack **head, t_list **mvtbook)
 {
 	int		int_tmp;
 	t_stack	*lst_tmp;
-
-	if (*head && *head != lst_tmp)
+	
+	if (!*head)
+		return;
+	lst_tmp = (*head)->next;
+	if (*head != lst_tmp)
 	{
-		lst_tmp = (*head)->next;
 		int_tmp = (*head)->value;
 		(*head)->value = lst_tmp->value;
 		lst_tmp->value = int_tmp;

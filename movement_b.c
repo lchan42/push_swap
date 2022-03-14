@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/14 17:28:17 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/14 20:53:03 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	ft_ps_swap_b(t_stack **head, t_list **mvtbook)
 	int		int_tmp;
 	t_stack	*lst_tmp;
 
-	if (*head && *head != lst_tmp)
+	if (!*head)
+		return ;
+	lst_tmp = (*head)->next;
+	if (*head != lst_tmp)
 	{
-		lst_tmp = (*head)->next;
 		int_tmp = (*head)->value;
 		(*head)->value = lst_tmp->value;
 		lst_tmp->value = int_tmp;

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/14 19:19:37 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/15 00:23:12 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,18 @@ void	del_print_circular_lst(t_stack *head, char c, int opt)
 
 void	del_print_mvtbook(t_list *head)
 {
-	printf("mvt book = \n");
+	int	count;
+
+	count = 0;
 	while (head)
 	{
 		printf("%s", head->content);
+		count++;
 		if (head->next)
 			printf(" ");
 		head = head->next;
 	}
+	printf("\ncount = %d", count);
 }
 /*
 void	del_test_mvt(t_stack *stack_a, t_stack *stack_b, t_list **mvtbook)
@@ -182,16 +186,26 @@ void	del_test_mvt(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 
 void	del_test_sort_3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
+
 	printf("----------------------original states---------------\n");
-	del_print_circular_lst(*stack_a, 'a', 0);
-	del_print_circular_lst(*stack_b, 'b', 0);
-	printf("-------------------after sorting -----------\n");
-	ft_ps_sort_a3(stack_a, mvtbook);
-	del_print_circular_lst(*stack_a, 'a', 0);
-	del_print_circular_lst(*stack_b, 'b', 0);
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	printf("-------------------push and sorting b -----------\n");
+	ft_ps_push_b(stack_b, stack_a, mvtbook);	ft_ps_push_b(stack_b, stack_a, mvtbook);
+	ft_ps_push_b(stack_b, stack_a, mvtbook);
+	ft_ps_sort_b3(stack_b, mvtbook);
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
 }
 
+void	del_test_sort_a5(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
+{
+	printf("----------------------original states---------------\n");
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	printf("-------------------after sorting stack a ----------------\n");
+	ft_ps_quicksort_a5(stack_a, stack_b, mvtbook);
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	del_print_mvtbook(*mvtbook);
+}
 /*
 void	del_test_sort_small_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {

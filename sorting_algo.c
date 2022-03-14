@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/14 19:55:09 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/15 00:23:09 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,34 +91,57 @@ int	is_circle_sorted(t_stack *head)
  * it could be use for optimisation
  */
 
-void	ft_ps_goto_target_a(t_stack **head, int target, t_list **mvtbook)
+void	ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt)
 {
-	t_stack	*tmp;
-	int		rota;
-	int		rev_rota;
-
-	rota = 0;
-	rev_rota = 0;
-	tmp = *head;
-	while (tmp->rank != target && ++rota)
-		tmp = tmp->next;
-	tmp = *head;
-	while (tmp->rank != target && ++rev_rota)
-		tmp = tmp->previous;
-	if (rota <= rev_rota)
-		while ((*head)->rank != target)
-			ft_ps_rotate_a (head, mvtbook);
-	else if (rev_rota < rota)
-		while ((*head)->rank != target)
-			ft_ps_reverse_a (head, mvtbook);
+	if (ft_strncmp("ra", mvt, 2) == 0)
+		while (*stack != target)
+			ft_ps_rotate_a(stack, mvtbook);
+	else if (ft_strncmp("rra", mvt, 3) == 0)
+		while (*stack != target)
+			ft_ps_reverse_a(stack, mvtbook);
+	else if (ft_strncmp("rb", mvt, 2))
+		while (*stack != target)
+			ft_ps_rotate_b(stack, mvtbook);
+	else if (ft_strncmp("rrb", mvt, 3))
+		while (*stack != target)
+			ft_ps_reverse_b(stack, mvtbook);
 }
 /***************************************************
- * this function has to go in movement
+ * rotate or reverse towards target.
 */
 
-// void ft_ps_smart_rotation_a(t_stack **head, )
-/***************************************************
- * this function returns a string that will tell us what rotation to use to reach the target.
+int	ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot)
+{
+	t_stack	*tmp;
+	t_stack *r_tmp;
+	int		indice;
+	int 	len;
+
+	if ((*stack)->rank < pivot)
+		return (1);
+	tmp = *stack;
+	r_tmp = *stack;
+	indice = 0;
+	len = ft_ps_stacklen(*stack);
+	while (len-- && indice == 0)
+	{
+		tmp = tmp->next;
+		r_tmp = r_tmp->previous;
+		if (tmp->rank < pivot)
+			indice = 1;
+		else if (r_tmp->rank < pivot)
+			indice = -1;
+	}
+	if (indice == 0)
+		return 0;
+	else if (indice == 1)
+		ft_ps_targetedrot(stack, mvtbook, tmp, "ra");
+	else if (indice == -1)
+		ft_ps_targetedrot(stack, mvtbook, r_tmp, "rra");
+	return (1);
+}
+/**************************************************************
+ * find the shortest way towards element that have to be pushed;
  */
 
 void	ft_ps_sort_a3(t_stack **stack_a, t_list **mvtbook)
@@ -130,12 +153,8 @@ void	ft_ps_sort_a3(t_stack **stack_a, t_list **mvtbook)
 	current = (*stack_a)->rank;
 	next = (*stack_a)->next->rank;
 	bignext = (*stack_a)->next->next->rank;
-//	printf("current = %d, next = %d, bignext = %d\n", current, next, bignext);
 	if (ft_ps_sorted_checker(*stack_a)) //1 2 3
-	{
-		printf("sorted\n\n\n");
 		return ;
-	}
 	else if (current < bignext && bignext < next) //1 3 2
 	{
 		ft_ps_swap_a(stack_a, mvtbook);
@@ -152,6 +171,65 @@ void	ft_ps_sort_a3(t_stack **stack_a, t_list **mvtbook)
 	}
 	else if (current > bignext && next < bignext) //3 1 2 
 		ft_ps_rotate_a(stack_a, mvtbook);
+}
+
+void	ft_ps_sort_b2(t_stack **stack_b, t_list **mvtbook)
+{
+	if ((*stack_b)->value < (*stack_b)->next->value)
+		ft_ps_swap_b(stack_b, mvtbook);
+}
+/*******************************************************
+ * if there is more than 2 element, use b3 else use b2;
+ */
+
+void	ft_ps_npush_b(t_stack **stack_a, t_stack** stack_b, t_list **mvtbook, int n)
+{
+	while (--n)
+		ft_ps_push_b(stack_a, stack b, mvtbook);
+}
+
+void	ft_ps_sort_b3(t_stack **stack_b, t_list **mvtbook)
+{
+	int	current;
+	int	next;
+	int	bignext;
+
+	current = (*stack_b)->rank;
+	next = (*stack_b)->next->rank;
+	bignext = (*stack_b)->next->next->rank;
+	if (current > next && next > bignext) //3 2 1
+		return ;
+	else if (current < bignext && bignext < next) //1 3 2
+		ft_ps_rotate_b(stack_b, mvtbook);
+	else if (current > next && current < bignext) //2 1 3
+		ft_ps_rotate_a(stack_b, mvtbook);
+	else if (current < next && current > bignext) //2 3 1
+		ft_ps_swap_b(stack_b, mvtbook);
+	else if (current < next && next < bignext) //1 2 3
+	{
+		ft_ps_rotate_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+	}
+	else if (current > bignext && next < bignext) //3 1 2 
+	{	
+		ft_ps_reverse_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+	}
+}
+void	ft_ps_quicksort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
+{
+	int pivot;
+	int	len;
+
+	pivot = ft_ps_findpivot(*stack_a);
+	len = ft_ps_stacklen(*stack_a);
+	if (len > 3)
+		while (ft_ps_smartrotation_a(stack_a, mvtbook, pivot))
+			if ((*stack_a)->rank < pivot)
+				ft_ps_push_b(stack_b, stack_a, mvtbook);
+	ft_ps_sort_a3(stack_a, mvtbook);
+	ft_ps_sort_b2(stack_b, mvtbook);
+	ft_ps_npush_b(_stack_a, stack_b, mvtbook);
 }
 /*
 void	ft_ps_sort_small_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
