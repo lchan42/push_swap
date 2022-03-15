@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/15 00:23:09 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/15 21:34:48 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,27 @@ int	ft_ps_sorted_checker(t_stack *head)
 /*********************************************
  * this function is checking if the list is sorted or not
  */
+
+int	ft_ps_sorted_checker_n(t_stack *head, int n)
+{
+	int		len;
+	t_stack	*tmp;
+
+	len = ft_ps_stacklen(head);
+	tmp = head;
+	while (tmp->next != head && n--)
+	{
+		if (tmp->rank != tmp->next->rank - 1)
+			return (0);
+		tmp = tmp->next;
+	}
+	if (tmp->rank == len)
+		return (1);
+	return (0);
+}
+/******************************************************
+ * check if n element are sorted
+ * */
 
 /***************************************************AFTER SICKNESS*******************************************/
 
@@ -182,10 +203,10 @@ void	ft_ps_sort_b2(t_stack **stack_b, t_list **mvtbook)
  * if there is more than 2 element, use b3 else use b2;
  */
 
-void	ft_ps_npush_b(t_stack **stack_a, t_stack** stack_b, t_list **mvtbook, int n)
+void	ft_ps_npush_a(t_stack **stack_a, t_stack** stack_b, t_list **mvtbook, int n)
 {
-	while (--n)
-		ft_ps_push_b(stack_a, stack b, mvtbook);
+	while (n--)
+		ft_ps_push_a(stack_a, stack_b, mvtbook);
 }
 
 void	ft_ps_sort_b3(t_stack **stack_b, t_list **mvtbook)
@@ -221,6 +242,8 @@ void	ft_ps_quicksort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 	int pivot;
 	int	len;
 
+	if (ft_ps_sorted_checker_n(*stack_a, 5))
+		return ;
 	pivot = ft_ps_findpivot(*stack_a);
 	len = ft_ps_stacklen(*stack_a);
 	if (len > 3)
@@ -229,7 +252,25 @@ void	ft_ps_quicksort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 				ft_ps_push_b(stack_b, stack_a, mvtbook);
 	ft_ps_sort_a3(stack_a, mvtbook);
 	ft_ps_sort_b2(stack_b, mvtbook);
-	ft_ps_npush_b(_stack_a, stack_b, mvtbook);
+	ft_ps_npush_a(stack_a, stack_b, mvtbook, 2);
+}
+
+
+void	ft_ps_quicksort_small(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
+{	
+	int pivot;
+	int	len;
+
+	if (ft_ps_sorted_checker(*stack_a))
+		return ;
+	pivot = ft_ps_findpivot(*stack_a);
+	len = ft_ps_stacklen(*stack_a);
+	while (len > 5)
+		while (ft_ps_smartrotation_a(stack_a, mvtbook, pivot))
+			if ((*stack_a)->rank < pivot)
+				ft_ps_push_b(stack_b, stack_a, mvtbook);
+
+
 }
 /*
 void	ft_ps_sort_small_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
