@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/14 20:53:03 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:13:06 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,11 @@ void	ft_ps_rotate_b(t_stack **head, t_list **mvtbook) //need more check
 {
 	if (head && *head)
 	{
-		*head = (*head)->next;
-		ft_lstadd_back(mvtbook, ft_lstnew("rb"));
+		if ((*head)->next != *head)
+		{
+			*head = (*head)->next;
+			ft_lstadd_back(mvtbook, ft_lstnew("rb"));
+		}
 	}
 }
 /*
@@ -108,8 +111,11 @@ void	ft_ps_reverse_b(t_stack **head, t_list **mvtbook)
 {
 	if (head && *head)
 	{
-		*head = (*head)->previous;
-		ft_lstadd_back(mvtbook, ft_lstnew("rrb"));
+		if ((*head)->next != *head)
+		{
+			*head = (*head)->previous;
+			ft_lstadd_back(mvtbook, ft_lstnew("rrb"));
+		}
 	}
 }
 /*

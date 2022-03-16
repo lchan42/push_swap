@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/15 21:34:48 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:26:58 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	ft_ps_findpivot(t_stack *head)
 }
 /****************************************
  * returns the aritmetic average of a stack;
+ * take into account the rank;
  */
 
 int	ft_ps_chuckpivot (void)
@@ -270,6 +271,23 @@ void	ft_ps_quicksort_small(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbo
 			if ((*stack_a)->rank < pivot)
 				ft_ps_push_b(stack_b, stack_a, mvtbook);
 
+}
+
+void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
+{ //a--->b (b = destination)
+	ft_ps_push_b(stack_b, stack_a, mvtbook);
+	if ((*stack_b)->rank <= pivot && (*stack_b)->next->rank > pivot)
+		ft_ps_rotate_b(stack_b, mvtbook);
+}
+
+void	ft_ps_juggle_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
+{
+	int pivot;
+
+	pivot = ft_ps_findpivot(*stack_a);
+}
+void	ft_ps_juggle_b(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook)
+{
 
 }
 /*

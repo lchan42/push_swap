@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/15 21:34:59 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/16 18:27:05 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	del_print_circular_lst(t_stack *head, char c, int opt);
 void	del_test_mvt(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	del_test_sort_3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	del_test_sort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
+void	del_test_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 //void	del_test_sort_small_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 //push_swap_utils.c
@@ -89,6 +90,7 @@ int	ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);
 void	ft_ps_sort_a3(t_stack **stack_a, t_list **mvtbook);
 void	ft_ps_sort_b2(t_stack **stack_b, t_list **mvtbook);
 void	ft_ps_sort_b3(t_stack **stack_b, t_list **mvtbook);
+void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
 void	ft_ps_quicksort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 
 
