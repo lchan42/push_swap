@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/16 18:27:05 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/16 22:09:57 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_ps_reverse_b(t_stack **head, t_list **mvtbook);
 
 int	ft_ps_stacklen(t_stack *head);
 int	ft_ps_findpivot(t_stack *head);
-int	ft_ps_chuckpivot (void);
+int	ft_ps_chunckpivot (t_stack *head, int chunck);
 int	ft_ps_sorted_checker(t_stack *head);
 int	is_circle_sorted(t_stack *head);
 void	ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);
@@ -91,7 +91,9 @@ void	ft_ps_sort_a3(t_stack **stack_a, t_list **mvtbook);
 void	ft_ps_sort_b2(t_stack **stack_b, t_list **mvtbook);
 void	ft_ps_sort_b3(t_stack **stack_b, t_list **mvtbook);
 void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
+void	ft_ps_pushorganise_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
 void	ft_ps_quicksort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
+void	ft_ps_juggle_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 
 #endif

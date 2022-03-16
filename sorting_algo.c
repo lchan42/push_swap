@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/16 18:26:58 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/16 22:09:56 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,28 @@ int	ft_ps_findpivot(t_stack *head)
 	}
 	return (pivot / ft_ps_stacklen(head));
 }
+
+int	ft_ps_chunckpivot(t_stack *head, int chunck)
+{
+	t_stack	*tmp;
+	int	pivot;
+	int len;
+
+	tmp = head->next;
+	pivot = head->rank;
+	len = 1;
+	while ((tmp != head || tmp->index != chunck) && len++)
+	{
+		pivot += tmp->rank;
+		tmp = tmp->next;
+	}
+	return (pivot/len);
+}
 /****************************************
  * returns the aritmetic average of a stack;
  * take into account the rank;
  */
 
-int	ft_ps_chuckpivot (void)
-{
-	return (0);
-}
-	
 int	ft_ps_sorted_checker(t_stack *head)
 {
 	int		len;
@@ -165,6 +177,7 @@ int	ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot)
 /**************************************************************
  * find the shortest way towards element that have to be pushed;
  */
+/*********************************************sorting < 5**************************************************/
 
 void	ft_ps_sort_a3(t_stack **stack_a, t_list **mvtbook)
 {
@@ -256,7 +269,7 @@ void	ft_ps_quicksort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 	ft_ps_npush_a(stack_a, stack_b, mvtbook, 2);
 }
 
-
+/* unusefull function ?
 void	ft_ps_quicksort_small(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 {	
 	int pivot;
@@ -271,20 +284,54 @@ void	ft_ps_quicksort_small(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbo
 			if ((*stack_a)->rank < pivot)
 				ft_ps_push_b(stack_b, stack_a, mvtbook);
 
-}
+}*/
 
 void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
-{ //a--->b (b = destination)
-	ft_ps_push_b(stack_b, stack_a, mvtbook);
-	if ((*stack_b)->rank <= pivot && (*stack_b)->next->rank > pivot)
-		ft_ps_rotate_b(stack_b, mvtbook);
-}
+{
+		ft_ps_push_b(stack_b, stack_a, mvtbook);
+		if ((*stack_b)->rank <= pivot && (*stack_b)->next->rank > pivot)
+		{
+			(*stack_b)->index = pivot - 1;
+			ft_ps_rotate_b(stack_b, mvtbook);
+		}
+		else
+			(*stack_b)->index = pivot + 1;
+} //(b = destination)
+/*************************************************
+ * this function push_b and organise tack b according to the pivot.
+ * and is also changing the inde1x to either pivot + 1 or pivot -1 so I can differentiate the groups
+ */
+
+void	ft_ps_pushorganise_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
+{
+		ft_ps_push_a(stack_a, stack_b, mvtbook);
+		if ((*stack_a)->rank > pivot && (*stack_a)->next->rank <= pivot)
+		{
+			ft_ps_rotate_a(stack_a, mvtbook);
+			(*stack_b)->index = pivot + 1;
+		}
+		else
+			(*stack_b)->index = pivot - 1;
+} //(a = destination) 
 
 void	ft_ps_juggle_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int pivot;
+	int	len;
 
 	pivot = ft_ps_findpivot(*stack_a);
+	len = ft_ps_stacklen(*stack_a);
+	while (*stack_a)
+		ft_ps_pushorganise_b(stack_a, stack_b, mvtbook, pivot);
+	while (*stack_b)
+	{
+		pivot = ft_ps_chunckpivot(*stack_b, (*stack_b)->index);
+		printf("pivot = %d", pivot);
+		while ((*stack_b)->rank == pivot)
+		{
+			ft_ps_pushorganise_a(stack_a, stack_b, mvtbook, pivot);
+		}
+	}
 }
 void	ft_ps_juggle_b(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook)
 {
