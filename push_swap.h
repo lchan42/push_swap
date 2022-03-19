@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/16 22:09:57 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/19 13:53:05 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ void	ft_ps_sort_b3(t_stack **stack_b, t_list **mvtbook);
 void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
 void	ft_ps_pushorganise_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
 void	ft_ps_quicksort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
-void	ft_ps_juggle_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void	ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void	ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void	ft_ps_juggle(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 
 #endif

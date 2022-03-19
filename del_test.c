@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/16 22:09:59 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/19 13:53:03 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,9 @@ void	del_test_pushorganise_b(t_stack**stack_a, t_stack **stack_b, t_list **mvtbo
 //	while (*stack_a)
 //		ft_ps_pushorganise_b(stack_a, stack_b, mvtbook, pivot);
 	printf("-------------------after sorting stack a ----------------\n");
-	ft_ps_juggle_a(stack_a, stack_b, mvtbook);
+//	ft_ps_pass_a(stack_a, stack_b, mvtbook);
+//	ft_ps_pass_b(stack_a, stack_b, mvtbook);
+	ft_ps_juggle(stack_a, stack_b, mvtbook);
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
 }

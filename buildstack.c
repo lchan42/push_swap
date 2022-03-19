@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:58:49 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/13 21:02:04 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/19 13:04:01 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_stack	*ft_ps_nod_init(int value, int index)
 		return (NULL);
 	tmp->value = value;
 	tmp->rank = 0;
-	tmp->index = index;
+	tmp->index = 0;
 	tmp->previous = NULL;
 	tmp->next = NULL;
 	return (tmp);
