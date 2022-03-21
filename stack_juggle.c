@@ -6,11 +6,43 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/21 16:56:41 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/21 21:43:38 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		ft_ps_min_index(t_stack *head)
+{
+	t_stack	*tmp;
+	int		min;
+
+	tmp = head;
+	min = head->index;
+	while (tmp->next != head)
+	{
+		if (tmp->index < min)
+			min = tmp->index;
+		tmp = tmp ->next;
+	}
+	return (min);
+}
+
+int		ft_ps_max_index(t_stack *head)
+{
+	t_stack	*tmp;
+	int		max;
+
+	tmp = head;
+	max = head->index;
+	while (tmp->next != head)
+	{
+		if (tmp->index < max)
+			max = tmp->index;
+		tmp = tmp ->next;
+	}
+	return (max);
+}
 
 void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
 {
@@ -55,9 +87,7 @@ void	ft_ps_pushorganise_as(t_stack **stack_a, t_stack **stack_b, t_list **mvtboo
 {
 	ft_ps_push_a(stack_a, stack_b, mvtbook);
 	if ((*stack_a)->rank > pivot)
-	{
 		(*stack_a)->index = pivot + 1;
-	}
 	else
 	{
 		(*stack_a)->index = pivot - 1;
@@ -74,20 +104,18 @@ void	ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook)
 
 	chunck = (*stack_b)->index;
 	pivot = ft_ps_chunckpivot(*stack_b, chunck);
-	//	printf("chunck pivot = %d\n", pivot);
 	while ((*stack_b) && (*stack_b)->index == chunck)
 		ft_ps_pushorganise_a(stack_a, stack_b, mvtbook, pivot);
-
 	while (*stack_b)
 	{
 		chunck = (*stack_b)->index;
 		pivot = ft_ps_chunckpivot(*stack_b, chunck);
-	//	printf("chunck pivot = %d\n", pivot);
-//		while ((*stack_b) && (*stack_b)->index == chunck)
-//			ft_ps_pushorganise_a(stack_a, stack_b, mvtbook, pivot);
 		while ((*stack_b) && (*stack_b)->index == chunck)
 			ft_ps_pushorganise_as(stack_a, stack_b, mvtbook, pivot);
-	}//NEED TO ADD A FUNCTION THAT ROTATE TO FIRST SMALLEST CHUNCK.
+//		while ((*stack_a)->previous->index == pivot - 1)
+//			ft_ps_reverse_a(stack_a, mvtbook);
+	}
+	//NEED TO ADD A FUNCTION THAT ROTATE TO FIRST SMALLEST CHUNCK.
 }
 
 /*************************************************
@@ -102,31 +130,31 @@ void	ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 
 	chunck = (*stack_a)->index;
 	pivot = ft_ps_chunckpivot(*stack_a, chunck);
-//	printf("chunck pivot = %d\n", pivot);
 	while ((*stack_a) && (*stack_a)->index == chunck)
 		ft_ps_pushorganise_b(stack_a, stack_b, mvtbook, pivot);
 	while (*stack_a)
 	{
 		chunck = (*stack_a)->index;
 		pivot = ft_ps_chunckpivot(*stack_a, chunck);
-	//	printf("chunck pivot = %d\n", pivot);
 		while ((*stack_a) && (*stack_a)->index == chunck)
 			ft_ps_pushorganise_bs(stack_a, stack_b, mvtbook, pivot);
+//		while ((*stack_b)->previous->index == pivot + 1)
+//			ft_ps_reverse_b(stack_b, mvtbook);
 	}
 }
 
 void	ft_ps_juggle(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook)
 {
-	while (ft_ps_chunckmax_len(*stack_a) > 10)
+	while (ft_ps_chunckmax_len(*stack_a) > 15)
 	{
 		ft_ps_pass_b(stack_a, stack_b, mvtbook);
-		del_print_circular_lst(*stack_b, 'b', 0);
-		if ((ft_ps_chunckmax_len(*stack_b) <= 10))
+//		del_print_circular_lst(*stack_b, 'b', 0);
+		if ((ft_ps_chunckmax_len(*stack_b) <= 15))
 			break ;
 		ft_ps_pass_a(stack_a, stack_b, mvtbook);
-		del_print_circular_lst(*stack_a, 'a', 0);
+//		del_print_circular_lst(*stack_a, 'a', 0);
 	}
-	printf("max_chunck_b  = %d\n", ft_ps_chunckmax_len(*stack_b));
+//	printf("max_chunck_b  = %d\n", ft_ps_chunckmax_len(*stack_b));
 }
 
 /******************to do list******************
