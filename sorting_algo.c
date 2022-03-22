@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/20 20:20:13 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/22 19:40:58 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_ps_stacklen(t_stack *head)
 	return (len);
 }
 
-int	ft_ps_currentchunck_len(t_stack *head)
+int	ft_ps_chunck_len(t_stack *head)
 {
 	t_stack	*tmp;
 	int		chunck;
@@ -175,7 +175,7 @@ int	ft_ps_sorted_checker_a_n(t_stack *head, int n)
  * */
 
 /***************************************************AFTER SICKNESS*******************************************/
-int	is_circle_sorted(t_stack *head)
+int	ft_ps_is_sorted(t_stack *head)
 {
 	while (head->rank != 1)
 		head = head->next;
@@ -460,7 +460,7 @@ void	ft_ps_sort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 	int tmp;
 	int	pivot;
 	
-	chunck_len = ft_ps_currentchunck_len(*stack_a);
+	chunck_len = ft_ps_chunck_len(*stack_a);
 	if (ft_ps_sorted_checker_a_n(*stack_a, chunck_len))
 		return ;
 	pivot = ft_ps_chunckpivot(*stack_a, (*stack_a)->index);

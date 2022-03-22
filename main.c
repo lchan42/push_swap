@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/21 21:43:43 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/22 20:03:10 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int     main(int ac, char **av)
 		printf(">>> entry is ok <<<\n");
 	stack_a = ft_ps_buildstack(ac, av);
 	stack_b = NULL;
+	ft_ps_sort(&stack_a, &stack_b, &mvtbook);
+//	ft_ps_pass_b(&stack_a, &stack_b, &mvtbook, 5);
 //	ft_ps_juggle(&stack_a, &stack_b, &mvtbook);
-	del_test_pushorganise_b(&stack_a, &stack_b, &mvtbook);
+//	del_test_pushorganise_b(&stack_a, &stack_b, &mvtbook);
 
 //	del_test_sort_a5_cir(&stack_a, &stack_b, &mvtbook);
 //	del_test_sort_b3_cir(&stack_a, &stack_b, &mvtbook);

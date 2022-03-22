@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/21 21:43:41 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/22 20:03:12 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ void	del_test_sort_a5_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
 }
-
+/* this function was to test the old algorithm. 
 void	del_test_pushorganise_b(t_stack**stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int pivot;
@@ -218,7 +218,7 @@ void	del_test_pushorganise_b(t_stack**stack_a, t_stack **stack_b, t_list **mvtbo
 	printf("-------------------after sorting stack a ----------------\n");
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
-}
+}*/
 
 /*****************
  * pa = from b to a. a is the destination

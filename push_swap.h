@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/21 21:43:46 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/22 20:03:14 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_ps_reverse_b(t_stack **head, t_list **mvtbook);
 
 //stacklen.c++
 int     ft_ps_stacklen(t_stack *head);
-int     ft_ps_currentchunck_len(t_stack *head);
+int     ft_ps_chunck_len(t_stack *head);
 int     ft_ps_chunckmax_len(t_stack *head);
 
 //pivot.c++
@@ -90,7 +90,7 @@ int     ft_ps_chunckpivot(t_stack *head, int chunck);
 //sorted_checker.c++
 int     ft_ps_sorted_checker(t_stack *head);
 int     ft_ps_sorted_checker_a_n(t_stack *head, int n);
-int     is_circle_sorted(t_stack *head);
+int		ft_ps_is_sorted(t_stack *head);
 
 //ft_smartrotation.c++
 void    ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);
@@ -115,9 +115,13 @@ void    ft_ps_sort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 //stack_juggle.c
 void    ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
 void    ft_ps_pushorganise_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
-void    ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-void    ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook);
-void    ft_ps_juggle(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook);
+void    ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
+void    ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
+void    ft_ps_juggle(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 
+//stack_juggle_opt.c
+void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+//sorting_5.c as I decided to go thought recursive, I'm not sure that optimising this will be useful. Lets see.
+//
 #endif
