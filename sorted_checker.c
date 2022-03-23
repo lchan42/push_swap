@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/23 16:39:21 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/23 22:20:18 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,44 @@ int	ft_ps_sorted_checker(t_stack *head)
 
 int	ft_ps_sorted_checker_a_n(t_stack *head, int n)
 {
-	int		len;
 	t_stack	*tmp;
+	int		i;
 
-	len = ft_ps_stacklen(head);
-	tmp = head;
-	while (tmp->next != head && n--)
+	tmp = head->next;
+	i = 0;
+	while  (++i && --n)
 	{
-		if (tmp->rank != tmp->next->rank - 1)
+		if (tmp->rank != head->rank + i)
+		{
+//			printf("not sorted tmp->rank = %d i = %d\n", tmp->rank, i);
 			return (0);
+		}
+//		printf("tmp->rank(%d) = head->rank + i (%d)\n", tmp->rank, i);
 		tmp = tmp->next;
 	}
-	if (tmp->rank == len)
-		return (1);
-	return (0);
+	return (1);
 }
+
 /******************************************************
  * check if n element are sorted
  * */
+
+int	ft_ps_sorted_checker_b_n(t_stack *head, int n)
+{
+	t_stack	*tmp;
+	int		i;
+
+	tmp = head->next;
+	i = 0;
+	while  (++i && n--)
+	{
+		if (head->rank != tmp->rank + i)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 
 /***************************************************AFTER SICKNESS*******************************************/
 int	ft_ps_is_sorted(t_stack *head)

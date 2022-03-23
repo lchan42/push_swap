@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/23 18:24:12 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/23 23:16:22 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int     main(int ac, char **av)
 //	ft_ps_juggle(&stack_a, &stack_b, &mvtbook);
 //	del_test_pushorganise_b(&stack_a, &stack_b, &mvtbook);
 
-	del_test_sort_a5_cir(&stack_a, &stack_b, &mvtbook);
+//	del_test_sort_a6_cir(&stack_a, &stack_b, &mvtbook);
+//	del_test_sort_a10_cir(&stack_a, &stack_b, &mvtbook);
 //	del_test_sort_b3_cir(&stack_a, &stack_b, &mvtbook);
 }
 /**********************************************
