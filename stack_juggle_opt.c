@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/22 20:03:08 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/23 16:29:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,17 +168,17 @@ int	ft_ps_is_even_nbr(int n)
 	return (0);
 }
 
-void	ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
+void	ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int		len;
+	int		pivot;
 	int		count;
 
 	len = ft_ps_chunck_len(*stack_a);
+	pivot = ft_ps_chunckpivot(*stack_a, (*stack_a)->index);
 	count = len / 2;
-	if (ft_ps_is_even_nbr(count))
+	if (!ft_ps_is_even_nbr(len))
 		count++;
-//	while ((*stack_a)->rank <= pivot && count--)	
-//		ft_ps_pushorganise_b(stack_a, stack_b, mvtbook, pivot);
 	while (count)
 	{
 		if ((*stack_a)->rank <= pivot && count--)
@@ -191,41 +191,40 @@ void	ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pi
 	printf("\n\n\n");
 }
 
-
-void	ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
+void	ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int		len;
+	int		pivot;
 	int		count;
 
 	len = ft_ps_chunck_len(*stack_b);
+	pivot = ft_ps_chunckpivot(*stack_b, (*stack_b)->index);
 	count = len / 2;
-//	if (ft_ps_is_even_nbr(count))
-//		count++;
-//	while ((*stack_b)->rank >= pivot && count--)	
-//		ft_ps_pushorganise_a(stack_a, stack_b, mvtbook, pivot);
+	if (!ft_ps_is_even_nbr(len))
+		count++;
 	while (count)
 	{
 		if ((*stack_b)->rank >= pivot && count--)
 			ft_ps_pushorganise_a(stack_a, stack_b, mvtbook, pivot);
 		else
-			ft_ps_rotate_b(stack_a, mvtbook);
+			ft_ps_rotate_b(stack_b, mvtbook);
 	}
 	del_print_circular_lst(*stack_a, 'a', 0);
 	del_print_circular_lst(*stack_b, 'b', 0);
 	printf("\n\n\n");
 }
 
-
 void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook)
 {
 	int	pivot;
 
-	pivot = ft_ps_findpivot(*stack_a);
-	printf("pivot = %d\n", pivot);
-	ft_ps_pass_b(stack_a, stack_b, mvtbook, pivot);
-	if (ft_ps_stacklen(*stack_a) > 1)
+	if (ft_ps_chunck_len(*stack_a) > 5)
+	{
+		ft_ps_pass_b(stack_a, stack_b, mvtbook);
 		ft_ps_sort(stack_a, stack_b, mvtbook);
-//	ft_ps_pass_a(stack_a, stack_b, mvtbook, pivot); 
+	}
+
+//	ft_ps_pass_a(stack_a, stack_b, mvtbook); 
 
 	/*
 	if (ft_ps_stacklen(*stack_b) > 3)
@@ -234,7 +233,6 @@ void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook)
 		ft_ps_pass_b(stack_a, stack_b, mvtbook, pivot);
 		ft_ps_sort(stack_a, stack_b, mvtbook);
 	}*/
-
 }
 
 /******************to do list******************

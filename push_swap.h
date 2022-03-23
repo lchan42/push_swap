@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/22 20:03:14 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/23 18:24:18 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_stack
 void	del_print_tab(char **tab);
 void	del_print_stack(t_stack *head, int option);
 void	del_back_print(t_stack *head);
+void	del_print_mvtbook(t_list *mvtbook);
 void	del_print_circular_lst(t_stack *head, char c, int opt);
 void	del_test_mvt(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	del_test_sort_b3_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
@@ -78,12 +79,12 @@ void	ft_ps_reverse_b(t_stack **head, t_list **mvtbook);
 
 //sorting_algo.c
 
-//stacklen.c++
+//stacklen.c
 int     ft_ps_stacklen(t_stack *head);
 int     ft_ps_chunck_len(t_stack *head);
 int     ft_ps_chunckmax_len(t_stack *head);
 
-//pivot.c++
+//find_pivot.c
 int     ft_ps_findpivot(t_stack *head);
 int     ft_ps_chunckpivot(t_stack *head, int chunck);
 
@@ -94,15 +95,19 @@ int		ft_ps_is_sorted(t_stack *head);
 
 //ft_smartrotation.c++
 void    ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);
-int     ft_ps_smartrotation_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
+int     ft_ps_smartrotation_a_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
 int     ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);
 
 //sort_5_cir.c++
 void    ft_ps_sort_a3_cir(t_stack **stack_a, t_list **mvtbook);
-void    ft_ps_sort_b2(t_stack **stack_b, t_list **mvtbook);
+void    ft_ps_sort_b2_cir(t_stack **stack_b, t_list **mvtbook, int count);
 void    ft_ps_sort_b3_cir(t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_npush_a(t_stack **stack_a, t_stack** stack_b, t_list **mvtbook, int n);
 void    ft_ps_sort_a5_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
+
+//sort_10a_cir.c
+
+//sort_10b_cir.ci
 
 
 void    ft_ps_sort_a3_(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
@@ -115,8 +120,8 @@ void    ft_ps_sort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 //stack_juggle.c
 void    ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
 void    ft_ps_pushorganise_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
-void    ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
-void    ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
+void    ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void    ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_juggle(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 
