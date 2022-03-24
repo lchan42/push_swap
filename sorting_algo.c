@@ -6,125 +6,28 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/23 23:16:26 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/24 17:02:52 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*******************************************************
- * if there is more than 2 element, use b3 else use b2;
- */
-/*
-void	ft_ps_sort_back_a_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count)
+void	ft_ps_sort_back_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count)
 {
-	int stack_len;
-	int	chunck_len;
-
-	stack_len = ft_ps_stacklen(*stack_b);
-	if (stack_len <= 5)
-	{
-		if (count == 2)
-			ft_ps_sort_b2(stack_b, mvtbook);
-		else if (count == 3)
-			ft_ps_sort_b3_cir(stack_b, mvtbook);
-//		else if (count > 3)
-//			ft_ps_sort_b5_cir(stack_a, stack_b, mvtbook);
-	}
-}
-*/
-/*
-void	ft_ps_sort_b2(t_stack **stack_b, t_list **mvtbook)
-{
-	if ((*stack_b)->value < (*stack_b)->next->value)
-		ft_ps_swap_b(stack_b, mvtbook);
-}
-
-void	ft_ps_sort_b3_cir(t_stack **stack_b, t_list **mvtbook)
-{
-	int	current;
-	int	next;
-	int	bignext;
-
-	current = (*stack_b)->rank;
-	next = (*stack_b)->next->rank;
-	bignext = (*stack_b)->next->next->rank;
-	if (current > next && next > bignext) //3 2 1
-		return ;
-	else if (current < bignext && bignext < next) //1 3 2
-		ft_ps_rotate_b(stack_b, mvtbook);
-	else if (current > next && current < bignext) //2 1 3
-		ft_ps_rotate_a(stack_b, mvtbook);
-	else if (current < next && current > bignext) //2 3 1
-		ft_ps_swap_b(stack_b, mvtbook);
-	else if (current < next && next < bignext) //1 2 3
-	{
-		ft_ps_rotate_b(stack_b, mvtbook);
-		ft_ps_swap_b(stack_b, mvtbook);
-	}
-	else if (current > bignext && next < bignext) //3 1 2 
-	{	
-		ft_ps_reverse_b(stack_b, mvtbook);
-		ft_ps_swap_b(stack_b, mvtbook);
-	}
-}*/
-/*
-void	ft_ps_sort_b6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
-{
-	int	stack_len;
-	int pivot;
-	int count;
-
-	stack_len = ft_ps_stacklen(*stack_);
-	count = 0;
-	if (ft_ps_sorted_checker_b_n(*stack_a, stack_len))
-		return ;
-	if (stack_len > 3)
-	{	
-		pivot = ft_ps_findpivot(*stack_a);
-		while (ft_ps_smartrotation_a(stack_a, mvtbook, pivot))
-			if ((*stack_a)->rank < pivot && ++count)
-				ft_ps_push_b(stack_b, stack_a, mvtbook);
-	}
-	ft_ps_sort_a3_cir(stack_a, mvtbook);
-	ft_ps_sort_back_b_cir(stack_a, stack_b, mvtbook, count);
-	while (count--)
-		ft_ps_push_a(stack_a, stack_b, mvtbook);
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-/*
-void	ft_ps_sort_back_a_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count)
-{
-	printf("count = %d", count);
 	if (count == 2)
-		ft_ps_sort_b2(stack_b, mvtbook);
+		ft_ps_sort_a2(stack_b, mvtbook);
+	else if (count == 3 && ft_ps_stacklen(*stack_b) == 3)
+		ft_ps_sort_a3_cir(stack_b, mvtbook);
 	else if (count == 3)
-	{
-		del_print_circular_lst(*stack_b, 'b', 0);
-		ft_ps_sort_b3_cir(stack_b, mvtbook);
-	}
+		ft_ps_sort_a3(stack_b, mvtbook);
 	while (count--)
 		ft_ps_push_a(stack_a, stack_b, mvtbook);
 }
+/********************************************************
+ * in this case no push back from a. We are pushing sorted element from b.
+ */
 
-void	ft_ps_sort_a2(t_stack **stack_a, t_list **mvtbook)
-{
-	if ((*stack_a)->value < (*stack_a)->next->value)
-		ft_ps_swap_a(stack_a, mvtbook);
-}
-
-void	ft_ps_sort_a3_cir(t_stack **stack_a, t_list **mvtbook)
+void	ft_ps_sort_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int	current;
 	int	next;
@@ -133,89 +36,68 @@ void	ft_ps_sort_a3_cir(t_stack **stack_a, t_list **mvtbook)
 	current = (*stack_a)->rank;
 	next = (*stack_a)->next->rank;
 	bignext = (*stack_a)->next->next->rank;
-	if (ft_ps_sorted_checker(*stack_a)) //1 2 3
+	if (current > next && next > bignext) //3 2 1
 		return ;
 	else if (current < bignext && bignext < next) //1 3 2
 	{
-		ft_ps_swap_a(stack_a, mvtbook);
-		ft_ps_rotate_a(stack_a, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_rotate_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_reverse_b(stack_b, mvtbook);
 	}
 	else if (current > next && current < bignext) //2 1 3
-		ft_ps_swap_a(stack_a, mvtbook);
-	else if (current < next && current > bignext) //2 3 1
-		ft_ps_reverse_a(stack_a, mvtbook);
-	else if (current > next && next > bignext) //3 2 1
-	{
-		ft_ps_rotate_a(stack_a, mvtbook);
-		ft_ps_swap_a(stack_a, mvtbook);
+	{	
+		ft_ps_rotate_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_reverse_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
 	}
-	else if (current > bignext && next < bignext) //3 1 2 
-		ft_ps_rotate_a(stack_a, mvtbook);
+	else
+		ft_ps_sort_b3_bis(stack_a, stack_b, mvtbook)
 }
 
-void	ft_ps_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
+void	ft_ps_sort_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
-	int	stack_len;
-	int pivot;
-	int count;
+	int	current;
+	int	next;
+	int	bignext;
 
-	stack_len = ft_ps_stacklen(*stack_a);
-	count = 0;
-	if (ft_ps_sorted_checker_a_n(*stack_a, stack_len))
-		return ;
-	if (stack_len > 3)
+	current = (*stack_a)->rank;
+	next = (*stack_a)->next->rank;
+	bignext = (*stack_a)->next->next->rank;
+	 if (current < next && current > bignext) //2 3 1	
+		ft_ps_swap_b(stack_b, mvtbook);
+	else if (current < next && next < bignext) //1 2 3
 	{	
-		pivot = ft_ps_findpivot(*stack_a);
-		while (ft_ps_smartrotation_a(stack_a, mvtbook, pivot))
-			if ((*stack_a)->rank <= pivot && ++count)
-				ft_ps_push_b(stack_b, stack_a, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_rotate_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_reverse_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
 	}
+	else if (current > bignext && next < bignext) //3 1 2
+	{	
+		ft_ps_rotate_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_reverse_b(stack_b, mvtbook);
+	}
+}
 
-	del_print_circular_lst(*stack_a, 'a', 0);
-	del_print_circular_lst(*stack_b, 'b', 0);
-	ft_ps_sort_a3_cir(stack_a, mvtbook);
-	ft_ps_sort_back_a_cir(stack_a, stack_b, mvtbook, count);
-}*/
-/*
-void	ft_ps_sort_a10_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
+
+
+
+void	ft_ps_sort_back_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count)
 {
-	int	stack_len;
-	int pivot;
-	int count;
+	if (count == 2)
+		ft_ps_sort_b2(stack_b, mvtbook);
+	else if (count == 3 && ft_ps_stacklen(*stack_b) == 3)
+		ft_ps_sort_b3_cir(stack_b, mvtbook);
+	else if (count == 3)
+		ft_ps_sort_b3(stack_b, mvtbook);
+	while (count--)
+		ft_ps_push_a(stack_a, stack_b, mvtbook);
+}
 
-	stack_len = ft_ps_stacklen(*stack_a);
-	count = 0;
-	if (ft_ps_sorted_checker_a_n(*stack_a, stack_len))
-		return ;
-	if (stack_len > 5)
-	{	
-		pivot = ft_ps_findpivot(*stack_a);
-			while (ft_ps_smartrotation_a(stack_a, mvtbook, pivot))
-				if ((*stack_a)->rank <= pivot && ++count)
-					ft_ps_pushorganise_b(stack_a, stack_b, mvtbook, pivot); //or pushorganise ? 
-	}
-	ft_ps_sort_a5_cir(stack_a, stack_b, mvtbook);
-	ft_ps_sort_back_a_cir(stack_a, stack_b, mvtbook, count);
-} //CAN WORK UNTIL I CREAT A FUNCTION THAT DEALS WITH NOT CIR STACCK
-*/ 
-
-/*
-	del_print_circular_lst(*stack_a, 'a', 0);
-	del_print_circular_lst(*stack_b, 'b', 0);
-*/
-
-
-/************************************************************
- *this function only works if entry is <= 5/
- */
-/*************************************************************************************************************/
-
-
-
-
-
-
-/**************************the goal here is to do an algorythm that sort_5 with no rotation***********************/
 void	ft_ps_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int	current;
@@ -227,76 +109,142 @@ void	ft_ps_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	bignext = (*stack_a)->next->next->rank;
 	if (ft_ps_sorted_checker(*stack_a)) //1 2 3
 		return ;
-	else if (current < bignext && bignext < next) //1 3 2 ++
+	else if (current < bignext && bignext < next) //1 3 2
 	{ 
 		ft_ps_rotate_a(stack_a, mvtbook);
-		ft_ps_swap_a(stack_a, mvtbook); //we end up with 1 2 3, head on 2; 
-	}
-	else if (current > next && current < bignext) //2 1 3
 		ft_ps_swap_a(stack_a, mvtbook);
-	else if (current < next && current > bignext) //2 3 1 ++
 		ft_ps_reverse_a(stack_a, mvtbook);
-	else if (current > next && next > bignext) //3 2 1++
+	}
+	else if (current < next && current > bignext) //2 3 1
 	{
 		ft_ps_rotate_a(stack_a, mvtbook);
 		ft_ps_swap_a(stack_a, mvtbook);
+		ft_ps_reverse_a(stack_a, mvtbook);
+		ft_ps_swap_a(stack_a, mvtbook);
 	}
-	else if (current > bignext && next < bignext) //3 1 2 ++
-		ft_ps_rotate_a(stack_a, mvtbook);
+	else	
+		ft_ps_sort_a3_bis(stack_a, stack_b, mvtbook);
 }
-
-int	ft_ps_push_b_count(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
-{
-	if (!*stack_a)
-		return (0);
-	ft_ps_push_b(stack_b, stack_a, mvtbook);
-	return (1);
-}
-
-int	ft_ps_push_a_count(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
-{
-	if (!*stack_b)
-		return (0);
-	ft_ps_push_a(stack_a, stack_b, mvtbook);
-	return (1);
-}
-
-void	ft_ps_push_back_a_n(t_stack **dst, t_stack **src, t_list **mvtbook, int n)
-{
-	while (n--)
-		ft_ps_push_a(dst, src, mvtbook);
-}
-
-void	ft_ps_push_back_b_n(t_stack **dst, t_stack **src, t_list **mvtbook, int n)
-{
-	while (n--)
-		ft_ps_push_b(dst, src, mvtbook);
-}
-/****************************************************************
- * this function has to be used during the last sorting, when all chunch are less than 10;
- * sort 3 first didgit
- * go to next chunck
- * push back element from stack b
+/**********************************************************
+ * 123 132 231
  */
 
-
-void	ft_ps_sort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
+void	ft_ps_sort_a3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
-	int	chunck_len;
+	int	current;
+	int	next;
+	int	bignext;
+
+	current = (*stack_a)->rank;
+	next = (*stack_a)->next->rank;
+	bignext = (*stack_a)->next->next->rank;		
+	if (current > next && current < bignext) //2 1 3
+		ft_ps_swap_a(stack_a, mvtbook);
+	else if (current > bignext && next < bignext) //3 1 2 ++
+	{
+		ft_ps_swap_a(stack_a, mvtbook);
+		ft_ps_rotate_a(stack_a, mvtbook);
+		ft_ps_swap_a(stack_a, mvtbook);
+		ft_ps_reverse_a(stack_a, mvtbook);
+	}
+	else if (current > next && next > bignext) //3 2 1++
+	{
+		ft_ps_swap_a(stack_a, mvtbook);
+		ft_ps_rotate_a(stack_a, mvtbook);
+		ft_ps_swap_a(stack_a, mvtbook);
+		ft_ps_reverse_a(stack_a, mvtbook);
+		ft_ps_swap_a(stack_a, mvtbook);
+	}
+}
+/**********************************************************
+ * 213 312 321
+ */
+
+void	ft_ps_sort_a6(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
+{
+	int	stack_len;
+	int pivot;
 	int count;
-	int tmp;
-	int	pivot;
-	
+
 	chunck_len = ft_ps_chunck_len(*stack_a);
+	count = 0;
 	if (ft_ps_sorted_checker_a_n(*stack_a, chunck_len))
 		return ;
-	pivot = ft_ps_chunckpivot(*stack_a, (*stack_a)->index);
 	if (chunck_len > 3)
-/*	while (1)
-	{
-		stack_a; 
-	}*/
-	ft_ps_sort_a3_cir(stack_a, mvtbook);
-//	ft_ps_sort_b2(stack_b, mvtbook); deleted function
-//	ft_ps_npush_a(stack_a, stack_b, mvtbook, count); deleted function
+	{	
+		pivot = ft_ps_chunckpivot(*stack_a, (*stack_a)->index);
+		while (chunck_len > 3)
+			if ((*stack_a)->rank <= pivot && ++count)
+				ft_ps_push_b(stack_b, stack_a, mvtbook);
+	}
+	del_print_circular_lst(*stack_a, 'a', 0);
+	del_print_circular_lst(*stack_b, 'b', 0);
+	ft_ps_sort_a3(stack_a, mvtbook);
+	ft_ps_sort_back_a(stack_a, stack_b, mvtbook, count);
 }
+
+
+/********************************************not finished**************maybe not usefull******************************/
+void	ft_ps_smartrot_pushswap_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
+{
+	int		count;
+	int		reajust;
+	t_stack	*current;
+	t_stack	*next;
+
+	count = ft_ps_count_underpivot(stack_a, pivot);
+	reajust = 0;
+	while (count)
+	{
+		current = stack_a;
+		next = stack_a->next;
+		if ((*stack_a)->rank <= pivot && count--)
+			ft_ps_push_b(stack_a, stack_b, mvtbook);
+		else if ((*stack_a)->rank <   && ++reajust)
+	}
+}
+
+int	ft_ps_count_underpivot(t_stack *stack, int pivot) //for stack_a
+{
+	int	chunck_index;
+	int	chunck_len;
+	int	count;
+
+	chunck_index = stack->index;
+	chunck_len = ft_ps_chunck_len(stack);
+	count = 0;
+//	if (!ft_ps_is_even_nbr(pivot))
+//		pivot--;
+	while (stack->index == chunck_index && len--)
+	{
+		if (stack->index <= pivot)
+			count++;
+		stack = stack->next;
+	}
+	return (count);
+}
+
+int	ft_ps_count_overpivot(t_stack *stack, int pivot) //for stack_b (count number of element over pivot)
+{
+	int	chunck_index;
+	int	chunck_len;
+	int	count;
+
+	chunck_index = stack->index;
+	chunck_len = ft_ps_chunck_len(stack);
+	count = 0;
+//	if (!ft_ps_is_even_nbr(pivot))
+//		pivot--;
+	while (stack->index == chunck_index && len--)
+	{
+		if (stack->index >=  pivot)
+			count++;
+		stack = stack->next;
+	}
+	return (count);
+}
+
+
+/******************** objectif of the day 
+ * might be interesting to do a smart rot swap push --> rotate towards the target value, put push according to pivot and swap element if needed.
+ */

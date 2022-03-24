@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/23 23:16:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/24 17:50:09 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,10 @@ int     ft_ps_smart_a_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
 int     ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);
 
 //sorting_algo.c
-void    ft_ps_sort_a3_(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void    ft_ps_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void    ft_ps_sort_a3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+
+
 int     ft_ps_push_b_count(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 int     ft_ps_push_a_count(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_push_back_a_n(t_stack **dst, t_stack **src, t_list **mvtbook, int n);
@@ -112,7 +115,7 @@ void    ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_juggle(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 //stack_juggle_opt.c
-int	ft_ps_is_even_nbr(int n);
+int	ft_ps_is_even_nbr(int n); //--> should go in utils
 void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 //sorting_5.c as I decided to go thought recursive, I'm not sure that optimising this will be useful. Lets see.
 
@@ -126,6 +129,7 @@ void	del_test_mvt(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	del_test_sort_b3_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	del_test_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 void	del_test_sort_a10_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
+void	del_test_sort_a3(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 void	del_test_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 #endif
