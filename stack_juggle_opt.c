@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/24 23:02:34 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/25 15:26:23 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	int		count;
 
 	len = ft_ps_chunck_len(*stack_a);
-	pivot = ft_ps_chunckpivot(*stack_a, (*stack_a)->index);
+	pivot = ft_ps_chunckpivot(*stack_a);
 	count = len / 2;
 	if (!ft_ps_is_even_nbr(len))
 		count++;
@@ -109,7 +109,7 @@ void	ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	int		count;
 
 	len = ft_ps_chunck_len(*stack_b);
-	pivot = ft_ps_chunckpivot(*stack_b, (*stack_b)->index);
+	pivot = ft_ps_chunckpivot(*stack_b);
 	count = len / 2;
 	if (!ft_ps_is_even_nbr(len))
 		count++;
@@ -123,6 +123,16 @@ void	ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	del_print_circular_lst(*stack_a, 'a', 0);
 	del_print_circular_lst(*stack_b, 'b', 0);
 	printf("\n\n\n");
+}
+/*objectif see if using smart rotation for the first cut is usefull or not */
+/*see if using 2 pivot is usefull or not*/
+void	ft_first_cut(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
+{
+	int len;
+	int	pivot;
+
+	len = ft_ps_chunck_len(*stack_a);
+
 }
 
 void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook)

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/24 23:02:24 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/25 15:22:45 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void	ft_ps_sort_a6(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 		return ;
 	if (chunck_len > 3)
 	{	
-		pivot = ft_ps_chunckpivott(*stack_a);
+		pivot = ft_ps_chunckpivot(*stack_a);
 		while (chunck_len > 3)
 			if ((*stack_a)->rank <= pivot && ++count)
 				ft_ps_push_b(stack_b, stack_a, mvtbook);
@@ -183,128 +183,3 @@ void	ft_ps_sort_a6(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 	ft_ps_sort_back_a(stack_a, stack_b, mvtbook, count);
 }
 
-/********************************************not finished**************maybe not usefull******************************/
-
-int		ft_ps_intern_pivot(int chunck_len, int pivot)
-{
-	if (ft_ps_is_even_nbr(chunck_len))
-		return (pivot + 1);
-	return (pivot);
-}
-
-void	ft_ps_pivot_mark(t_stack *stack, int pivot) //might not be usefull ?? 
-{
-	int	intern_pivot;
-	int	chunck_len;
-	int	sub_pivot;
-
-	intern_pivot = ft_ps_intern_pivot(ft_ps_chunck_len(stack), pivot);
-	chunck_len = ft_ps_chunck_len(stack);
-	while (chunck_len--)
-	{
-		if (stack->rank < intern_pivot)
-			stack->index = sub_pivot;
-//		else
-//			stack->index = pivot + 1;
-		stack = stack->next;
-	}
-}
-
-int	ft_ps_subpivot(t_stack *stack, int pivot)
-{
-	int	intern_pivot;
-	int	chunck_len;
-	int	sub_len;
-	int	sub_pivot;
-
-	intern_pivot = ft_ps_intern_pivot(ft_ps_chunck_len(stack), pivot);
-	chunck_len = ft_ps_chunck_len(stack);
-	sub_len = 0;
-	sub_pivot = 0;
-	while (chunck_len--)
-	{
-		if (stack->rank < intern_pivot && ++sub_len)
-			sub_pivot += stack->rank;
-		stack = stack->next;
-	}
-	return (sub_pivot/sub_len);
-}
-/*might not be usefull
-int	ft_ps_subpivot(t_stack *stack, int chunck_len, int intern_pivot)
-{
-	int sub_pivot;
-	int len;
-
-	subpivot = 0;
-	len = 0;
-	while (chunck_len--)
-	{
-		if (stack->rank	< intern_pivot)
-			stack->index = pivot - 1;
-//		else
-//			stack->index = pivot + 1;
-		stack = stack->next;
-	}
-}*/
-/*
-void	ft_ps_smartrot_pushswap_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
-{
-	int		count;
-	int		reajust;
-	t_stack	*current;
-	t_stack	*next;
-
-	count = ft_ps_count_underpivot(stack_a, pivot);
-	reajust = 0;
-	while (count)
-	{
-		current = stack_a;
-		next = stack_a->next;
-		if ((*stack_a)->rank <= pivot && count--)
-			ft_ps_push_b(stack_a, stack_b, mvtbook);
-		else if ((*stack_a)->rank <   && ++reajust)
-	}
-}
-
-int	ft_ps_count_underpivot(t_stack *stack, int pivot) //for stack_a
-{
-	int	chunck_index;
-	int	chunck_len;
-	int	count;
-
-	chunck_index = stack->index;
-	chunck_len = ft_ps_chunck_len(stack);
-	count = 0;
-	if (!ft_ps_is_even_nbr(pivot))
-		pivot--;
-	while (stack->index == chunck_index && len--)
-	{
-		if (stack->index <= pivot)
-			count++;
-		stack = stack->next;
-	}
-	return (count);
-}
-
-int	ft_ps_count_overpivot(t_stack *stack, int pivot) //for stack_b (count number of element over pivot)
-{
-	int	chunck_index;
-	int	chunck_len;
-	int	count;
-
-	chunck_index = stack->index;
-	chunck_len = ft_ps_chunck_len(stack);
-	count = 0;
-	if (!ft_ps_is_even_nbr(pivot))
-			pivot--;
-	while (stack->index == chunck_index && len--)
-	{
-		if (stack->index >  pivot)
-			count++;
-		stack = stack->next;
-	}
-	return (count);
-}*/
-/******************** objectif of the day 
- * might be interesting to do a smart rot swap push --> rotate towards the target value, put push according to pivot and swap element if needed.
- */

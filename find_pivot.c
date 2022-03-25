@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/24 22:22:58 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/25 14:21:29 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_ps_findpivot(t_stack *head)
 //		pivot--;
 	return (pivot);
 }
-
+/*
 int	ft_ps_chunckpivot(t_stack *head, int chunck)
 {
 	t_stack	*tmp;
@@ -48,14 +48,14 @@ int	ft_ps_chunckpivot(t_stack *head, int chunck)
 //		printf("len = %d\n", len);
 	}
 	return (pivot/len);
-}
+}*/
 /****************************************
  * returns the aritmetic average of a stack;
  * take into account the rank;
  */
 
 /*  THIS FUNCTION MIGHT BE BETTER BUT HASNT BEEN TESTED YET*/
-int	ft_ps_chunckpivott(t_stack *head)
+int	ft_ps_chunckpivot(t_stack *head)
 {
 	t_stack	*tmp;
 	int		pivot;

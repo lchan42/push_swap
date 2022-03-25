@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/24 23:02:31 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/25 15:26:18 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ int     ft_ps_chunckmax_len(t_stack *head);
 
 //find_pivot.c
 int     ft_ps_findpivot(t_stack *head);
-int     ft_ps_chunckpivot(t_stack *head, int chunck);
-int		ft_ps_chunckpivott(t_stack *head);
+int		ft_ps_chunckpivot(t_stack *head);
 
 //sorted_checker.c
 int     ft_ps_sorted_checker(t_stack *head);
@@ -110,8 +109,14 @@ void    ft_ps_push_back_a_n(t_stack **dst, t_stack **src, t_list **mvtbook, int 
 void    ft_ps_push_back_b_n(t_stack **dst, t_stack **src, t_list **mvtbook, int n);
 void    ft_ps_sort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 
-void	ft_ps_pivot_mark(t_stack *stack, int pivot);
-int	ft_ps_subpivot(t_stack *stack, int pivot);
+// sub_pivot.c
+void	ft_ps_pivot_mark(t_stack *head, int pivot); //not usefull in the algo. here for testing
+int	ft_ps_intern_pivot(int chunck_len, int pivot);
+int	ft_ps_subpivot(t_stack *head, int pivot);
+int ft_ps_count_underpivot(t_stack *head, int pivot);
+int ft_ps_count_overpivot(t_stack *head, int pivot);
+
+
 
 //stack_juggle.c
 void    ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
@@ -137,5 +142,6 @@ void	del_test_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtboo
 void	del_test_sort_a10_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 void	del_test_sort_a3(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 void	del_test_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void	del_test_underover_pivot(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 #endif

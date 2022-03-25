@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/24 23:02:30 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/25 15:26:16 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,21 @@ void	del_test_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	printf("-------------------after sorting stack a ----------------\n");
 	ft_ps_sort_a3(stack_a, stack_b, mvtbook);
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	del_print_mvtbook(*mvtbook);
+}
+
+void	del_test_underover_pivot(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
+{
+	int	chunck_pivot = ft_ps_chunckpivot(*stack_a);
+
+	printf("----------------------original states---------------\n");
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	printf("pivot = %d\n", chunck_pivot);
+	printf("subpivot = %d\n", ft_ps_subpivot(*stack_a, chunck_pivot));
+	printf("over pivot = %d\n", ft_ps_count_overpivot(*stack_a, chunck_pivot));
+	printf("under pivot = %d\n", ft_ps_count_underpivot(*stack_a, chunck_pivot));
+	ft_ps_pivot_mark(*stack_a, chunck_pivot);
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
 }
