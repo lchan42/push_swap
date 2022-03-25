@@ -6,26 +6,73 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/25 15:22:45 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/25 23:10:16 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
+
 void	ft_ps_sort_back_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count)
 {
 	if (count == 2)
-		ft_ps_sort_a2(stack_b, mvtbook);
+		ft_ps_sort_b2(stack_b, mvtbook);
 	else if (count == 3 && ft_ps_stacklen(*stack_b) == 3)
-		ft_ps_sort_a3_cir(stack_b, mvtbook);
+		ft_ps_sort_b3_cir(stack_b, mvtbook);
 	else if (count == 3)
-		ft_ps_sort_a3(stack_a, stack_b, mvtbook);
+		ft_ps_sortcnt_b3(stack_a, stack_b, mvtbook, &count);
 	while (count--)
 		ft_ps_push_a(stack_a, stack_b, mvtbook);
-}*/
+}
 /********************************************************
  * in this case no push back from a. We are pushing sorted element from b.
  */
+
+void	ft_ps_pushcnt_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int *count)
+{
+	ft_ps_push_a(stack_a, stack_b, mvtbook);
+	*count = *count - 1;
+}
+
+void	ft_ps_sortcnt_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int *count)
+{
+	int	current;
+	int	next;
+	int	bignext;
+
+	current = (*stack_b)->rank;
+	next = (*stack_b)->next->rank;
+	bignext = (*stack_b)->next->next->rank;
+	if (current > next && next > bignext) //3 2 1
+		return ;
+	else if (current < bignext && bignext < next) //1 3 2
+	{
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_pushcnt_a(stack_a, stack_b, mvtbook, count);	
+		ft_ps_swap_b(stack_b, mvtbook);
+	}
+	else if (current > next && current < bignext) //2 1 3
+	{
+		ft_ps_rotate_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_pushcnt_a(stack_a, stack_b, mvtbook, count);	
+		ft_ps_reverse_b(stack_b, mvtbook);
+	}
+	 if (current < next && current > bignext) //2 3 1	
+		ft_ps_swap_b(stack_b, mvtbook);
+	else if (current < next && next < bignext) //1 2 3
+	{	
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_rotate_b(stack_b, mvtbook);
+		ft_ps_swap_b(stack_b, mvtbook);
+		ft_ps_pushcnt_a(stack_a, stack_b, mvtbook, count);	
+		ft_ps_reverse_b(stack_b, mvtbook);
+	}
+	else if (current > bignext && next < bignext) //3 1 2
+	{	
+		ft_ps_pushcnt_a(stack_a, stack_b, mvtbook, count);	
+		ft_ps_swap_b(stack_b, mvtbook);
+	}
+}
 
 void	ft_ps_sort_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
@@ -33,9 +80,9 @@ void	ft_ps_sort_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	int	next;
 	int	bignext;
 
-	current = (*stack_a)->rank;
-	next = (*stack_a)->next->rank;
-	bignext = (*stack_a)->next->next->rank;
+	current = (*stack_b)->rank;
+	next = (*stack_b)->next->rank;
+	bignext = (*stack_b)->next->next->rank;
 	if (current > next && next > bignext) //3 2 1
 		return ;
 	else if (current < bignext && bignext < next) //1 3 2
@@ -62,9 +109,9 @@ void	ft_ps_sort_b3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	int	next;
 	int	bignext;
 
-	current = (*stack_a)->rank;
-	next = (*stack_a)->next->rank;
-	bignext = (*stack_a)->next->next->rank;
+	current = (*stack_b)->rank;
+	next = (*stack_b)->next->rank;
+	bignext = (*stack_b)->next->next->rank;
 	 if (current < next && current > bignext) //2 3 1	
 		ft_ps_swap_b(stack_b, mvtbook);
 	else if (current < next && next < bignext) //1 2 3
@@ -95,7 +142,7 @@ void	ft_ps_sort_back_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, i
 	else if (count == 3)
 		ft_ps_sort_b3(stack_a, stack_b, mvtbook);
 	while (count--)
-		ft_ps_push_a(stack_a, stack_b, mvtbook);
+		ft_ps_push_b(stack_a, stack_b, mvtbook);
 }
 
 void	ft_ps_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)

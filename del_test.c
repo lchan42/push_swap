@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/25 15:26:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/26 00:40:16 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	del_print_mvtbook(t_list *head)
 			printf(" ");
 		head = head->next;
 	}
-	printf("\ncount = %d", count);
+	printf("\ncount = %d\n", count);
 }
 /*
 void	del_test_mvt(t_stack *stack_a, t_stack *stack_b, t_list **mvtbook)
@@ -197,6 +197,20 @@ void	del_test_sort_b3_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook
 	del_print_mvtbook(*mvtbook);
 }
 
+void	del_test_sort_b6_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
+{
+
+	printf("----------------------original states---------------\n");
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	printf("-------------------push b -----------\n");
+	while (*stack_a)
+		ft_ps_push_b(stack_b, stack_a, mvtbook);
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);	
+	printf("-------------------push and sorting b -----------\n");
+	ft_ps_sort_b6_cir(stack_a, stack_b, mvtbook);
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	del_print_mvtbook(*mvtbook);
+}
 void	del_test_sort_a6_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	printf("----------------------original states---------------\n");
@@ -228,6 +242,33 @@ void	del_test_underover_pivot(t_stack **stack_a, t_stack **stack_b, t_list **mvt
 	printf("over pivot = %d\n", ft_ps_count_overpivot(*stack_a, chunck_pivot));
 	printf("under pivot = %d\n", ft_ps_count_underpivot(*stack_a, chunck_pivot));
 	ft_ps_pivot_mark(*stack_a, chunck_pivot);
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	del_print_mvtbook(*mvtbook);
+}
+
+void	del_test_underpivotpush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
+{// we saw that this algo is not efficient for 	
+	int	chunck_pivot = ft_ps_chunckpivot(*stack_a);
+
+	printf("----------------------original states---------------\n");
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	printf("-------------------after sorting stack a ----------------\n");
+	printf("pivot = %d\n", chunck_pivot);
+	printf("subpivot = %d\n", ft_ps_subpivot(*stack_a, chunck_pivot));
+	printf("over pivot = %d\n", ft_ps_count_overpivot(*stack_a, chunck_pivot));
+	printf("under pivot = %d\n", ft_ps_count_underpivot(*stack_a, chunck_pivot));
+//	ft_ps_underpivotpush_b(stack_a, stack_b, mvtbook);	
+	ft_ps_recursivepush(stack_a, stack_b, mvtbook);
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	del_print_mvtbook(*mvtbook);
+}
+
+void	del_test_ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
+{
+	printf("----------------------original states---------------\n");
+	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
+	printf("-------------------after sorting stack a ----------------\n");
+	ft_ps_sort(stack_a, stack_b, mvtbook);	
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
 }
