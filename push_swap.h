@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/26 00:40:56 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/26 18:38:09 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void    ft_ps_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtboo
 
 //sort_9_cirhybrid.c --> use of sort cir_6 and a normal sort for b
 
-//ft_smartrotation.c++
+//ft_smartrotation // -------> Warning apparently Smart rot need intern_pivot to work properly for a 
 void    ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);
 int     ft_ps_smart_a_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
 int     ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);
@@ -109,8 +109,14 @@ void	ft_ps_pushcnt_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int
 void    ft_ps_sortcnt_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int *count);
 void    ft_ps_sort_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_sort_b3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+
+void	ft_ps_sort_back_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count);
 void    ft_ps_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_sort_a3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+
+
+
+
 
 int     ft_ps_push_b_count(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 int     ft_ps_push_a_count(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
@@ -120,10 +126,11 @@ void    ft_ps_sort_a5(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 
 // sub_pivot.c
 void	ft_ps_pivot_mark(t_stack *head, int pivot); //not usefull in the algo. here for testing
-int	ft_ps_intern_pivot(int chunck_len, int pivot);
-int	ft_ps_subpivot(t_stack *head, int pivot);
-int ft_ps_count_underpivot(t_stack *head, int pivot);
-int ft_ps_count_overpivot(t_stack *head, int pivot);
+int	ft_ps_intern_pivot_a(int chunck_len, int pivot);
+int	ft_ps_intern_pivot_b(int chunck_len, int pivot);
+//int	ft_ps_subpivot(t_stack *head, int pivot);
+//int ft_ps_count_underpivot(t_stack *head, int pivot);
+//int ft_ps_count_overpivot(t_stack *head, int pivot);
 
 void	ft_ps_underpivotpush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	ft_ps_orgapush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int subpivot);
@@ -139,7 +146,12 @@ void    ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_juggle(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 //stack_juggle_opt.c
-int	ft_ps_is_even_nbr(int n); //--> should go in utils
+//
+void	ft_ps_resetchunck(t_stack *stack);
+void	ft_ps_marksorted_a(t_stack *stack_a, t_stack *stack_b);
+void	ft_ps_marksorted_b(t_stack *stack_a, t_stack *stack_b);
+
+int	ft_ps_is_even_nbr(int n); //--> should go in utilsi
 void	ft_ps_recsort_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 //sorting_5.c as I decided to go thought recursive, I'm not sure that optimising this will be useful. Lets see.

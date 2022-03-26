@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/26 00:39:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/26 16:30:50 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int	ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot)
 	tmp = *stack;
 	r_tmp = *stack;
 	len = ft_ps_stacklen(*stack);
-	if (ft_ps_is_even_nbr(len))
-		pivot++;
 	indice = ft_ps_smart_a_bis(&tmp, &r_tmp, pivot, len);
 	if (indice == 0)
 		return 0;
@@ -76,8 +74,6 @@ int	ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot)
  * if the len is even, pivot is incremented order to push half
  * 		(as smart_a_bis returns -1 or 1 if (*tmp)->rank < pivot)
  */
-
-
 
 
 int	ft_ps_smart_b_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len)
@@ -109,8 +105,6 @@ int	ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot)
 	tmp = *stack;
 	r_tmp = *stack;
 	len = ft_ps_stacklen(*stack);
-	if (ft_ps_is_even_nbr(len))
-		pivot++;
 	indice = ft_ps_smart_b_bis(&tmp, &r_tmp, pivot, len);
 	if (indice == 0)
 		return 0;

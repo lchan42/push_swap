@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/26 00:40:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/26 18:38:01 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,7 @@ void	del_test_sort_b6_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook
 	ft_ps_sort_b6_cir(stack_a, stack_b, mvtbook);
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
+	
 }
 void	del_test_sort_a6_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
@@ -230,7 +231,7 @@ void	del_test_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
 }
-
+/*  --> test was not conclueent for under over pivot technique.
 void	del_test_underover_pivot(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int	chunck_pivot = ft_ps_chunckpivot(*stack_a);
@@ -262,7 +263,7 @@ void	del_test_underpivotpush_b(t_stack **stack_a, t_stack **stack_b, t_list **mv
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
 }
-
+*/
 void	del_test_ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	printf("----------------------original states---------------\n");

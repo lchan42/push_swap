@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/26 00:27:49 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/26 16:30:41 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,19 +109,21 @@ void	ft_ps_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 	int pivot;
 	int count;
 
-	stack_len = ft_ps_stacklen(*stack_a);
+	stack_len = ft_ps_chunck_len(*stack_a);
 	count = 0;
 	if (ft_ps_sorted_checker_a_n(*stack_a, stack_len))
 		return ;
-	if (stack_len > 3)
-	{	
-		pivot = ft_ps_findpivot(*stack_a);
+	if (stack_len <= 2)
+		ft_ps_sort_a2(stack_a, mvtbook);
+	else if (stack_len >= 3)
+	{
+		pivot = ft_ps_intern_pivot_a(stack_len, ft_ps_findpivot(*stack_a));
 		while (stack_len > 3)
 			if (ft_ps_smartrotation_a(stack_a, mvtbook, pivot) && --stack_len && ++count)
 				ft_ps_push_b(stack_b, stack_a, mvtbook);
+		ft_ps_sort_a3_cir(stack_a, mvtbook);
+		ft_ps_sort_back_a_cir(stack_a, stack_b, mvtbook, count);
 	}
-	ft_ps_sort_a3_cir(stack_a, mvtbook);
-	ft_ps_sort_back_a_cir(stack_a, stack_b, mvtbook, count);
 }
 
 void	ft_ps_sort_b6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
@@ -130,25 +132,27 @@ void	ft_ps_sort_b6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 	int pivot;
 	int count;
 
-	stack_len = ft_ps_stacklen(*stack_b);
+	stack_len = ft_ps_chunck_len(*stack_b);
 	count = 0;
 	if (ft_ps_sorted_checker_b_n(*stack_b, stack_len))
 		return ;
-	if (stack_len > 3)
+	if (stack_len <= 2)
+		ft_ps_sort_b2(stack_b, mvtbook);
+	else if (stack_len >= 3)
 	{	
-		pivot = ft_ps_findpivot(*stack_b);
-		printf("pivot = %d\n", pivot);
+		//pivot = ft_ps_findpivot(*stack_b);
+		pivot = ft_ps_intern_pivot_b(stack_len, ft_ps_findpivot(*stack_b));
 		while (stack_len > 3)
 			if (ft_ps_smartrotation_b(stack_b, mvtbook, pivot) && --stack_len && ++count)
 				ft_ps_push_a(stack_a, stack_b, mvtbook);
-		del_print_circular_lst(*stack_b, 'b', 0);
+		ft_ps_sort_b3_cir(stack_b, mvtbook);
+		ft_ps_sort_back_b_cir(stack_a, stack_b, mvtbook, count);
 	}
-	ft_ps_sort_b3_cir(stack_b, mvtbook);
-	ft_ps_sort_back_b_cir(stack_a, stack_b, mvtbook, count);
 }
 
-void	ft_ps_sort_a10_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
-{
+/*
+void	ft_ps_sort_a10_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook) //----> not working yet
+{  //-->might not be usefull
 	int	stack_len;
 	int pivot;
 	int count;
@@ -166,7 +170,7 @@ void	ft_ps_sort_a10_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 	}
 	ft_ps_sort_a3_cir(stack_a, mvtbook);
 	ft_ps_sort_back_a_cir(stack_a, stack_b, mvtbook, count);
-}
+}*/
 /************************************************************
  *this function only works if entry is <= 6/
  */

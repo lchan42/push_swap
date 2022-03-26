@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/25 23:44:34 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/26 18:37:58 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		ft_ps_max_index(t_stack *head)
 	return (max);
 }
 
-void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
+void	ft_ps_firstpush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
 {
 	ft_ps_push_b(stack_b, stack_a, mvtbook);
 	if ((*stack_b)->rank <= pivot / 2)
@@ -52,6 +52,19 @@ void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook
 		(*stack_b)->index = pivot - 1;
 		if ((*stack_b)->next != *stack_b)
 			ft_ps_rotate_b(stack_b, mvtbook);
+	}
+	else
+		(*stack_b)->index = pivot + 1;
+} //(b = destination)
+
+void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot)
+{
+	ft_ps_push_b(stack_b, stack_a, mvtbook);
+	if ((*stack_b)->rank <= pivot / 2)
+	{
+		(*stack_b)->index = pivot - 1;
+//		if ((*stack_b)->next != *stack_b)
+//			ft_ps_rotate_b(stack_b, mvtbook);
 	}
 	else
 		(*stack_b)->index = pivot + 1;
@@ -97,9 +110,9 @@ void	ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 		else
 			ft_ps_rotate_a(stack_a, mvtbook);
 	}
-	del_print_circular_lst(*stack_a, 'a', 0);
-	del_print_circular_lst(*stack_b, 'b', 0);
-	printf("\n\n\n");
+//	del_print_circular_lst(*stack_a, 'a', 0);
+//	del_print_circular_lst(*stack_b, 'b', 0);
+//	printf("\n\n\n");
 }
 
 void	ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
@@ -120,9 +133,9 @@ void	ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 		else
 			ft_ps_rotate_b(stack_b, mvtbook);
 	}
-	del_print_circular_lst(*stack_a, 'a', 0);
-	del_print_circular_lst(*stack_b, 'b', 0);
-	printf("\n\n\n");
+//	del_print_circular_lst(*stack_a, 'a', 0);
+//	del_print_circular_lst(*stack_b, 'b', 0);
+//	printf("\n\n\n");
 }
 
 /*objectif see if using smart rotation for the first cut is usefull or not */
@@ -136,27 +149,79 @@ void	ft_first_cut(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 
 }
 
+void	ft_ps_resetchunck(t_stack *stack)
+{
+	int	len;
 
-void	ft_ps_marksorted_a_b(t_stack *stack_a, t_stack *stack_b)
+	len = ft_ps_stacklen(stack);
+	while (len-- && stack->index != -1)
+	{
+		stack->index = 0;
+		stack = stack->next;
+	}
+}
+
+void	ft_ps_marksorted_a(t_stack *stack_a, t_stack *stack_b)
+{
+	int	len_a;
+
+	len_a = ft_ps_stacklen(stack_a);
+	while (len_a--)
+	{
+		if ( stack_a->rank - stack_a->next->rank == -1
+			|| stack_a->rank - stack_a->next->rank == 1)
+		{
+			stack_a->index = -1;
+			stack_a->next->index = -1;
+			stack_a = stack_a->next;
+		}
+	}
+	ft_ps_resetchunck(stack_b);
+}
+
+void	ft_ps_marksorted_b(t_stack *stack_a, t_stack *stack_b)
+{
+	int	len_b;
+
+	len_b = ft_ps_stacklen(stack_b);
+	while (len_b--)
+	{
+		if ( stack_b->rank - stack_b->next->rank == -1
+			|| stack_b->rank - stack_b->next->rank == 1)
+		{
+			stack_b->index = -1;
+			stack_b->next->index = -1;
+			stack_b = stack_b->next;
+		}
+	}
+	ft_ps_resetchunck(stack_a);
+}
+
+
+/*
+void	ft_ps_marksorted(t_stack *stack_a, t_stack *stack_b)
 {
 	int	len_a;
 	int	len_b;
 
 	len_a = ft_ps_stacklen(stack_a);
 	len_b = ft_ps_stacklen(stack_b);
-	stack_a = stack_a->previous;
-	while (len_a--)
+	while (stack_a->index == 0 && len_a--)
 	{
-		if (stack_a->rank == stack_a->previous->rank + 1)
+		if (stack_a->rank == stack_a->next->rank -1)
+		{
 			stack_a->index = -1;
-		else
-			break ;
-		stack_a = stack_a->previous;
+			stack_a->next->index = -1;
+		}
+		stack_a = stack_a->next;
 	}
-	while (len_b--)
+	while (stack_a->index == 0 && len_b--)
 	{
 		if (stack_b->rank == stack_b->next->rank + 1)
-			stack_a->index = -1;
+		{
+			stack_b->index = -1;
+			stack_a->next->index = -1;
+		}
 		stack_b = stack_b->next;
 	}
 }
@@ -168,7 +233,7 @@ void	ft_ps_resetchunck_a_b(t_stack *stack_a, t_stack *stack_b)
 
 	len_a = ft_ps_stacklen(stack_a);
 	len_b = ft_ps_stacklen(stack_b);
-	ft_ps_marksorted_a_b(stack_a, stack_b);
+	ft_ps_marksorted(stack_a, stack_b);
 	while (len_a-- && stack_a->index != -1)
 	{
 		stack_a->index = 0;
@@ -179,7 +244,7 @@ void	ft_ps_resetchunck_a_b(t_stack *stack_a, t_stack *stack_b)
 		stack_b->index = 0;
 		stack_b = stack_b->next;
 	}
-}
+}*/
 
 void	ft_ps_recsort_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
@@ -191,43 +256,52 @@ void	ft_ps_recsort_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 		ft_ps_recsort_b(stack_a, stack_b, mvtbook);
 	}
 	chunck_len = ft_ps_chunck_len(*stack_a);
-//	if (chunck_len <= 3)
-//		ft_ps_sort_back_a(stack_a, stack_b, mvtbook, chunck_len);		
+
+	if (ft_ps_stacklen(*stack_b) <= 5)
+		ft_ps_sort_b6_cir(stack_a, stack_b, mvtbook);
+	if (chunck_len <= 3)
+		ft_ps_sort_back_a(stack_a, stack_b, mvtbook, chunck_len);		
+	while ((*stack_a)->rank == (*stack_b)->rank + 1)
+		ft_ps_push_b(stack_b, stack_a, mvtbook);
+
+
 }
 
 void	ft_ps_recsort_a(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook)
 {
-	int	chunck_len;
+	int	chunck_b_len;
 
-	if (/*(*stack_a)->index >= 0 &&*/ ft_ps_chunck_len(*stack_a) > 5)
+	if ((*stack_a)->index >= 0 && ft_ps_chunck_len(*stack_a) > 5)
 	{
-		ft_ps_pass_b(stack_a, stack_b, mvtbook);
-		ft_ps_recsort_a(stack_a, stack_b, mvtbook);
+			ft_ps_pass_b(stack_a, stack_b, mvtbook);
+			ft_ps_recsort_a(stack_a, stack_b, mvtbook);
 	}
-	chunck_len = ft_ps_chunck_len(*stack_b);
-	if (chunck_len <= 3)
-		ft_ps_sort_back_b(stack_a, stack_b, mvtbook, chunck_len);
+	//can be in another function
+	chunck_b_len = ft_ps_chunck_len(*stack_b);
+	if (ft_ps_stacklen(*stack_a) <= 5)
+		ft_ps_sort_a6_cir(stack_a, stack_b, mvtbook);
+	if (chunck_b_len <= 3)
+		ft_ps_sort_back_b(stack_a, stack_b, mvtbook, chunck_b_len);	
+	while ((*stack_a)->rank == (*stack_b)->rank + 1)
+		ft_ps_push_a(stack_a, stack_b, mvtbook);
 }
 
 void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
-	//a
+	int n = 2;
+
+//while (n--)
+//{	
 	ft_ps_recsort_a(stack_a, stack_b, mvtbook);
-	if (ft_ps_stacklen(*stack_a) <= 5)
-		ft_ps_sort_a6_cir(stack_a, stack_b, mvtbook);
-	while ((*stack_a)->rank == (*stack_b)->rank + 1)
-		ft_ps_push_a(stack_a, stack_b, mvtbook);
-
-
-	ft_ps_resetchunck_a_b(*stack_a, *stack_b);
-	
-	//b
+	ft_ps_marksorted_a(*stack_a, *stack_b);
 	ft_ps_recsort_b(stack_a, stack_b, mvtbook);
-	if (ft_ps_stacklen(*stack_a) <= 5)
-		ft_ps_sort_b6_cir(stack_a, stack_b, mvtbook);
+	ft_ps_marksorted_b(*stack_a, *stack_b);
+//	ft_ps_recsort_a(stack_a, stack_b, mvtbook);
 }
-
+}
 
 /******************to do list******************
  * need to finish the recursive. now stuf has to go back on stack a according to the pivot.
  */
+
+// FOR NEXT TIME : START FUNCTION WITH a first cut with original push organise. the do normal push

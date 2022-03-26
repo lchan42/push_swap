@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/26 00:40:53 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/26 18:38:00 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,16 @@ int     main(int ac, char **av)
 		printf(">>> entry is ok <<<\n");
 	stack_a = ft_ps_buildstack(ac, av);
 	stack_b = NULL;
-del_test_sort_b6_cir(&stack_a, &stack_b, &mvtbook);
-//del_test_ft_ps_sort(&stack_a, &stack_b, &mvtbook);  ---------> was testing that on fridau night
+//del_test_sort_b6_cir(&stack_a, &stack_b, &mvtbook);
+//del_test_sort_a6_cir(&stack_a, &stack_b, &mvtbook);
+
+del_test_ft_ps_sort(&stack_a, &stack_b, &mvtbook);
 
 //del_test_underpivotpush_b(&stack_a, &stack_b, &mvtbook);
 //	ft_ps_juggle(&stack_a, &stack_b, &mvtbook);
 //	del_test_pushorganise_b(&stack_a, &stack_b, &mvtbook);
 
 //	del_test_sort_a3(&stack_a, &stack_b, &mvtbook);
-//	del_test_sort_a6_cir(&stack_a, &stack_b, &mvtbook);
 //	del_test_sort_a10_cir(&stack_a, &stack_b, &mvtbook);
 //	del_test_sort_b3_cir(&stack_a, &stack_b, &mvtbook);
 //	del_test_underover_pivot(&stack_a, &stack_b, &mvtbook);

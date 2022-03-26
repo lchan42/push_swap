@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/23 22:20:18 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/26 15:14:30 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_ps_sorted_checker_b_n(t_stack *head, int n)
 
 	tmp = head->next;
 	i = 0;
-	while  (++i && n--)
+	while  (++i && --n)
 	{
 		if (head->rank != tmp->rank + i)
 			return (0);
