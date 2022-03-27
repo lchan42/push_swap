@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/25 14:21:29 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/27 18:34:34 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,9 @@ int	ft_ps_findpivot(t_stack *head)
 		tmp = tmp->next;
 	}
 	pivot = pivot / ft_ps_stacklen(head);
-//	if (!ft_ps_is_even_nbr(pivot))
-//		pivot--;
 	return (pivot);
 }
-/*
-int	ft_ps_chunckpivot(t_stack *head, int chunck)
-{
-	t_stack	*tmp;
-	int	pivot;
-	int len;
 
-	tmp = head->next;
-	pivot = head->rank;
-	len = 1;
-	while ((tmp != head && tmp->index == chunck))
-	{
-		pivot += tmp->rank;
-//		printf("rank = %d pivot = %d\n", tmp->rank, pivot);
-		tmp = tmp->next;
-		len++;
-//		printf("len = %d\n", len);
-	}
-	return (pivot/len);
-}*/
-/****************************************
- * returns the aritmetic average of a stack;
- * take into account the rank;
- */
-
-/*  THIS FUNCTION MIGHT BE BETTER BUT HASNT BEEN TESTED YET*/
 int	ft_ps_chunckpivot(t_stack *head)
 {
 	t_stack	*tmp;
@@ -66,16 +39,29 @@ int	ft_ps_chunckpivot(t_stack *head)
 	pivot = 0;
 	chunck_len = ft_ps_chunck_len(head);
 	len_tmp = chunck_len;
-//	printf("chunck_len = %d\n", chunck_len);
 	while (len_tmp--)
 	{
 		pivot += tmp->rank;
 		tmp = tmp->next;
 	}
-//	printf("inside function pivot = %d\n", pivot);
 	pivot /= chunck_len;
-//	if (!ft_ps_is_even_nbr(pivot))
-//		pivot--;
 	return (pivot);
 }
 
+int	ft_ps_targeted_chunckpivot(t_stack *head, int index)
+{
+	int	len;
+
+	len = ft_ps_stacklen(head);
+	if (head->index == index)
+		while (head->previous->index == index)
+			head = head->previous;
+	else
+		while (len--)
+		{
+			head = head->next;
+			if (head->index == index)
+				break ;
+		}
+	return (ft_ps_chunckpivot(head));
+}

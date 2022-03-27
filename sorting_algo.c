@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/26 17:37:15 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/27 21:20:21 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_ps_sort_back_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, i
 		ft_ps_sortcnt_b3(stack_a, stack_b, mvtbook, &count);
 	while (count--)
 	{
-		printf("pushing %d, count = %d\n", (*stack_b)->rank, count);
+//		printf("pushing %d, count = %d\n", (*stack_b)->rank, count);
 		ft_ps_push_a(stack_a, stack_b, mvtbook);
 	}
 }
@@ -45,7 +45,7 @@ void	ft_ps_sortcnt_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, in
 	current = (*stack_b)->rank;
 	next = (*stack_b)->next->rank;
 	bignext = (*stack_b)->next->next->rank;
-	printf("current = %d, next = %d, bignext = %d", current, next, bignext);
+//	printf("current = %d, next = %d, bignext = %d", current, next, bignext);
 	if (current > next && next > bignext) //3 2 1
 		return ;
 	else if (current < bignext && bignext < next) //1 3 2
@@ -136,7 +136,15 @@ void	ft_ps_sort_b3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 }
 
 
-
+void	ft_ps_sortsmall_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count)
+{
+	if (count == 2)
+		ft_ps_sort_a2(stack_a, mvtbook);
+	else if (count == 3 && ft_ps_stacklen(*stack_b) == 3)
+		ft_ps_sort_a3_cir(stack_a, mvtbook);
+	else if (count == 3)
+		ft_ps_sort_a3(stack_a, stack_b, mvtbook);
+}
 
 void	ft_ps_sort_back_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count)
 {

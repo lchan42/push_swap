@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/26 18:38:09 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/27 21:20:36 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int     ft_ps_chunckmax_len(t_stack *head);
 //find_pivot.c
 int     ft_ps_findpivot(t_stack *head);
 int		ft_ps_chunckpivot(t_stack *head);
+int		ft_ps_targeted_chunckpivot(t_stack *head, int index);
 
 //sorted_checker.c
 int     ft_ps_sorted_checker(t_stack *head);
@@ -110,6 +111,7 @@ void    ft_ps_sortcnt_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook,
 void    ft_ps_sort_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_sort_b3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
+void	ft_ps_sortsmall_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count);
 void	ft_ps_sort_back_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count);
 void    ft_ps_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_sort_a3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
@@ -145,8 +147,18 @@ void    ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_juggle(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
+//scan_push.c
+void	ps_reverseback_a(t_stack **stack_a, t_list **mvtbook, int index);
+void	ps_reverseback_b(t_stack **stack_b, t_list **mvtbook, int index);
+void	ps_rotscanb_push_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int *len);
+void	ps_revscanb_push_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int *len);
+void	ps_chunck_scanpush_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+
 //stack_juggle_opt.c
 //
+int	ft_ps_min_index(t_stack *head);
+int	ft_ps_max_index(t_stack *head;)
+
 void	ft_ps_resetchunck(t_stack *stack);
 void	ft_ps_marksorted_a(t_stack *stack_a, t_stack *stack_b);
 void	ft_ps_marksorted_b(t_stack *stack_a, t_stack *stack_b);
