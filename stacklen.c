@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/23 16:35:15 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/30 18:21:09 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,24 @@ int	ft_ps_chunckmax_len(t_stack *head)
 		}
 	}
 	return (max_len);
+}
+
+int	ft_ps_target_chklen(t_stack *head, int index)
+{
+	int	len;
+	int	chklen;
+
+	len = ft_ps_stacklen(head);
+	chklen = 0;
+	if (head->index == index)
+		while (head->previous->index == index && len--)
+			head = head->previous;
+	else
+	{
+		while (head->index != index && len--)
+			head = head->next;
+		if (head->index != index)
+			return (0);
+	}
+	return (ft_ps_chunck_len(head));
 }

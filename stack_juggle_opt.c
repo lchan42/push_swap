@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/27 21:20:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/30 18:28:10 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,24 +274,22 @@ void	ft_ps_recsort_a(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook)
 		ft_ps_sort_a6_cir(stack_a, stack_b, mvtbook);
 	if (chunck_b_len <= 3)
 		ft_ps_sort_back_b(stack_a, stack_b, mvtbook, chunck_b_len);	
-	while ((*stack_a)->rank == (*stack_b)->rank + 1)
-		ft_ps_push_a(stack_a, stack_b, mvtbook);
+//	while ((*stack_a)->rank == (*stack_b)->rank + 1)
+//		ft_ps_push_a(stack_a, stack_b, mvtbook);
 }
 
 void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int	n;
 
-//	n = 2;
 	ps_first_cut(stack_a, stack_b, mvtbook);
-//	while (n--)
-//	{
-		ft_ps_recsort_a(stack_a, stack_b, mvtbook);
-		while (ft_ps_chunck_len(*stack_b) <= 10)
-			ps_chunck_scanpush_a(stack_a, stack_b, mvtbook);
-		ft_ps_marksorted_a(*stack_a, *stack_b);
-		ft_ps_recsort_b(stack_a, stack_b, mvtbook);
-		ft_ps_marksorted_b(*stack_a, *stack_b);
+	ft_ps_recsort_a(stack_a, stack_b, mvtbook);
+//	ft_ps_chkbsort_a(stack_a, stack_b, mvtbook);
+//		while (ft_ps_chunck_len(*stack_b) <= 10)
+//			ps_chunck_scanpush_a(stack_a, stack_b, mvtbook);
+//		ft_ps_marksorted_a(*stack_a, *stack_b);
+//		ft_ps_recsort_b(stack_a, stack_b, mvtbook);
+//		ft_ps_marksorted_b(*stack_a, *stack_b);
 //		ft_ps_recsort_a(stack_a, stack_b, mvtbook);
 //	}
 }
@@ -302,13 +300,5 @@ void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 
 	//del_print_circular_lst(*stack_a, 'a', 0);
 	//del_print_circular_lst(*stack_b, 'b', 0);
-// FOR NEXT TIME : START FUNCTION WITH a first cut with original push organise. the do normal push
-//
-//
-//
-//
-//
-//
-//
 //
 // for chunck_len = 4 : cat do a loop with a rotation towards target. not sure it cost a lot.
