@@ -6,12 +6,13 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:57:19 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/30 18:28:08 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/31 12:28:34 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
 int	ps_rot_cost(t_stack **a, t_stack **b, t_list **m)
 {
 
@@ -67,4 +68,4 @@ void	ft_ps_chkbsort_a(t_stack **a, t_stack **b, t_list **m)
 		if ((*a)->rank > (*a)-> next->rank)
 			ft_ps_swap_a(a, m);
 	}
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/30 18:28:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/03/31 18:32:43 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_pile
 
 //push_swap_utils.c
 int		strchr_booleen(char c, char *str);
+int		ft_ps_is_even_nbr(int nbr);
 
 //push_swap_entrycheck.c
 int		check_ascii(char **av);
@@ -52,22 +53,14 @@ t_stack	*ft_ps_nod_init(int value, int index);
 t_stack	*ft_ps_stack_new_addback(t_stack **head, int value, int index);
 t_stack *ft_ps_buildstack(int ac, char **av);
 
-//movement.c
-//void	swap(t_stack **head);
-//void	push(t_stack** head_a, t_stack **head_b);
-//void	rotate(t_stack **head_a, t_stack **head_b);
-//void	reverse_rotate(t_stack **head_a, t_stack **head_b);
-
-//void	swap(t_stack **head, t_list **mvtbook, char *mvt);
-//void	push(t_stack **dst, t_stack **src, t_list **mvtbook, char *mvt);
-//void	rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt);
-//void	reverse_rotate(t_stack **head_a, t_stack **head_b, t_list **mvtbook, char *mvt);
-
+//movement_a.c
 void	ft_ps_swap_a(t_stack **head, t_list **mvtbook);
 void	ft_ps_push_a(t_stack **dst, t_stack **src, t_list **mvtbook); // b--->a
 void	ft_ps_rotate_a(t_stack **head, t_list **mvtbook); //need more check
 void	ft_ps_reverse_a(t_stack **head, t_list **mvtbook);
 
+
+//movement_b.c
 void	ft_ps_swap_b(t_stack **head, t_list **mvtbook);
 void	ft_ps_push_b(t_stack **dst, t_stack **src, t_list **mvtbook); //a--->b
 void	ft_ps_rotate_b(t_stack **head, t_list **mvtbook); //need more check
@@ -102,8 +95,6 @@ void	ft_ps_sort_back_a_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtboo
 void    ft_ps_sort_a3_cir(t_stack **stack_a, t_list **mvtbook);
 void    ft_ps_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 
-//sort_9_cirhybrid.c --> use of sort cir_6 and a normal sort for b
-
 //ft_smartrotation // -------> Warning apparently Smart rot need intern_pivot to work properly for a 
 void    ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);
 int     ft_ps_smart_a_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
@@ -111,10 +102,8 @@ int     ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);
 int     ft_ps_smart_b_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
 int     ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot);
 
-//
 
-//sorting_algo.c
-//
+//sort_3.c
 void	ft_ps_sort_back_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count);
 void	ft_ps_pushcnt_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int *count);
 void    ft_ps_sortcnt_b3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int *count);
@@ -148,15 +137,6 @@ void	ft_ps_underpivotpush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbo
 void	ft_ps_orgapush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int subpivot);
 void	ft_ps_recursivepush(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
-
-
-//stack_juggle.c
-void    ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
-void    ft_ps_pushorganise_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
-void    ft_ps_pass_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-void    ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-void    ft_ps_juggle(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-
 //scan_push.c
 void	ps_reverseback_a(t_stack **stack_a, t_list **mvtbook, int index);
 void	ps_reverseback_b(t_stack **stack_b, t_list **mvtbook, int index);
@@ -165,22 +145,51 @@ void	ps_revscanb_push_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, 
 void	ps_chunck_scanpush_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 
 //stack_juggle_opt.c
-//
-int	ft_ps_min_index(t_stack *head);
-int	ft_ps_max_index(t_stack *head);
 
+
+
+//get_extrem_chunck_val.c++
+int		ft_ps_min_index(t_stack *head);
+int		ft_ps_max_index(t_stack *head);
+
+//chunckorganised_push.c++
+void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
+void	ft_ps_pushorganise_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
+void	ps_chkorga_pb(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void	ps_chkorga_pa(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+
+//mark_sorted.c++
 void	ft_ps_resetchunck(t_stack *stack);
 void	ft_ps_marksorted_a(t_stack *stack_a, t_stack *stack_b);
 void	ft_ps_marksorted_b(t_stack *stack_a, t_stack *stack_b);
+void	ft_ps_mark_pb(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
 
-int	ft_ps_is_even_nbr(int n); //--> should go in utilsi
-void	ft_ps_recsort_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+//recursive_presort.c
+void	ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void	ps_first_cut(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void	ft_ps_recsort_a(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook);
 void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-//sorting_5.c as I decided to go thought recursive, I'm not sure that optimising this will be useful. Lets see.
+
+
 
 
 //chunck_juggle_opt.c
 void	ft_ps_chkbsort_a(t_stack **a, t_stack **b, t_list **m);
+
+//longest_sub_utils.c
+int 	**ps_chunck_cpy(t_stack *stk, int len);
+int 	ps_tab_len(int **tab);
+void	ps_printtab(int **tab); //gonna have to delete that eventually;
+
+//longest_sub_get.c
+int	**ps_cpylower(int **tab, int current, int start, int len);
+int **ps_decr_seq(int **tab, int len);
+int	**ps_cpyhigher(int **tab, int current, int start, int len);
+int **ps_incr_seq(int **tab, int len);
+int	**ps_longest_seq(t_stack *stk, int opt);
+
+//longest_sub_algo.c
+void	long_sub_pa(t_stack **a, t_stack **b, t_list **mvtbook);
 
 //push_swap_del.c
 void	del_print_tab(char **tab);
