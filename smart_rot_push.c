@@ -1,5 +1,5 @@
 #include "push_swap.h"
-/*
+
 int	ps_mvtcost(t_stack *mover, int target)
 {
 	int	indice;
@@ -31,4 +31,4 @@ void	ps_smrt_p(t_stack **a, t_stack **b, t_list **mvtbook)
 	if (dst == a)
 
 	else if (dst == b)
-}*/
+}
