@@ -140,7 +140,7 @@ void	del_print_mvtbook(t_list *head)
 	count = 0;
 	while (head)
 	{
-		printf("%s", head->content);
+		printf("%s", (char *)head->content);
 		count++;
 		if (head->next)
 			printf(" ");

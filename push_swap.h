@@ -30,12 +30,12 @@ typedef struct s_stack
 	struct s_stack  *next;
 }t_stack;
 
-typedef struct s_pile
+typedef struct s_ps
 {
 	t_stack *a;
 	t_stack *b;
-	t_list	*mvtbook;
-}t_pile;
+	t_list	*m;
+}t_ps;
 
 //push_swap_utils.c
 int		strchr_booleen(char c, char *str);
@@ -68,10 +68,10 @@ void	ft_ps_reverse_b(t_stack **head, t_list **mvtbook);
 
 
 //stacklen.c
-int     ft_ps_stacklen(t_stack *head);
+int    ft_ps_stacklen(t_stack *head);
 int     ft_ps_chunck_len(t_stack *head);
 int     ft_ps_chunckmax_len(t_stack *head);
-int		ft_ps_target_chklen(t_stack *head, int index);
+int		ft_ps_full_chklen(t_stack *head, int index);
 
 //find_pivot.c
 int     ft_ps_findpivot(t_stack *head);
@@ -113,6 +113,9 @@ int	ps_smrtrot_target_a_bis(t_stack **tmp, t_stack **r_tmp, int target, int len)
 int	ps_smrtrot_target_a(t_stack **stack, t_list **mvtbook, int target);
 int	ps_smrtrot_target_b_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);
 int	ps_smrtrot_target_b(t_stack **stack, t_list **mvtbook, int target);
+
+//smart_rot_push.c
+
 
 //sort_3.c
 void	ft_ps_sort_back_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count);

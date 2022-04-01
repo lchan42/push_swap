@@ -71,22 +71,18 @@ int	ft_ps_chunckmax_len(t_stack *head)
 	return (max_len);
 }
 
-int	ft_ps_target_chklen(t_stack *head, int index)
+int	ft_ps_full_chklen(t_stack *head, int index)
 {
 	int	len;
-	int	chklen;
+	int chklen;
 
 	len = ft_ps_stacklen(head);
 	chklen = 0;
-	if (head->index == index)
-		while (head->previous->index == index && len--)
-			head = head->previous;
-	else
+	while (len--)
 	{
-		while (head->index != index && len--)
-			head = head->next;
-		if (head->index != index)
-			return (0);
+		if (head->index == index)
+			chklen++;
+		head = head->next;
 	}
-	return (ft_ps_chunck_len(head));
+	return (chklen);
 }

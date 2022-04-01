@@ -14,9 +14,10 @@
 
 int     main(int ac, char **av)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_list	*mvtbook;
+	t_stack	*a;
+	t_stack	*b;
+	t_list	*m;
+	t_ps	c;
 
 	if (ac < 2)
 		return (0);
@@ -27,29 +28,33 @@ int     main(int ac, char **av)
 	}
 	else
 		printf(">>> entry is ok <<<\n");
-	stack_a = ft_ps_buildstack(ac, av);
-	stack_b = NULL;
-	mvtbook = NULL;
+	a = ft_ps_buildstack(ac, av);
+	b = NULL;
+	m = NULL;
+	c.a = a;
+	c.b = b;
+	c.m = m;
 	
-//del_test_sort_b6_cir(&stack_a, &stack_b, &mvtbook);
-//del_test_sort_a6_cir(&stack_a, &stack_b, &mvtbook);
+//del_test_sort_b6_cir(&a, &b, &m);
+//del_test_sort_a6_cir(&a, &b, &m);
 
-del_test_ft_ps_sort(&stack_a, &stack_b, &mvtbook);
-long_sub_pa(&stack_a, &stack_b, &mvtbook);
-del_print_circular_lst(stack_a, 'a', 0);
-del_print_circular_lst(stack_b, 'b', 0);
-//del_test_findtarget(stack_a, stack_b->previous);
-//del_test_underpivotpush_b(&stack_a, &stack_b, &mvtbook);
-//	ft_ps_juggle(&stack_a, &stack_b, &mvtbook);
-//	del_test_pushorganise_b(&stack_a, &stack_b, &mvtbook);
+del_test_ft_ps_sort(&a, &b, &m);
+long_sub_pa(&a, &b, &m);
+del_print_circular_lst(a, 'a', 0);
+del_print_circular_lst(b, 'b', 0);
 
-//	del_test_sort_a3(&stack_a, &stack_b, &mvtbook);
-//	del_test_sort_a10_cir(&stack_a, &stack_b, &mvtbook);
-//	del_test_sort_b3_cir(&stack_a, &stack_b, &mvtbook);
-//	del_test_underover_pivot(&stack_a, &stack_b, &mvtbook);
+//del_test_findtarget(a, b->previous);
+//del_test_underpivotpush_b(&a, &b, &m);
+//	ft_ps_juggle(&a, &b, &m);
+//	del_test_pushorganise_b(&a, &b, &m);
+
+//	del_test_sort_a3(&a, &b, &m);
+//	del_test_sort_a10_cir(&a, &b, &m);
+//	del_test_sort_b3_cir(&a, &b, &m);
+//	del_test_underover_pivot(&a, &b, &m);
 
 	
-//del_test_underpivotpush_b(&stack_a, &stack_b, &mvtbook);
+//del_test_underpivotpush_b(&a, &b, &m);
 
 }
 /**********************************************
