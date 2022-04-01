@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/01 14:57:26 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/01 15:23:39 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,11 @@ int     ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);
 int     ft_ps_smart_b_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
 int     ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot);
 
-//find_target.c	
+//find_target.c
 t_stack	*ps_findchkminval(t_stack *stack, int index);
 t_stack	*ps_findchkmaxval(t_stack *stack, int index);
-t_stack *ps_findchkmidval(t_stack *dst, t_stack *src);
-int ps_findtarget(t_stack *dst, t_stack *src);
+t_stack	*ps_findchkmidval(t_stack *dst, t_stack *src);
+int		ps_findtarget(t_stack *dst, t_stack *src);
 
 //smart_rot_target.c
 int	ps_smrtrot_target_a_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/01 14:57:28 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/01 15:23:37 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,7 @@ void	del_test_findtarget(t_stack *a, t_stack *b)
 	printf("chunck_min : %d\n", ps_findchkminval(a, b->index)->rank);
 	printf("chunck_mid : %d\n", ps_findchkmidval(a, b)->rank);
 	printf("chunck_max : %d\n", ps_findchkmaxval(a, b->index)->rank);
+	printf("max->next  : %d\n", ps_findchkmaxval(a, b->index)->next->rank);
 	printf("want to push : %d\n", b->rank);
 	printf("next target = %d\n", target);
 }
