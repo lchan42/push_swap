@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/30 17:10:20 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/01 11:54:58 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,3 @@ int	ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot)
 		ft_ps_targetedrot(stack, mvtbook, r_tmp, "rrb");
 	return (1);
 }
-
-
-
-
-

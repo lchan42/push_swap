@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/31 18:32:42 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/01 14:57:28 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,35 @@ void	del_print_circular_lst(t_stack *head, char c, int opt)
 		}
 	}
 	printf("\n");
-//	del_print_singlenod(tmp, opt);
 }
 /*******************************************************
  * the last print is to make sure that the list is circular
  */
+
+void	del_print_chunck(t_stack *s, int index)
+{
+	int	nod_index;
+	int	stack_len;
+	int	chk_len;
+
+	nod_index = 0;
+	stack_len = ft_ps_stacklen(s);
+	chk_len = ft_ps_chunck_len(s);
+	if (stack_len != chk_len)
+	{
+		while (s->index == index && stack_len--)
+			s = s->next;
+		while (s->index != index && stack_len--)
+			s = s->next;
+	}
+	else
+		chk_len = ft_ps_chunck_len(s);
+	while (s->index == index && chk_len--)
+	{
+		del_print_singlenod(s, nod_index++, 0);
+		s = s->next;
+	}
+}
 
 void	del_print_mvtbook(t_list *head)
 {
@@ -272,6 +296,20 @@ void	del_test_ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	ft_ps_sort(stack_a, stack_b, mvtbook);	
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
+}
+
+void	del_test_findtarget(t_stack *a, t_stack *b)
+{
+	int target;
+
+	target = ps_findtarget(a, b);
+	printf("----dst stack :----\n");
+	del_print_chunck(a, b->index);
+	printf("chunck_min : %d\n", ps_findchkminval(a, b->index)->rank);
+	printf("chunck_mid : %d\n", ps_findchkmidval(a, b)->rank);
+	printf("chunck_max : %d\n", ps_findchkmaxval(a, b->index)->rank);
+	printf("want to push : %d\n", b->rank);
+	printf("next target = %d\n", target);
 }
 /*
 void	del_test_sort_a10_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)

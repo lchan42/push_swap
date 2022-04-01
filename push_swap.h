@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/31 18:32:43 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/01 14:57:26 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,24 @@ void	ft_ps_sort_back_a_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtboo
 void    ft_ps_sort_a3_cir(t_stack **stack_a, t_list **mvtbook);
 void    ft_ps_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 
-//ft_smartrotation // -------> Warning apparently Smart rot need intern_pivot to work properly for a 
+//smart_rot_pivot.c // -------> Warning apparently Smart rot need intern_pivot to work properly for a 
 void    ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);
 int     ft_ps_smart_a_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
 int     ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);
 int     ft_ps_smart_b_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
 int     ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot);
 
+//find_target.c	
+t_stack	*ps_findchkminval(t_stack *stack, int index);
+t_stack	*ps_findchkmaxval(t_stack *stack, int index);
+t_stack *ps_findchkmidval(t_stack *dst, t_stack *src);
+int ps_findtarget(t_stack *dst, t_stack *src);
+
+//smart_rot_target.c
+int	ps_smrtrot_target_a_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);
+int	ps_smrtrot_target_a(t_stack **stack, t_list **mvtbook, int target);
+int	ps_smrtrot_target_b_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);
+int	ps_smrtrot_target_b(t_stack **stack, t_list **mvtbook, int target);
 
 //sort_3.c
 void	ft_ps_sort_back_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count);
@@ -208,5 +219,6 @@ void	del_test_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtb
 void	del_test_underover_pivot(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	del_test_underpivotpush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	del_test_ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
+void	del_test_findtarget(t_stack *a, t_stack *b);
 
 #endif
