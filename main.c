@@ -39,9 +39,10 @@ int     main(int ac, char **av)
 //del_test_sort_a6_cir(&a, &b, &m);
 
 del_test_ft_ps_sort(&a, &b, &m);
-long_sub_pa(&a, &b, &m);
+ps_long_sub_pa(&a, &b, &m);
 del_print_circular_lst(a, 'a', 0);
 del_print_circular_lst(b, 'b', 0);
+del_print_mvtbook(m);
 
 //del_test_findtarget(a, b->previous);
 //del_test_underpivotpush_b(&a, &b, &m);

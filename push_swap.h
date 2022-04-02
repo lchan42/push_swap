@@ -203,7 +203,7 @@ int **ps_incr_seq(int **tab, int len);
 int	**ps_longest_seq(t_stack *stk, int opt);
 
 //longest_sub_algo.c
-void	long_sub_pa(t_stack **a, t_stack **b, t_list **mvtbook);
+void	ps_long_sub_pa(t_stack **a, t_stack **b, t_list **mvtbook);
 
 //push_swap_del.c
 void	del_print_tab(char **tab);
