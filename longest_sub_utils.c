@@ -6,13 +6,12 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/31 17:45:51 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/03 22:23:12 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//longest_subequence_utils.c
 int **ps_chunck_cpy(t_stack *stk, int len)
 {
 	int	**tab;
@@ -42,10 +41,34 @@ int ps_tab_len(int **tab)
 	return (i);
 }
 
+int	ps_tab_closestlow(int **tab, int uplmt)
+{
+	int	l;
+	int	max;
+	int	i;
+
+	l = *tab[uplmt];
+	i = -1;
+	while (tab[++i])
+	{
+		if (*tab[i] < l)
+		{
+			max = i;
+			break;
+		}
+	}
+	while (tab[++i])
+		if ( *tab[max] < *tab[i] && *tab[i] < l)
+			max = i;
+	return (max);
+}
+
 void	ps_printtab(int **tab)
 {
 	int	i;
 
+	if (!tab)
+		return;
 	i = -1;
 	printf("---{copied tab :}--- \n");
 	while (tab[++i] != 0)

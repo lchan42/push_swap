@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/01 15:23:37 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/03 22:23:15 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,7 +295,7 @@ void	del_test_ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	printf("-------------------after sorting stack a ----------------\n");
 	ft_ps_sort(stack_a, stack_b, mvtbook);	
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
-	del_print_mvtbook(*mvtbook);
+//	del_print_mvtbook(*mvtbook);
 }
 
 void	del_test_findtarget(t_stack *a, t_stack *b)

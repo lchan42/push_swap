@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/01 15:23:39 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/03 22:23:16 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ void	ft_ps_chkbsort_a(t_stack **a, t_stack **b, t_list **m);
 int 	**ps_chunck_cpy(t_stack *stk, int len);
 int 	ps_tab_len(int **tab);
 void	ps_printtab(int **tab); //gonna have to delete that eventually;
+int		ps_tab_closestlow(int	**tab, int uplmt);
 
 //longest_sub_get.c
 int	**ps_cpylower(int **tab, int current, int start, int len);
