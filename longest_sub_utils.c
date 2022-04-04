@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/04 21:24:10 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/05 00:09:59 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void	ps_tab_add_pot(int **tab, int len, int opt)
 		}
 	}
 }
+/***************************************
+ * add potential to tab[i][1];
+ * *************************************/
 
 int **ps_tab_create(t_stack *stk, int len, int opt)
 {
@@ -93,7 +96,7 @@ int **ps_tab_create(t_stack *stk, int len, int opt)
 	return (tab);
 }
 
-int ps_tab_len(int **tab)
+int ps_tab_len(int *tab)
 {
 	int	i;
 
@@ -114,33 +117,7 @@ int ps_tab_len(int **tab)
 
 
 
-
-
 /*****************delete afterwards*****************/
-
-int	ps_tab_nxtlow (int **tab, int i, int uplmt) // not sure I'll use it
-{
-	int	len;
-	int	l;
-	int	max;
-
-	len = ps_tab_len(tab);
-	l = *tab[uplmt];
-	max = -1;
-	while (tab[i])
-	{
-		if (*tab[i] < l)
-		{
-			max = i;
-			break;
-		}
-		i++;
-	}
-	while (i < len && tab[++i] && max != -1)
-		if ( *tab[max] < *tab[i] && *tab[i] < l)
-			max = i;
-	return (max);
-}
 
 void	ps_printtab(int **tab)
 {
@@ -152,8 +129,8 @@ void	ps_printtab(int **tab)
 	printf("---{copied tab :}--- \n");
 	while (tab[++i] != 0)
 	{
-		printf("    tab[%2d] = %d ", i, tab[i][0]);
-		printf("    pot = %d\n", tab[i][1]);
+		printf("tab[%2d] = %d ", i, tab[i][0]);
+		printf("pot = %d\n", tab[i][1]);
 	}
 	printf("\n");
 }
@@ -164,7 +141,7 @@ void	ps_printseq(int	*tab, int len)
 
 	i = -1;
 	printf("---{LDS :}--- \n");
-	while (++i < np)
-		printf("    tab[%2d] = %d\n ", i, tab[i]);
-	
+	while (++i < len && tab[i])
+		printf("tab[%2d] = %d\n", i, tab[i]);
+	printf("\n");	
 }
