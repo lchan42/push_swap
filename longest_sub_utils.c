@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/05 00:09:59 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/05 20:57:19 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	**ps_tab_init(int len)
 		return (NULL);
 	while (++i < len)
 	{
-		tab[i] = (int *)malloc(2 * sizeof(int));
+		tab[i] = (int *)malloc(4 * sizeof(int));
 		if (!tab[i])
 		{
 			ps_tab_free(tab, len);
@@ -48,34 +48,6 @@ int	**ps_tab_init(int len)
 	tab[len] = NULL;
 	return (tab);
 }
-
-void	ps_tab_add_pot(int **tab, int len, int opt)
-{
-	int i;
-	int	j;
-
-	i = -1;
-	while (tab[++i])
-	{
-		tab[i][1] = 0;
-		j = i;
-		if (opt < 0)
-		{
-			while (tab[++j])
-				if (*tab[j] < *tab[i])
-					tab[i][1]++;
-		}
-		else if (opt >= 0)
-		{
-			while (tab[++j])
-				if (*tab[j] > *tab[i])
-					tab[i][1]++;
-		}
-	}
-}
-/***************************************
- * add potential to tab[i][1];
- * *************************************/
 
 int **ps_tab_create(t_stack *stk, int len, int opt)
 {
@@ -143,5 +115,16 @@ void	ps_printseq(int	*tab, int len)
 	printf("---{LDS :}--- \n");
 	while (++i < len && tab[i])
 		printf("tab[%2d] = %d\n", i, tab[i]);
+	printf("\n");	
+}
+
+void	ps_printcost (int **tab)
+{
+	int	i;
+
+	i = -1;
+	printf("---{ CT :}--- \n");
+	while (tab[++i])
+		printf("tab[%2d] :  %3d	%3d	%3d	%3d\n", i, tab[i][0], tab[i][1], tab[i][2], tab[i][3]);
 	printf("\n");	
 }

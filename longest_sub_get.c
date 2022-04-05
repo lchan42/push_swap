@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/05 00:09:57 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/05 21:11:21 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,34 @@ int	*ps_tab_select_lgsub(int **tab, int len, int opt)
 /***********************************************
  * creat longest subseq
  ***********************************************/
+
+void	ps_tab_add_pot(int **tab, int len, int opt)
+{
+	int i;
+	int	j;
+
+	i = -1;
+	while (tab[++i])
+	{
+		tab[i][1] = 0;
+		j = i;
+		if (opt < 0)
+		{
+			while (tab[++j])
+				if (*tab[j] < *tab[i])
+					tab[i][1]++;
+		}
+		else if (opt >= 0)
+		{
+			while (tab[++j])
+				if (*tab[j] > *tab[i])
+					tab[i][1]++;
+		}
+	}
+}
+/***************************************
+ * add potential to tab[i][1];
+ * *************************************/
 
 int	*ps_longest_seq(t_stack *stk, int opt)
 {
