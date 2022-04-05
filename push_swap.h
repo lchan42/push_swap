@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/05 21:11:27 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/06 00:05:08 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_ps
 //push_swap_utils.c
 int		strchr_booleen(char c, char *str);
 int		ft_ps_is_even_nbr(int nbr);
+int		ps_ab_val(int n);
 
 //push_swap_entrycheck.c
 int		check_ascii(char **av);
@@ -196,6 +197,7 @@ int		**ps_tab_init(int len);
 void	ps_tab_add_pot(int **tab, int len, int opt);
 int		**ps_tab_create(t_stack *stk, int len, int opt);
 int 	ps_tab_len(int *tab);
+int		ps_dtab_len(int **tab);
 
 void	ps_printtab(int **tab); //gonna have to delete that eventually;
 void	ps_printseq(int *tab, int np); // gonna have to delete that eventually;
@@ -205,7 +207,7 @@ void	ps_printcost(int **tab);
 int	*ps_longest_seq(t_stack *stk, int opt);
 
 //longest_sub_algo.c
-void	ps_long_sub_pa(t_stack **a, t_stack **b, t_list **mvtbook);
+int	ps_longsub_sort(t_stack **a, t_stack **b, t_list **m);
 
 // cost_tab_get.c
 int	**ps_cost_tab(t_stack *dst, t_stack *src);

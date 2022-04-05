@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/05 21:11:24 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/06 00:05:05 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int     main(int ac, char **av)
 //del_test_sort_b6_cir(&a, &b, &m);
 //del_test_sort_a6_cir(&a, &b, &m);
 
-del_test_ft_ps_sort(&a, &b, &m);
+//del_test_ft_ps_sort(&a, &b, &m);
 //ps_longest_seq(a, 1);
-ps_long_sub_pa(&a, &b, &m);
+ps_longsub_sort(&a, &b, &m);
 del_print_circular_lst(a, 'a', 0);
 del_print_circular_lst(b, 'b', 0);
 del_print_mvtbook(m);
-ps_cost_tab(b ,a);
+
 
 //del_test_findtarget(a, b->previous);
 //del_test_underpivotpush_b(&a, &b, &m);

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/05 20:57:19 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/05 23:24:10 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,16 @@ int ps_tab_len(int *tab)
 	return (i);
 }
 
+int	ps_dtab_len(int **tab)
+{
+	int	i;
+
+	i = 0;
+	if (tab)
+		while (tab[i])
+			i++;
+	return (i);
+}
 
 
 
