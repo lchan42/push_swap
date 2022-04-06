@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:48:06 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 00:05:02 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/06 18:30:45 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,68 @@ int	ps_inc_or_decr(int *seq)
 		return (0);
 }
 
+void	ps_lsub_goto_coordte(int *tab, t_stack **a, t_stack **b, t_list **m)
+{
+	int	x;
+	int	y;
+
+	x = tab[1];
+	y = tab[2];
+	if (x > 0)
+		while (x--)
+			ft_ps_rotate_a(a, m);
+	else if (x < 0)
+		while (x++)
+			ft_ps_reverse_a(a, m);
+	if (y > 0)
+		while (y--)
+			ft_ps_rotate_b(b, m);
+	else if (y < 0)
+		while (y++)
+			ft_ps_reverse_b(b, m);
+}
+
 int	ps_lsub_findcheap(int **tab)
 {
 	int	i;
+	int	j;
 	int	min;
 
 	i = -1;
-	min = tab[0][3];
+//	min = tab[0][3];
+	j = 0;
 	while (tab[++i])
-		if (tab[i][3] < min)
-			min = tab[i][3];
-	return (min);
+		if (tab[i][3] < tab[j][3])
+			j = i;
+			//min = tab[i][3];
+	return (j);
 }
 
-void	ps_long_sub_pb(t_stack **a, t_stack **b, t_list **m)
+int	ps_long_sub_pa(t_stack **a, t_stack **b, t_list **m)
+{	
+	int	**tab;
+	int	*coord;
+
+	while (*b)
+	{
+		tab = ps_cost_tab(*a, *b);
+		if (!tab)
+			return (0);
+		coord = tab[ps_lsub_findcheap(tab)];
+		ps_lsub_goto_coordte(coord, a, b, m);
+		ft_ps_push_a(a, b, m);
+		if ((*a)->rank > (*a)->next->rank)
+			ft_ps_rotate_a(a, m);
+		else if ((*a)->rank < (*a)->previous->rank)
+			ft_ps_reverse_a(a, m);
+		ps_tab_free(tab, ps_dtab_len(tab));
+		tab = NULL;
+	}
+	printf("address b = %p\n", *b);
+	return (1);
+}
+
+int	ps_long_sub_pb(t_stack **a, t_stack **b, t_list **m)
 {
 	int	*seq;
 	int	len;
@@ -47,7 +95,7 @@ void	ps_long_sub_pb(t_stack **a, t_stack **b, t_list **m)
 
 	seq = ps_longest_seq(*a, 1);
 	if (!seq)
-		return ;
+		return (0);
 	len = ft_ps_stacklen(*a);
 	i = -1;
 	j = 0;
@@ -63,21 +111,22 @@ void	ps_long_sub_pb(t_stack **a, t_stack **b, t_list **m)
 		}
 	}
 	free(seq);
+	return (1);
 }
 /*******************************
- *
+ * push_b anything not part of longest sub seq
  * *****************************/
 
 int	ps_longsub_sort(t_stack **a, t_stack **b, t_list **m)
 {
-	int	**tab;
-
-	ps_long_sub_pb(a, b, m);
-	tab = ps_cost_tab(*a,*b);
-	if (!tab)
+	if (!ps_long_sub_pb(a, b, m))
 		return (0);
-	printf("lowest cost = %d\n", ps_lsub_findcheap(tab));
-	
+	del_print_circular_lst(*a, 'a', 0);
+	del_print_circular_lst(*b, 'b', 0);
+
+	if (!ps_long_sub_pa(a, b, m))
+		return (0);
+//	ps_cost_tab(*a, *b);
 	return (1);
 }
 /*******************************

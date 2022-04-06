@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/05 21:12:30 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/06 14:34:40 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	*ps_tab_select_lgsub(int **tab, int len, int opt)
 		seq[++i] = tab[np][0];
 	}
 	seq[++i] = 0;
-	ps_printseq(seq, np + 1);
+//	ps_printseq(seq, np);//
 	return (seq);
 }
 /***********************************************
@@ -145,7 +145,7 @@ int	*ps_longest_seq(t_stack *stk, int opt)
 	if (!tab)
 		return (NULL);
 	seq = ps_tab_select_lgsub(tab, len, opt);
-	ps_printtab(tab);
+//	ps_printtab(tab);//
 	ps_tab_free(tab, len);
 	return (seq);
 }

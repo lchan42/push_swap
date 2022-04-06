@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/30 18:21:09 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/06 16:30:12 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_ps_chunck_len(t_stack *head)
 	int		chunck;
 	int		len;
 
+	len = 0;
 	if (head)
 	{
 		tmp = head->next;

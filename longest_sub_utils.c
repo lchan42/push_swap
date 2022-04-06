@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/05 23:24:10 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/06 14:55:45 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	ps_printseq(int	*tab, int len)
 	int	i;
 
 	i = -1;
-	printf("---{LDS :}--- \n");
+	printf("------------------{LDS :}------------------- \n");
 	while (++i < len && tab[i])
 		printf("tab[%2d] = %d\n", i, tab[i]);
 	printf("\n");	
@@ -133,7 +133,6 @@ void	ps_printcost (int **tab)
 	int	i;
 
 	i = -1;
-	printf("---{ CT :}--- \n");
 	while (tab[++i])
 		printf("tab[%2d] :  %3d	%3d	%3d	%3d\n", i, tab[i][0], tab[i][1], tab[i][2], tab[i][3]);
 	printf("\n");	
