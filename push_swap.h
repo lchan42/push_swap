@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 18:30:49 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/07 00:16:43 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,35 +60,33 @@ void	ft_ps_push_a(t_stack **dst, t_stack **src, t_list **mvtbook); // b--->a
 void	ft_ps_rotate_a(t_stack **head, t_list **mvtbook); //need more check
 void	ft_ps_reverse_a(t_stack **head, t_list **mvtbook);
 
-
 //movement_b.c
 void	ft_ps_swap_b(t_stack **head, t_list **mvtbook);
 void	ft_ps_push_b(t_stack **dst, t_stack **src, t_list **mvtbook); //a--->b
 void	ft_ps_rotate_b(t_stack **head, t_list **mvtbook); //need more check
 void	ft_ps_reverse_b(t_stack **head, t_list **mvtbook);
 
-
 //stacklen.c
 int    ft_ps_stacklen(t_stack *head);
 int     ft_ps_chunck_len(t_stack *head);
-int     ft_ps_chunckmax_len(t_stack *head);
-int		ft_ps_full_chklen(t_stack *head, int index);
+int     ft_ps_chunckmax_len(t_stack *head);//
+int		ft_ps_full_chklen(t_stack *head, int index);//
 
 //find_pivot.c
-int     ft_ps_findpivot(t_stack *head);
-int		ft_ps_chunckpivot(t_stack *head);
-int		ft_ps_targeted_chunckpivot(t_stack *head, int index);
+int     ft_ps_findpivot(t_stack *head);//
+int		ft_ps_chunckpivot(t_stack *head);//
+int		ft_ps_targeted_chunckpivot(t_stack *head, int index);//
 
 //sorted_checker.c
 int     ft_ps_sorted_checker(t_stack *head);
-int     ft_ps_sorted_checker_a_n(t_stack *head, int n);
-int     ft_ps_sorted_checker_b_n(t_stack *head, int n);
+int     ft_ps_sorted_checker_a_n(t_stack *head, int n);//
+int     ft_ps_sorted_checker_b_n(t_stack *head, int n);//
 int		ft_ps_is_sorted(t_stack *head);
 
 //sort_6_cir.c
 void    ft_ps_sort_b2(t_stack **stack_b, t_list **mvtbook);
 void    ft_ps_sort_b3_cir(t_stack **stack_b, t_list **mvtbook);
-void    ft_ps_sort_b6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
+void    ft_ps_sort_b6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);//
 
 
 void    ft_ps_sort_a2(t_stack **stack_a, t_list **mvtbook);
@@ -97,25 +95,25 @@ void    ft_ps_sort_a3_cir(t_stack **stack_a, t_list **mvtbook);
 void    ft_ps_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 
 //smart_rot_pivot.c // -------> Warning apparently Smart rot need intern_pivot to work properly for a 
-void    ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);
-int     ft_ps_smart_a_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
-int     ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);
-int     ft_ps_smart_b_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);
-int     ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot);
+void    ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);//
+int     ft_ps_smart_a_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);//
+int     ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);//
+int     ft_ps_smart_b_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);//
+int     ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot);//
 
 //find_target.c
-t_stack	*ps_findchkminval(t_stack *stack, int index);
-t_stack	*ps_findchkmaxval(t_stack *stack, int index);
-t_stack	*ps_findchkmidval(t_stack *dst, t_stack *src);
-int		ps_findtarget(t_stack *dst, t_stack *src);
+t_stack	*ps_findchkminval(t_stack *stack, int index);//
+t_stack	*ps_findchkmaxval(t_stack *stack, int index);//
+t_stack	*ps_findchkmidval(t_stack *dst, t_stack *src);//
+int		ps_findtarget(t_stack *dst, t_stack *src);//
 
 //smart_rot_target.c
-int	ps_smrtrot_target_a_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);
-int	ps_smrtrot_target_a(t_stack **stack, t_list **mvtbook, int target);
-int	ps_smrtrot_target_b_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);
-int	ps_smrtrot_target_b(t_stack **stack, t_list **mvtbook, int target);
+int	ps_smrtrot_target_a_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);//
+int	ps_smrtrot_target_a(t_stack **stack, t_list **mvtbook, int target);//
+int	ps_smrtrot_target_b_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);//
+int	ps_smrtrot_target_b(t_stack **stack, t_list **mvtbook, int target);//
 
-//smart_rot_push.c
+//smart_rot_push.c//
 
 
 //sort_3.c

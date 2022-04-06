@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 18:30:47 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/07 00:16:48 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int     main(int ac, char **av)
 //ps_longest_seq(a, 1);
 del_print_circular_lst(a, 'a', 0);
 del_print_circular_lst(b, 'b', 0);
-ps_longsub_sort(&a, &b, &m);
+if (!ps_longsub_sort(&a, &b, &m))
+	return (0);
 del_print_circular_lst(a, 'a', 0);
 del_print_circular_lst(b, 'b', 0);
 del_print_mvtbook(m);

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 14:55:45 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/06 23:09:27 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ps_tab_free(int **tab, int len)
 	i = -1;
 	if (tab)
 	{
-		while (++i < len)
-			if (tab[i])
+		while (tab[++i]) //< len)
+	//		if (tab[i])
 				free(tab[i]);
 		free(tab);
 	}
@@ -48,6 +48,11 @@ int	**ps_tab_init(int len)
 	tab[len] = NULL;
 	return (tab);
 }
+/***************************************************
+ * used and freed multiple times
+ * 		in ps_long_sub_pa
+ * 		used to get the cost table
+ * *************************************************/
 
 int **ps_tab_create(t_stack *stk, int len, int opt)
 {
@@ -67,6 +72,10 @@ int **ps_tab_create(t_stack *stk, int len, int opt)
 	ps_tab_add_pot(tab, len, opt);
 	return (tab);
 }
+/****************************************
+ * used and freed in ps_longest_seq;
+ * provide tab of potential to creat longest seq;
+ * **************************************/
 
 int ps_tab_len(int *tab)
 {

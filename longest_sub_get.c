@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 14:34:40 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/06 23:09:25 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,4 +152,5 @@ int	*ps_longest_seq(t_stack *stk, int opt)
 /***********************************************
  * if opt = -1, return decreasing sub sequence
  * if opt >= 0, return increasing sub sequence
+ * seq is used and freed in ps_long_sub_pb (longest_sub_algo.c)
  * *********************************************/

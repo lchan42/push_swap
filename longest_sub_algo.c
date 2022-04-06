@@ -6,24 +6,11 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:48:06 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 18:30:45 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/06 22:57:33 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ps_inc_or_decr(int *seq)
-{
-	int	len;
-
-	len = ps_tab_len(seq);
-	if (seq[0] > seq[len - 1])
-		return (-1);
-	if (seq[0] <= seq[len - 1])
-		return (1);
-	else
-		return (0);
-}
 
 void	ps_lsub_goto_coordte(int *tab, t_stack **a, t_stack **b, t_list **m)
 {
@@ -45,6 +32,9 @@ void	ps_lsub_goto_coordte(int *tab, t_stack **a, t_stack **b, t_list **m)
 		while (y++)
 			ft_ps_reverse_b(b, m);
 }
+/*******************************************
+ * rotate both stacks according to coordinate
+ * *****************************************/
 
 int	ps_lsub_findcheap(int **tab)
 {
@@ -53,14 +43,16 @@ int	ps_lsub_findcheap(int **tab)
 	int	min;
 
 	i = -1;
-//	min = tab[0][3];
 	j = 0;
 	while (tab[++i])
 		if (tab[i][3] < tab[j][3])
 			j = i;
-			//min = tab[i][3];
 	return (j);
 }
+/*******************************************
+ * find cheapest elemt in cost_tab;
+ *		returns its position;
+ *******************************************/
 
 int	ps_long_sub_pa(t_stack **a, t_stack **b, t_list **m)
 {	
@@ -77,14 +69,20 @@ int	ps_long_sub_pa(t_stack **a, t_stack **b, t_list **m)
 		ft_ps_push_a(a, b, m);
 		if ((*a)->rank > (*a)->next->rank)
 			ft_ps_rotate_a(a, m);
-		else if ((*a)->rank < (*a)->previous->rank)
-			ft_ps_reverse_a(a, m);
+	//	else if ((*a)->rank < (*a)->previous->rank)
+	//		ft_ps_reverse_a(a, m);
 		ps_tab_free(tab, ps_dtab_len(tab));
 		tab = NULL;
 	}
-	printf("address b = %p\n", *b);
 	return (1);
 }
+/********************************************************
+ * In order : 
+ * 		coord = tab[index of cheapest mvt]
+ * 		mvt stack according to coord
+ * 		if element is supposed to go at last position, rotate 
+ * 		push_a according to best mvt
+ * ******************************************************/
 
 int	ps_long_sub_pb(t_stack **a, t_stack **b, t_list **m)
 {
@@ -99,7 +97,6 @@ int	ps_long_sub_pb(t_stack **a, t_stack **b, t_list **m)
 	len = ft_ps_stacklen(*a);
 	i = -1;
 	j = 0;
-	ps_printseq(seq, len);
 	while (++i < len)
 	{
 		if ((*a)->rank != seq[j])
@@ -113,23 +110,20 @@ int	ps_long_sub_pb(t_stack **a, t_stack **b, t_list **m)
 	free(seq);
 	return (1);
 }
-/*******************************
+/********************************************************
+ * generate seq (longest increasing subsequence sequence)
  * push_b anything not part of longest sub seq
- * *****************************/
+ * ******************************************************/
 
 int	ps_longsub_sort(t_stack **a, t_stack **b, t_list **m)
 {
 	if (!ps_long_sub_pb(a, b, m))
 		return (0);
-	del_print_circular_lst(*a, 'a', 0);
-	del_print_circular_lst(*b, 'b', 0);
-
 	if (!ps_long_sub_pa(a, b, m))
 		return (0);
-//	ps_cost_tab(*a, *b);
 	return (1);
 }
 /*******************************
  * leave long sub in a, push rest in b;
- *
+ * use best cost to push back in b;
  * *****************************/
