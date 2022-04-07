@@ -6,11 +6,36 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:58:49 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/19 13:04:01 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 00:01:44 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_ps_rank(t_stack **head, int lst_len)
+{
+	t_stack	*tmp;
+	t_stack	*min_nod;
+	int		rank;
+
+	tmp = *head;
+	rank = 0;
+	min_nod = *head;
+	while (++rank <= lst_len)
+	{
+		while (tmp)
+		{
+			if (tmp->value < min_nod->value && !tmp->rank)
+				min_nod = tmp;
+			tmp = tmp->next;
+		}
+		min_nod->rank = rank;
+		min_nod = *head;
+		while (rank < lst_len && min_nod->rank)
+			min_nod = min_nod->next;
+		tmp = *head;
+	}
+}
 
 void	ft_ps_free_list(t_stack *head)
 {
@@ -67,31 +92,6 @@ else
  * (*head)->previous = is set, however tmp->next->next is still null. Will be set at the end ft_ps_buildstack
  */
 
-void	ft_ps_rank(t_stack **head, int lst_len)
-{
-	t_stack	*tmp;
-	t_stack	*min_nod;
-	int		rank;
-
-	tmp = *head;
-	rank = 0;
-	min_nod = *head;
-	while (++rank <= lst_len)
-	{
-		while (tmp)
-		{
-			if (tmp->value < min_nod->value && !tmp->rank)
-				min_nod = tmp;
-			tmp = tmp->next;
-		}
-		min_nod->rank = rank;
-		min_nod = *head;
-		while (rank < lst_len && min_nod->rank)
-			min_nod = min_nod->next;
-		tmp = *head;
-	}
-}
-
 t_stack	*ft_ps_buildstack(int ac, char **av)
 {
 	t_stack		*stack;
@@ -117,7 +117,7 @@ t_stack	*ft_ps_buildstack(int ac, char **av)
 	if (stack)
 		stack->previous->next = stack;
 	else
-		printf("stack has an malloc issue and have been freed\n");
+		printf("stack has an malloc issue and have been freed\n");//
 	return (stack);
 }
 /**********************************************************

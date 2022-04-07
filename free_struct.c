@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:42:10 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/07 23:25:14 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 00:02:08 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,31 @@ t_list **ps_free_tlist_nod(t_list **m, int skip, int nbr)
  * ps : no need for free(tmp->content) coz content hasnt been malloced
  *********************************************************************/
 
-void	ps_free_tlist(t_list *m)
+void	ps_free_tlist(t_list **m)
 {
 	t_list	*tmp;
 
-	while (m)
+	while (*m)
 	{
-		tmp = m;
-		m = m->next;
+		tmp = *m;
+		*m = (*m)->next;
 		free(tmp);
 	}
+	*m = NULL;
 }
 
-void	ps_free_t_stack(t_stack *a)
+void	ps_free_t_stack(t_stack **a)// can also do a function with the stack_len
 {
-
+	t_stack *tmp;
+	
+	(*a)->previous->next = NULL;
+	while (*a)
+	{
+		tmp = *a;
+		*a = (*a)->next;
+		if (tmp)
+			free(tmp);
+		tmp = NULL;
+	}
+	*a = NULL;
 }

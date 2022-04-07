@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/07 23:25:19 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 00:01:37 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,8 @@ int	**ps_opt_costtab(int	**tab);
 
 // free_struct.c
 t_list **ps_free_tlist_nod(t_list **m, int nxt, int nbr);
+void	ps_free_tlist(t_list **m);
+void	ps_free_t_stack(t_stack **a);
 
 //push_swap_del.c
 void	del_print_tab(char **tab);
