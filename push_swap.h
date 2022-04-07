@@ -201,14 +201,20 @@ void	ps_printtab(int **tab); //gonna have to delete that eventually;
 void	ps_printseq(int *tab, int np); // gonna have to delete that eventually;
 void	ps_printcost(int **tab);
 
-//longest_sub_get.c /(5)
+//longest_sub_get.c (5)
 int	*ps_longest_seq(t_stack *stk, int opt);
 
-//longest_sub_algo.c
+//longest_sub_algo.c ()
 int	ps_longsub_sort(t_stack **a, t_stack **b, t_list **m);
 
-// cost_tab_get.c
+// cost_tab_get.c ()
 int	**ps_cost_tab(t_stack *dst, t_stack *src);
+
+//opt_mvtbook.c (5)
+void	ps_opt_mvtbook(t_list *m);
+
+// free_struct.c
+void	ps_free_tlist_nod(t_list **m, int nxt, int nbr);
 
 //push_swap_del.c
 void	del_print_tab(char **tab);

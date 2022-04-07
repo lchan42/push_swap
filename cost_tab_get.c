@@ -132,7 +132,6 @@ int	**ps_cost_tab(t_stack *dst, t_stack *src)
 		return (NULL);
 	while (tab[++i])
 		tab[i][3] = ps_ab_val(tab[i][1]) + ps_ab_val(tab[i][2]);
-//	ps_cost_add_cost(tab);
 	return (tab);
 }
 /*************************************
