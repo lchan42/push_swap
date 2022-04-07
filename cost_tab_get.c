@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 19:44:23 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 22:35:37 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/07 21:28:35 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int	**ps_cost_tab(t_stack *dst, t_stack *src)
 		return (NULL);
 	while (tab[++i])
 		tab[i][3] = ps_ab_val(tab[i][1]) + ps_ab_val(tab[i][2]);
+	tab = ps_opt_costtab(tab);
 	return (tab);
 }
 /*************************************

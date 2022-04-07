@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/07 00:16:48 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/07 23:25:16 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ if (!ps_longsub_sort(&a, &b, &m))
 del_print_circular_lst(a, 'a', 0);
 del_print_circular_lst(b, 'b', 0);
 del_print_mvtbook(m);
-
+ps_opt_mvtbook(m);
+del_print_mvtbook(m);
 
 //del_test_findtarget(a, b->previous);
 //del_test_underpivotpush_b(&a, &b, &m);

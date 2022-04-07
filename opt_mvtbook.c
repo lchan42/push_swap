@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mvtbook_opt.c                                      :+:      :+:    :+:   */
+/*   opt_mvtbook.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 23:10:15 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/07 00:16:56 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/07 23:24:55 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	ps_opt_cntnod(t_list *m, int *a, int *b)
 {
-	if (ft_strncmp("ra", (char *)m->content, 2))
+	if (ft_strncmp("ra", (char *)m->content, 2) == 0)
 	{
-		while (m && ft_strncmp("ra", (char *)m->content, 2) == 0 && *a++)
+		while (m && ft_strncmp("ra", (char *)m->content, 2) == 0 && ++*a)
 			m = m->next;
-		while (m && ft_strncmp("rb", (char *)m->content, 2) == 0 && *b++)
+		while (m && ft_strncmp("rb", (char *)m->content, 2) == 0 && ++*b)
 			m = m->next;
 	}
-	else if (ft_strncmp("rra", (char *)m->content, 3))
+	else if (ft_strncmp("rra", (char *)m->content, 3) == 0)
 	{
-		while (m && ft_strncmp("rra", (char *)m->content, 3) == 0 && *a++)
+		while (m && ft_strncmp("rra", (char *)m->content, 3) == 0 && ++*a)
 			m = m->next;
-		while (m && ft_strncmp("rrb", (char *)m->content, 3) == 0 && *b++)
+		while (m && ft_strncmp("rrb", (char *)m->content, 3) == 0 && ++*b)
 			m = m->next;
 	}
 	if (*b == 0)
@@ -38,17 +38,17 @@ int	ps_opt_cntnod(t_list *m, int *a, int *b)
  * if group of ra is followed by rb return (1)
  * ********************************************************/
 
-void	ps_opt_cutnpatch_b(t_list **m, int a, int b)
+t_list **ps_opt_cutnpatch_b(t_list **m, int a, int b)
 {
 	int	min;
 
 	min = a;
-	if (ft_strncmp("ra", m->content, 2) == 0)
+	if (ft_strncmp("ra", (char *)(*m)->content, 2) == 0)
 	{
 		while (min--)
 		{
-			m->content[1] = "r";
-			if (min > 1)
+			(*m)->content = "rr";
+			if (min >= 1)
 				*m = (*m)->next;
 		}
 	}
@@ -56,12 +56,12 @@ void	ps_opt_cutnpatch_b(t_list **m, int a, int b)
 	{
 		while (min--)
 		{
-			(*m)->content[2] = "r";
-			if (min > 1)
-				(*m) = *m->next;
+			(*m)->content = "rrr";
+			if (min >= 1)
+				(*m) = (*m)->next;
 		}
 	}
-	ps_free_nod(m, b - a, a);
+	return (ps_free_tlist_nod(m, b - a, a));
 }
 /*********************************************************
  * case nbr "rb"/"rrb" > nbr "ra"/"rra"
@@ -70,17 +70,17 @@ void	ps_opt_cutnpatch_b(t_list **m, int a, int b)
  *		- m end up at nod after group of rb
  *********************************************************/
 
-void	ps_opt_cutnpatch_a(t_list **m, int a, int b)
+t_list **ps_opt_cutnpatch_a(t_list **m, int a, int b)
 {
 	int min;
 
 	min = b;
-	if (ft_strncmp("ra", m->content, 2) == 0)
+	if (ft_strncmp("ra", (char *)(*m)->content, 2) == 0)
 	{
 		while (min--)
 		{
-			m->content[1] = "r";
-			if (min > 1)
+			(*m)->content = "rr";
+			if (min >= 1)
 				*m = (*m)->next;
 		}
 	}
@@ -88,12 +88,12 @@ void	ps_opt_cutnpatch_a(t_list **m, int a, int b)
 	{
 		while (min--)
 		{
-			(*m)->content[2] = "r";
-			if (min > 1)
-				(*m) = *m->next;
+			(*m)->content = "rrr";
+			if (min >= 1)
+				(*m) = (*m)->next;
 		}
 	}
-	ps_free_nod(m, a - b, b);
+	return (ps_free_tlist_nod(m, a - b, b));
 }
 /*********************************************************
  * case more "ra"/"rra" than "rb"/"rrb"
@@ -110,12 +110,12 @@ void	ps_opt_cutnpatch_or_gonext(t_list **m)
 
 	a = 0;
 	b = 0;
-	if (ps_opt_cntnbr(*m, &a, &b))
+	if (ps_opt_cntnod(*m, &a, &b))
 	{
-		if (a > b)
-			ps_opt_cutnpatch_a(m, a, b);
+		if (a >= b)
+			*m = *(ps_opt_cutnpatch_a(m, a, b));
 		else 
-			ps_opt_cutnpatch_b(m, a, b);
+			*m = *(ps_opt_cutnpatch_b(m, a, b));
 	}
 	else
 		while (a-- > 0)
@@ -128,13 +128,15 @@ void	ps_opt_mvtbook(t_list *m)
 {
 	int	a;
 	int	b;
+	t_list *tmp;
 
+	tmp = m;
 	while (m)
 	{
 		if (ft_strncmp("ra", (char *)m->content, 2) == 0
-			|| ft_strncmp("rra", (char *)m->content, 2) == 0)
-			 ps_opt_cutnpatch_or_gonext(&m);
-		else 
+			|| ft_strncmp("rra", (char *)m->content, 3) == 0)
+			ps_opt_cutnpatch_or_gonext(&m);
+		else if (m)
 			m = m->next;
 	}
 }
