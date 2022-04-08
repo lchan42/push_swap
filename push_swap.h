@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 17:06:32 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 18:09:21 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,22 +119,12 @@ void	ps_free_t_stack(t_stack **a);
 
 //smart_rot_target.c (3)
 void	ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);
-//int	ps_smrtrot_target_a_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);//
 int	ps_smrtrot_target_a(t_stack **stack, t_list **mvtbook, int target);//
-//int	ps_smrtrot_target_b_bis(t_stack **tmp, t_stack **r_tmp, int target, int len);//
-//int	ps_smrtrot_target_b(t_stack **stack, t_list **mvtbook, int target);//
 
 
 
 
 
-
-
-//find_target.c
-t_stack	*ps_findchkminval(t_stack *stack, int index);//
-t_stack	*ps_findchkmaxval(t_stack *stack, int index);//
-t_stack	*ps_findchkmidval(t_stack *dst, t_stack *src);//
-int		ps_findtarget(t_stack *dst, t_stack *src);//
 
 
 
@@ -165,40 +155,14 @@ void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook
 void	ft_ps_pushorganise_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
 void	ps_chkorga_pb(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	ps_chkorga_pa(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-//mark_sorted.c++
-void	ft_ps_resetchunck(t_stack *stack);
-void	ft_ps_marksorted_a(t_stack *stack_a, t_stack *stack_b);
-void	ft_ps_marksorted_b(t_stack *stack_a, t_stack *stack_b);
-void	ft_ps_mark_pb(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
-//recursive_presort.c
-void	ft_ps_pass_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-void	ps_first_cut(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-void	ft_ps_recsort_a(t_stack **stack_a, t_stack **stack_b, t_list**mvtbook);
-void	ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-//chunck_juggle_opt.c
-void	ft_ps_chkbsort_a(t_stack **a, t_stack **b, t_list **m);
-
-
 
 
 
 //push_swap_del.c
-void	del_print_tab(char **tab);
-void	del_print_stack(t_stack *head, int option);
-void	del_back_print(t_stack *head);
 void	del_print_mvtbook(t_list *mvtbook);
 void	del_print_circular_lst(t_stack *head, char c, int opt);
 void	del_test_mvt(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	del_test_sort_b3_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
 void	del_test_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
-
-//void	del_test_sort_b6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
-//void	del_test_sort_a10_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
-//void	del_test_sort_a3(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
-//void	del_test_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-//void	del_test_underover_pivot(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-//void	del_test_underpivotpush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-//void	del_test_ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-//void	del_test_findtarget(t_stack *a, t_stack *b);
 
 #endif
