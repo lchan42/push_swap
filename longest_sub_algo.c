@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:48:06 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 22:57:33 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 15:02:54 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,17 @@ int	ps_long_sub_pa(t_stack **a, t_stack **b, t_list **m)
 		ft_ps_push_a(a, b, m);
 		if ((*a)->rank > (*a)->next->rank)
 			ft_ps_rotate_a(a, m);
-	//	else if ((*a)->rank < (*a)->previous->rank)
-	//		ft_ps_reverse_a(a, m);
 		ps_tab_free(tab, ps_dtab_len(tab));
 		tab = NULL;
 	}
 	return (1);
 }
-/********************************************************
+/************************************************************
  * In order : 
  * 		coord = tab[index of cheapest mvt]
- * 		mvt stack according to coord
- * 		if element is supposed to go at last position, rotate 
- * 		push_a according to best mvt
- * ******************************************************/
+ * 		mv stack according to coord
+ * 		if element is supposed to go at last position, rotate
+ * **********************************************************/
 
 int	ps_long_sub_pb(t_stack **a, t_stack **b, t_list **m)
 {
@@ -117,13 +114,22 @@ int	ps_long_sub_pb(t_stack **a, t_stack **b, t_list **m)
 
 int	ps_longsub_sort(t_stack **a, t_stack **b, t_list **m)
 {
-	if (!ps_long_sub_pb(a, b, m))
+	if (!ft_ps_is_sorted(*a))
+	{
+		if (!ps_long_sub_pb(a, b, m))
+			return (0);
+		if (!ps_long_sub_pa(a, b, m))
+			return (0);
+	}
+	if (ps_smrtrot_target_a(a, m, 1) && ft_ps_sorted_checker(*a))
+		return (1);
+	else
 		return (0);
-	if (!ps_long_sub_pa(a, b, m))
-		return (0);
-	return (1);
 }
-/*******************************
- * leave long sub in a, push rest in b;
- * use best cost to push back in b;
- * *****************************/
+/***i****************************************
+ * in order : 
+ * - if stack can't be sort with only ra: 
+ * 		leave long sub in a, push rest in b
+ * 		use best cost to push back in b
+ * - rotate list to rank 1 && check if sorted
+ * ******************************************/

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 00:01:32 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 15:03:00 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ ps_opt_mvtbook(m);
 del_print_mvtbook(m);
 ps_free_tlist(&m);
 ps_free_t_stack(&a);
-del_print_circular_lst(a, 'a', 0);
-del_print_circular_lst(b, 'b', 0);
-del_print_mvtbook(m);
+ps_free_t_stack(&b);
+//del_print_circular_lst(a, 'a', 0);
+//del_print_circular_lst(b, 'b', 0);
+//del_print_mvtbook(m);
 
 //del_test_findtarget(a, b->previous);
 //del_test_underpivotpush_b(&a, &b, &m);

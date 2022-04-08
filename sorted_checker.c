@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/26 15:14:30 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 15:02:56 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,36 @@ int	ft_ps_sorted_checker(t_stack *head)
 /*********************************************
  * this function is checking if the list is sorted or not
  */
+
+int	ft_ps_is_sorted(t_stack *head)
+{
+	while (head->rank != 1)
+		head = head->next;
+	while (head->next->rank != 1)
+	{
+		if (head->next->rank != head->rank + 1)
+			return (0);
+		head = head->next;
+	}
+	return (1);
+}
+/**************************************************
+ * not sure it will be usefull;
+ * this function was meant to check if a stack only needs rotation to be sorted.
+ * it could be use for optimisation
+ */
+
+
+
+
+
+
+
+
+
+
+
+
 
 int	ft_ps_sorted_checker_a_n(t_stack *head, int n)
 {
@@ -75,20 +105,4 @@ int	ft_ps_sorted_checker_b_n(t_stack *head, int n)
 
 
 /***************************************************AFTER SICKNESS*******************************************/
-int	ft_ps_is_sorted(t_stack *head)
-{
-	while (head->rank != 1)
-		head = head->next;
-	while (head->next->rank != 1)
-	{
-		if (head->next->rank != head->rank + 1)
-			return (0);
-		head = head->next;
-	}
-	return (1);
-}
-/**************************************************
- * not sure it will be usefull;
- * this function was meant to check if a stack only needs rotation to be sorted.
- * it could be use for optimisation
- */
+

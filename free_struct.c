@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:42:10 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 00:02:08 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 14:15:44 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	ps_free_t_stack(t_stack **a)// can also do a function with the stack_len
 {
 	t_stack *tmp;
 	
+	if (!*a)
+		return ;
 	(*a)->previous->next = NULL;
 	while (*a)
 	{
@@ -66,3 +68,5 @@ void	ps_free_t_stack(t_stack **a)// can also do a function with the stack_len
 	}
 	*a = NULL;
 }
+
+

@@ -6,13 +6,13 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/01 15:23:30 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 14:35:44 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
+
 void	ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt)
 {
 	if (ft_strncmp("ra", mvt, 2) == 0)
@@ -27,10 +27,10 @@ void	ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char 
 	else if (ft_strncmp("rrb", mvt, 3) == 0)
 		while (*stack != target)
 			ft_ps_reverse_b(stack, mvtbook);
-}*/
-/***************************************************
+}
+/***********************************
  * rotate or reverse towards target.
-*/
+************************************/
 
 int	ps_smrtrot_target_a_bis(t_stack **tmp, t_stack **r_tmp, int target, int len)
 {
@@ -71,6 +71,8 @@ int	ps_smrtrot_target_a(t_stack **stack, t_list **mvtbook, int target)
 	return (1);
 }
 
+
+/*
 int	ps_smrtrot_target_b_bis(t_stack **tmp, t_stack **r_tmp, int target, int len)
 {
 	int	indice;
@@ -108,4 +110,4 @@ int	ps_smrtrot_target_b(t_stack **stack, t_list **mvtbook, int target)
 	else if (indice == -1)
 		ft_ps_targetedrot(stack, mvtbook, r_tmp, "rrb");
 	return (1);
-}
+}*/
