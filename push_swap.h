@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 19:12:16 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 21:29:24 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ typedef struct s_ps
 }t_ps;
 
 
-//push_swap_utils.c (3)
+//ps_utils_general.c (3)
 int		strchr_booleen(char c, char *str);
 int		ft_ps_is_even_nbr(int nbr);
 int		ps_ab_val(int n);
 
-//ps_parsing_entrycheck.c
-int		check_ascii(char **av);
+//ps_utils_stacklen.c (2)
+int		ft_ps_stacklen(t_stack *head);
+int		ft_ps_chunck_len(t_stack *head);
+
+//ps_parsing_entrycheck.c (5)
 char	*find_next_nbr(char *current_position, int *line, char **av);
-int		check_overflow(int ac, char **av);
-int		check_duplicate(int ac, char **av);
 int		entry_check(int ac, char **av);
 
 //ps_parcing_buildstack.c (5)
@@ -65,24 +66,16 @@ void	ft_ps_push_b(t_stack **dst, t_stack **src, t_list **mvtbook);
 void	ft_ps_rotate_b(t_stack **head, t_list **mvtbook);
 void	ft_ps_reverse_b(t_stack **head, t_list **mvtbook);
 
-//stacklen.c
-int		ft_ps_stacklen(t_stack *head);
-int		ft_ps_chunck_len(t_stack *head);
-int		ft_ps_chunckmax_len(t_stack *head);//
-int		ft_ps_full_chklen(t_stack *head, int index);//
-
-//sorted_checker.c
+//ps_sorted_checker.c (2)
 int		ft_ps_sorted_checker(t_stack *head);
-int		ft_ps_sorted_checker_a_n(t_stack *head, int n);//
-int		ft_ps_sorted_checker_b_n(t_stack *head, int n);//
 int		ft_ps_is_sorted(t_stack *head);
 
-//sort_6_cir.c (5)
+//ps_sort_6_cir.c (5)
 void    ft_ps_sort_a6_cir(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook);
 
-//find_pivot.c (2)
+//ps_sort_find_pivot.c (2)
 int		ft_ps_findpivot(t_stack *head);
-int		ft_ps_targeted_chunckpivot(t_stack *head, int index);
+int		ft_ps_intern_pivot_a(int chunck_len, int pivot);
 
 //ps_longest_sub_utils.c /(5)
 void	ps_tab_free(int **tab);
@@ -110,51 +103,18 @@ void	ps_opt_mvtbook(t_list *m);
 //ps_opti_cost_tab.c (2)
 int	**ps_opt_costtab(int	**tab);
 
-//smart_rot_target.c (3)
-void	ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);
-int	ps_smrtrot_target_a(t_stack **stack, t_list **mvtbook, int target);//
+//ps_smart_rot_target.c (3)
+void	ft_ps_targetedrot(t_stack **stack, t_list **m, t_stack *targ, char *mvt);
+int		ps_smrtrot_target_a(t_stack **stack, t_list **m, int targ);
 
-// ps_free_struct.c
+//ps_smart_rot_pivot.c (4) 
+int     ft_ps_smartrotation_a(t_stack **stack, t_list **m, int pivot);
+int     ft_ps_smartrotation_b(t_stack **stack, t_list **m, int pivot);
+
+// ps_free_struct.c (3)
 t_list	**ps_free_tlist_nod(t_list **m, int nxt, int nbr);
 void	ps_free_tlist(t_list **m);
 void	ps_free_t_stack(t_stack **a);
-
-
-
-
-
-
-
-
-
-
-//smart_rot_pivot.c // -------> Warning apparently Smart rot need intern_pivot to work properly for a 
-void    ft_ps_targetedrot(t_stack **stack, t_list **mvtbook, t_stack *target, char *mvt);//
-int     ft_ps_smart_a_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);//
-int     ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot);//
-int     ft_ps_smart_b_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len);//
-int     ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot);//
-
-//smart_rot_push.c//
-// sub_pivot.c
-void	ft_ps_pivot_mark(t_stack *head, int pivot); //not usefull in the algo. here for testing
-int	ft_ps_intern_pivot_a(int chunck_len, int pivot);
-int	ft_ps_intern_pivot_b(int chunck_len, int pivot);
-//int	ft_ps_subpivot(t_stack *head, int pivot);
-//int ft_ps_count_underpivot(t_stack *head, int pivot);
-//int ft_ps_count_overpivot(t_stack *head, int pivot);
-void	ft_ps_underpivotpush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-void	ft_ps_orgapush_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int subpivot);
-void	ft_ps_recursivepush(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-//get_extrem_chunck_val.c++
-int		ft_ps_min_index(t_stack *head);
-int		ft_ps_max_index(t_stack *head);
-//chunckorganised_push.c++
-void	ft_ps_pushorganise_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
-void	ft_ps_pushorganise_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int pivot);
-void	ps_chkorga_pb(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-void	ps_chkorga_pa(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook);
-
 
 
 //push_swap_del.c

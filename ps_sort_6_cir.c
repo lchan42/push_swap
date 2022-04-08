@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting_a6_cir.c.c                                 :+:      :+:    :+:   */
+/*   ps_sort_6_cir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 16:44:00 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 21:15:17 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,23 @@ void	ft_ps_sort_a3_cir(t_stack **a, t_list **m)
 	current = (*a)->rank;
 	next = (*a)->next->rank;
 	bignext = (*a)->next->next->rank;
-	if (ft_ps_sorted_checker(*a)) //1 2 3
+	if (ft_ps_sorted_checker(*a))
 		return ;
-	else if (current < bignext && bignext < next) //1 3 2
+	else if (current < bignext && bignext < next)
 	{
 		ft_ps_swap_a(a, m);
 		ft_ps_rotate_a(a, m);
 	}
-	else if (current > next && current < bignext) //2 1 3
+	else if (current > next && current < bignext)
 		ft_ps_swap_a(a, m);
-	else if (current < next && current > bignext) //2 3 1
+	else if (current < next && current > bignext)
 		ft_ps_reverse_a(a, m);
-	else if (current > next && next > bignext) //3 2 1
+	else if (current > next && next > bignext)
 	{
 		ft_ps_rotate_a(a, m);
 		ft_ps_swap_a(a, m);
 	}
-	else if (current > bignext && next < bignext) //3 1 2 
+	else if (current > bignext && next < bignext)
 		ft_ps_rotate_a(a, m);
 }
 /*******************************************************

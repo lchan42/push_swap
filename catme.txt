@@ -1,1 +1,2 @@
 gcc -g3 -fsanitize=address *.c libraries/libft/libft.a
+gcc -g3 -Wall -Werror -Wextra -fsanitize=address *.c libraries/libft/libft.a

@@ -6,20 +6,11 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 15:41:33 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 21:36:11 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	del_print_tab(char **tab)
-{
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		printf("%s\n", tab[i]);
-}
 
 void	del_print_stack(t_stack *head, int option) //not used anymore
 {
@@ -44,23 +35,6 @@ void	del_print_stack(t_stack *head, int option) //not used anymore
 			printf("	%p\n", head);
 			head = head->next;
 		}
-}
-
-void	del_back_print(t_stack *head) //not used anymore
-{
-	t_stack	*tmp;
-
-	tmp = head->previous;
-	while (tmp != head)
-	{
-		printf("nod %-4d : ", tmp->index);
-		printf("% d", tmp->value);
-		printf("	%p\n", tmp);
-		tmp = tmp->previous;
-	}
-	printf("nod %-4d : ", tmp->index);
-	printf("% d", tmp->value);
-	printf("	%p\n", tmp);
 }
 
 void	del_print_singlenod(t_stack *nod, int i, int opt)

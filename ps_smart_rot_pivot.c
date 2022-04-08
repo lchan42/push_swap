@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 15:25:43 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 21:07:05 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_ps_smart_a_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len)
 	return (indice);
 }
 
-int	ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot)
+int	ft_ps_smartrotation_a(t_stack **stack, t_list **m, int pivot)
 {
 	t_stack	*tmp;
 	t_stack *r_tmp;
@@ -45,9 +45,9 @@ int	ft_ps_smartrotation_a(t_stack **stack, t_list **mvtbook, int pivot)
 	if (indice == 0)
 		return 0;
 	else if (indice == 1)
-		ft_ps_targetedrot(stack, mvtbook, tmp, "ra");
+		ft_ps_targetedrot(stack, m, tmp, "ra");
 	else if (indice == -1)
-		ft_ps_targetedrot(stack, mvtbook, r_tmp, "rra");
+		ft_ps_targetedrot(stack, m, r_tmp, "rra");
 	return (1);
 }
 /**************************************************************
@@ -74,7 +74,7 @@ int	ft_ps_smart_b_bis(t_stack **tmp, t_stack **r_tmp, int pivot, int len)
 	return (indice);
 }
 
-int	ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot)
+int	ft_ps_smartrotation_b(t_stack **stack, t_list **m, int pivot)
 {
 	t_stack	*tmp;
 	t_stack *r_tmp;
@@ -90,8 +90,8 @@ int	ft_ps_smartrotation_b(t_stack **stack, t_list **mvtbook, int pivot)
 	if (indice == 0)
 		return 0;
 	else if (indice == 1)
-		ft_ps_targetedrot(stack, mvtbook, tmp, "rb");
+		ft_ps_targetedrot(stack, m, tmp, "rb");
 	else if (indice == -1)
-		ft_ps_targetedrot(stack, mvtbook, r_tmp, "rrb");
+		ft_ps_targetedrot(stack, m, r_tmp, "rrb");
 	return (1);
 }
