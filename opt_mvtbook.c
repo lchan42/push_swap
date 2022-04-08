@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 23:10:15 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/07 23:44:21 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 17:13:36 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,9 @@ void	ps_opt_cutnpatch_or_gonext(t_list **m)
 /*********************************************************
  * cut and patch if needed, or go next a times
  * *******************************************************/
+
 void	ps_opt_mvtbook(t_list *m)
 {
-	int	a;
-	int	b;
 	t_list *tmp;
 
 	tmp = m;
@@ -140,3 +139,6 @@ void	ps_opt_mvtbook(t_list *m)
 			m = m->next;
 	}
 }
+/*********************************************************
+ * the goal is to optimise mvtbook to use double mvt 
+ * *******************************************************/

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 23:09:25 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 17:07:17 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	*ps_tab_select_lgsub(int **tab, int len, int opt)
  * creat longest subseq
  ***********************************************/
 
-void	ps_tab_add_pot(int **tab, int len, int opt)
+void	ps_tab_add_pot(int **tab, int opt)
 {
 	int i;
 	int	j;
@@ -145,8 +145,7 @@ int	*ps_longest_seq(t_stack *stk, int opt)
 	if (!tab)
 		return (NULL);
 	seq = ps_tab_select_lgsub(tab, len, opt);
-//	ps_printtab(tab);//
-	ps_tab_free(tab, len);
+	ps_tab_free(tab);
 	return (seq);
 }
 /***********************************************

@@ -6,21 +6,20 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:26:32 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/06 23:09:27 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 17:07:43 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_tab_free(int **tab, int len)
+void	ps_tab_free(int **tab)
 {
 	int	i;
 
 	i = -1;
 	if (tab)
 	{
-		while (tab[++i]) //< len)
-	//		if (tab[i])
+		while (tab[++i])
 				free(tab[i]);
 		free(tab);
 	}
@@ -40,7 +39,7 @@ int	**ps_tab_init(int len)
 		tab[i] = (int *)malloc(4 * sizeof(int));
 		if (!tab[i])
 		{
-			ps_tab_free(tab, len);
+			ps_tab_free(tab);
 			tab = NULL;
 			break ;
 		}
@@ -69,7 +68,7 @@ int **ps_tab_create(t_stack *stk, int len, int opt)
 		stk = stk->next;
 	}
 	tab[i] = 0;
-	ps_tab_add_pot(tab, len, opt);
+	ps_tab_add_pot(tab, opt);
 	return (tab);
 }
 /****************************************

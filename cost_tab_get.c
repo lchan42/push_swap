@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 19:44:23 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/07 21:28:35 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 17:05:31 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	ps_cost_find_closest(int **dst, int *tab)
  * 		find the correct dst index;
  ********************************/
 
-int	ps_cost_add_dst(t_stack *dst, int **tab , int opt)
+int	ps_cost_add_dst(t_stack *dst, int **tab)
 {
 	int	**dst_tab;
 	int	len;
@@ -108,7 +108,7 @@ int	ps_cost_add_dst(t_stack *dst, int **tab , int opt)
 		c = ps_cost_find_closest(dst_tab, tab[i]);
 		tab[i][1] = dst_tab[c][2];
 	}
-	ps_tab_free(dst_tab, len);
+	ps_tab_free(dst_tab);
 	return (1);
 }
 /********************************
@@ -128,7 +128,7 @@ int	**ps_cost_tab(t_stack *dst, t_stack *src)
 	if (!tab)
 		return (NULL);
 	ps_cost_add_rank_n_src(src, tab, len);
-	if (!ps_cost_add_dst(dst, tab, 1))
+	if (!ps_cost_add_dst(dst, tab))
 		return (NULL);
 	while (tab[++i])
 		tab[i][3] = ps_ab_val(tab[i][1]) + ps_ab_val(tab[i][2]);

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 00:01:35 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 15:41:33 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,36 +148,6 @@ void	del_print_mvtbook(t_list *head)
 	}
 	printf("\ncount = %d\n", count);
 }
-/*
-void	del_test_mvt(t_stack *stack_a, t_stack *stack_b, t_list **mvtbook)
-{
-	printf("----------------------original states---------------\n");
-	del_print_circular_lst(stack_a, 'a', 0);
-	del_print_circular_lst(stack_b, 'b', 0);
-	printf("--------------------------sa && sb-------------------\n");
-	swap(&stack_a, mvtbook, "sa"); swap(&stack_b, mvtbook, "sb");
-	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
-	printf("-------------------after pa (from b to a)-----------\n");
-	push(&stack_a, &stack_b, mvtbook, "pa");
-	del_print_circular_lst(stack_a, 'a', 0);	del_print_circular_lst(stack_b, 'b', 0);
-	printf("----------------after pb (from a to b twice)--------\n");
-	push(&stack_b, &stack_a, mvtbook, "pb");	push(&stack_b, &stack_a, mvtbook, "pb");
-	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
-	printf("------------------------rotation of a----------------\n");
-	rotate(&stack_a, NULL, mvtbook, "ra");
-	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
-	printf("------------------------rotation of b----------------\n");
-	rotate(&stack_b, NULL, mvtbook, "rb");
-	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
-	printf("----------------------------rr------------------------------------\n");
-	rotate(&stack_b, &stack_a, mvtbook, "rr");
-	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
-	printf("---------------------------rrr------------------------------------\n");
-	reverse_rotate(&stack_b, &stack_a, mvtbook, "rrr");
-	del_print_circular_lst(stack_a, 'a', 0); del_print_circular_lst(stack_b, 'b', 0);
-	del_print_mvtbook(*mvtbook);
-}
-*///old version of movement.
 
 void	del_test_mvt(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
@@ -208,34 +178,6 @@ void	del_test_mvt(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	del_print_mvtbook(*mvtbook);
 }
 
-void	del_test_sort_b3_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
-{
-
-	printf("----------------------original states---------------\n");
-	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
-	printf("-------------------push and sorting b -----------\n");
-	ft_ps_push_b(stack_b, stack_a, mvtbook);	ft_ps_push_b(stack_b, stack_a, mvtbook);
-	ft_ps_push_b(stack_b, stack_a, mvtbook);
-	ft_ps_sort_b3_cir(stack_b, mvtbook);
-	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
-	del_print_mvtbook(*mvtbook);
-}
-
-void	del_test_sort_b6_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
-{
-
-	printf("----------------------original states---------------\n");
-	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
-	printf("-------------------push b -----------\n");
-	while (*stack_a)
-		ft_ps_push_b(stack_b, stack_a, mvtbook);
-	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);	
-	printf("-------------------push and sorting b -----------\n");
-	ft_ps_sort_b6_cir(stack_a, stack_b, mvtbook);
-	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
-	del_print_mvtbook(*mvtbook);
-	
-}
 void	del_test_sort_a6_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	printf("----------------------original states---------------\n");
@@ -246,15 +188,6 @@ void	del_test_sort_a6_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook
 	del_print_mvtbook(*mvtbook);
 }
 
-void	del_test_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
-{
-	printf("----------------------original states---------------\n");
-	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
-	printf("-------------------after sorting stack a ----------------\n");
-	ft_ps_sort_a3(stack_a, stack_b, mvtbook);
-	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
-	del_print_mvtbook(*mvtbook);
-}
 /*  --> test was not conclueent for under over pivot technique.
 void	del_test_underover_pivot(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
@@ -287,32 +220,7 @@ void	del_test_underpivotpush_b(t_stack **stack_a, t_stack **stack_b, t_list **mv
 	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
 	del_print_mvtbook(*mvtbook);
 }
-*/
-void	del_test_ft_ps_sort(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
-{
-	printf("----------------------original states---------------\n");
-	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
-	printf("-------------------after sorting stack a ----------------\n");
-	ft_ps_sort(stack_a, stack_b, mvtbook);	
-	del_print_circular_lst(*stack_a, 'a', 0); del_print_circular_lst(*stack_b, 'b', 0);
-//	del_print_mvtbook(*mvtbook);
-}
 
-void	del_test_findtarget(t_stack *a, t_stack *b)
-{
-	int target;
-
-	target = ps_findtarget(a, b);
-	printf("----dst stack :----\n");
-	del_print_chunck(a, b->index);
-	printf("chunck_min : %d\n", ps_findchkminval(a, b->index)->rank);
-	printf("chunck_mid : %d\n", ps_findchkmidval(a, b)->rank);
-	printf("chunck_max : %d\n", ps_findchkmaxval(a, b->index)->rank);
-	printf("max->next  : %d\n", ps_findchkmaxval(a, b->index)->next->rank);
-	printf("want to push : %d\n", b->rank);
-	printf("next target = %d\n", target);
-}
-/*
 void	del_test_sort_a10_cir(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	printf("----------------------original states---------------\n");

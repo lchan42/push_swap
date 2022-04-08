@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:48:06 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 15:02:54 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 17:06:10 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	ps_lsub_findcheap(int **tab)
 {
 	int	i;
 	int	j;
-	int	min;
 
 	i = -1;
 	j = 0;
@@ -69,7 +68,7 @@ int	ps_long_sub_pa(t_stack **a, t_stack **b, t_list **m)
 		ft_ps_push_a(a, b, m);
 		if ((*a)->rank > (*a)->next->rank)
 			ft_ps_rotate_a(a, m);
-		ps_tab_free(tab, ps_dtab_len(tab));
+		ps_tab_free(tab);
 		tab = NULL;
 	}
 	return (1);

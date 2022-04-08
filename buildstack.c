@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:58:49 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 00:01:44 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 16:43:57 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_ps_free_list(t_stack *head)
 	}
 }
 
-t_stack	*ft_ps_nod_init(int value, int index)
+t_stack	*ft_ps_nod_init(int value)
 {
 	t_stack	*tmp;
 
@@ -65,18 +65,18 @@ t_stack	*ft_ps_nod_init(int value, int index)
 	return (tmp);
 }
 
-t_stack	*ft_ps_stack_new_addback(t_stack **head, int value, int index)
+t_stack	*ft_ps_stack_new_addback(t_stack **head, int value)
 {
 	t_stack	*tmp;
 
 	tmp = *head;
 	if (!*head)
-		*head = ft_ps_nod_init(value, index);
-else
+		*head = ft_ps_nod_init(value);
+	else
 	{
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = ft_ps_nod_init(value, index);
+		tmp->next = ft_ps_nod_init(value);
 		if (!tmp->next)
 		{
 			ft_ps_free_list(*head);
@@ -108,8 +108,8 @@ t_stack	*ft_ps_buildstack(int ac, char **av)
 	while (j < ac)
 	{
 		tmp = find_next_nbr(tmp, &j, av);
-		if (tmp)
-			stack = ft_ps_stack_new_addback(&stack, ft_atoi(tmp), i++);
+		if (tmp && ++i)
+			stack = ft_ps_stack_new_addback(&stack, ft_atoi(tmp));
 		if (!stack)
 			break ;
 	}
@@ -122,6 +122,7 @@ t_stack	*ft_ps_buildstack(int ac, char **av)
 }
 /**********************************************************
  * if malloc does not work stack is freed and the loop breaks.
- * i represente the index. it is also  used in ft_ps_rank as lst_len
- * the list is made circular at the end (easier that way)
+ * i is used in ft_ps_rank as lst_len
+ * the list is made circular at the end (easier that way) 
+ * 		stack->previous = last element;
  */

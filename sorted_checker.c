@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 15:02:56 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 16:03:27 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_ps_is_sorted(t_stack *head)
 
 
 
-
+/*
 int	ft_ps_sorted_checker_a_n(t_stack *head, int n)
 {
 	t_stack	*tmp;
@@ -82,11 +82,11 @@ int	ft_ps_sorted_checker_a_n(t_stack *head, int n)
 	}
 	return (1);
 }
-
+*/
 /******************************************************
  * check if n element are sorted
  * */
-
+/*
 int	ft_ps_sorted_checker_b_n(t_stack *head, int n)
 {
 	t_stack	*tmp;
@@ -102,7 +102,7 @@ int	ft_ps_sorted_checker_b_n(t_stack *head, int n)
 	}
 	return (1);
 }
-
+*/
 
 /***************************************************AFTER SICKNESS*******************************************/
 

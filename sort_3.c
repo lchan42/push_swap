@@ -6,12 +6,14 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 14:53:07 by lchan             #+#    #+#             */
-/*   Updated: 2022/03/31 14:25:33 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/08 15:13:19 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+
+/*
 void	ft_ps_sort_back_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int count)
 {
 	if (count == 2)
@@ -25,11 +27,11 @@ void	ft_ps_sort_back_b(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, i
 //		printf("pushing %d, count = %d\n", (*stack_b)->rank, count);
 		ft_ps_push_a(stack_a, stack_b, mvtbook);
 	}
-}
+}*/
 /********************************************************
  * in this case no push back from a. We are pushing sorted element from b.
  */
-
+/*
 void	ft_ps_pushcnt_a(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook, int *count)
 {
 	ft_ps_push_a(stack_a, stack_b, mvtbook);
@@ -184,11 +186,11 @@ void	ft_ps_sort_a3(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 	}
 	else	
 		ft_ps_sort_a3_bis(stack_a, stack_b, mvtbook);
-}
+}*/
 /**********************************************************
  * 123 132 231
  */
-
+/*
 void	ft_ps_sort_a3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 {
 	int	current;
@@ -215,12 +217,12 @@ void	ft_ps_sort_a3_bis(t_stack **stack_a, t_stack **stack_b, t_list **mvtbook)
 		ft_ps_reverse_a(stack_a, mvtbook);
 		ft_ps_swap_a(stack_a, mvtbook);
 	}
-}
+}*/
 /**********************************************************
  * 213 312 321
  */
 //--> have to check if it works
-void	ft_ps_sort_a6(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
+/*void	ft_ps_sort_a6(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 {
 	int	chunck_len;
 	int pivot;
@@ -235,6 +237,7 @@ void	ft_ps_sort_a6(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 		pivot = ft_ps_chunckpivot(*stack_a);
 		while (chunck_len > 3)
 			if ((*stack_a)->rank <= pivot && ++count)
+
 				ft_ps_push_b(stack_b, stack_a, mvtbook);
 	}
 	del_print_circular_lst(*stack_a, 'a', 0);
@@ -242,4 +245,4 @@ void	ft_ps_sort_a6(t_stack **stack_a, t_stack ** stack_b, t_list **mvtbook)
 	ft_ps_sort_a3(stack_a, stack_b,  mvtbook);
 	ft_ps_sort_back_a(stack_a, stack_b, mvtbook, count);
 }
-
+*/
