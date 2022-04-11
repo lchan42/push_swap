@@ -6,7 +6,7 @@
 #    By: lchan <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/02/22 18:06:59 by lchan            ###   ########.fr        #
+#    Updated: 2022/04/11 14:52:46 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ OBJSBONUS	= ${SRCSBONUS:.c=.o}
 CC			= gcc
 RM			= rm -f
 
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -g3 -fsanitize=address -Wall -Werror -Wextra 
 
 AR			= ar
 
