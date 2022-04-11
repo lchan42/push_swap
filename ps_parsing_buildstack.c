@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:58:49 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 19:12:06 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/11 19:54:23 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ t_stack	*ft_ps_buildstack(int ac, char **av)
 	int			i;
 	int			j;
 
-	if (!av[1])
-		return (NULL);
+//	if (!av[1])
+//		return (NULL);
 	i = 0;
 	j = 0;
 	stack = NULL;
@@ -117,7 +117,7 @@ t_stack	*ft_ps_buildstack(int ac, char **av)
 	if (stack)
 		stack->previous->next = stack;
 	else
-		printf("stack has an malloc issue and have been freed\n");//
+		exit(BUILDSTACK_ERROR);
 	return (stack);
 }
 /**********************************************************

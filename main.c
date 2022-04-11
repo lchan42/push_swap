@@ -6,12 +6,43 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 21:41:57 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/11 19:54:27 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+//#include "./libraries/libft/libft.h"
 
+int     main(int ac, char **av)
+{
+	t_stack	*a;
+	t_stack	*b;
+	t_list	*m;
+
+	entry_check(ac, (av));
+	a = ft_ps_buildstack(--ac, ++av);
+	b = NULL;
+	m = NULL;
+	
+	del_print_circular_lst(a, 'a', 0);
+	del_print_circular_lst(b, 'b', 0);
+	if (ft_ps_stacklen(a) <= 6)
+		ft_ps_sort_a6_cir(&a, &b, &m);
+	else 
+	{
+		if (!ps_longsub_sort(&a, &b, &m))
+			return (0);
+		ps_opt_mvtbook(m);
+	}
+	del_print_circular_lst(a, 'a', 0);
+	del_print_circular_lst(b, 'b', 0);
+	del_print_mvtbook(m);
+	ps_free_tlist(&m);
+	ps_free_t_stack(&a);
+	ps_free_t_stack(&b);
+}
+
+/*
 int     main(int ac, char **av)
 {
 	t_stack	*a;
@@ -20,11 +51,8 @@ int     main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
-	if (!entry_check(--ac, (++av)))
-	{
-		printf("ENTRY ERROR\n");
+	entry_check(--ac, (++av))
 		return (0);
-	}
 	else
 		printf(">>> entry is ok <<<\n");
 	a = ft_ps_buildstack(ac, av);
@@ -47,4 +75,4 @@ int     main(int ac, char **av)
 	ps_free_tlist(&m);
 	ps_free_t_stack(&a);
 	ps_free_t_stack(&b);
-}
+}*/

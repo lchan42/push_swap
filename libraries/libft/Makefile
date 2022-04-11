@@ -6,7 +6,7 @@
 #    By: lchan <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/04/11 14:52:46 by lchan            ###   ########.fr        #
+#    Updated: 2022/04/11 16:31:48 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ OBJSBONUS	= ${SRCSBONUS:.c=.o}
 CC			= gcc
 RM			= rm -f
 
-CFLAGS		= -g3 -fsanitize=address -Wall -Werror -Wextra 
+CFLAGS		= -Wall -Werror -Wextra 
 
 AR			= ar
 
@@ -78,19 +78,18 @@ RAN			= ranlib
 %.o: %.c
 			${CC} ${CFLAGS} -c $< -o $@
 
-all:		${NAME}
+all:		${NAME} 
 
-$(NAME):	${OBJS}
-			${AR} ${ARFLAGS} ${NAME} ${OBJS} ${INC}
+$(OBJS):	${INC}
+
+$(NAME):	${OBJS} ${OBJSBONUS}
+			${AR} ${ARFLAGS} ${NAME} ${OBJS} ${OBJSBONUS}
 
 bonus:		${NAME} ${OBJS} ${OBJSBONUS}
 			${AR} ${ARFLAGS} ${NAME} ${OBJSBONUS}
 
 clean:
 			${RM} ${OBJS} ${OBJSBONUS}
-
-cleanb:		clean
-			${RM} ${OBJSBONUS}
 
 fclean:		clean
 			${RM} ${NAME}

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 21:29:53 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/11 19:52:10 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	check_ascii(char **av)
 	int	i;
 	int	j;
 
-	if (!av[1])
-		return (0);
+//	if (!av[1])
+//		return (0);
 	i = -1;
 	j = 0;
 	while (av[++i])
@@ -90,8 +90,9 @@ int	check_overflow(int ac, char **av)
 		count = 0;
 		if (strchr_booleen(*(tmp + count), "-+"))
 			count++;
-		while (ft_isdigit(*(tmp + count)))
-			count++;
+		count = ps_count_digit(tmp, count);
+//		while (ft_isdigit(*(tmp + count)))
+//			count++;
 		if (count > 11)
 			return (0);
 		number = ft_atol(tmp);
@@ -122,10 +123,7 @@ int	check_duplicate(int ac, char **av)
 		while (tmp && tmp2 && *tmp2)
 		{
 			if (ft_atoi(tmp2) == ft_atoi(tmp))
-			{
-				printf("tmp2 = %d, tmp = %d\n", ft_atoi(tmp2), ft_atoi(tmp));
 				return (0);
-			}
 			tmp2 = find_next_nbr(tmp2, &j, av);
 		}
 	}
@@ -138,23 +136,27 @@ int	check_duplicate(int ac, char **av)
 int	entry_check(int ac, char **av)
 {
 //	del_print_tab(av);
-/*	if (ac < 3 || !check_ascii(av)
-		|| !check_overflow(ac, av) || !check_duplicate(ac, av))
-		return (0);*/
-	if (!check_ascii(av))
+	// need --ac and ++av;
+	if (ac < 2 || (ac == 2 && ps_count_firstarg_nbr(*(av + 1)) < 2))
 	{
-		printf("check_ascii\n");
-		return (0);
+		printf("error ARG_NBR_ERROR");
+		exit(ARG_NBR_ERROR);
 	}
-	if (!check_overflow(ac, av))
+	else if (!check_ascii(av + 1))
 	{
-		printf("check_over_flow\n");
-		return (0);
+		printf("error ascii\n");
+		exit(ASCII_ERROR);
 	}
-	if (!check_duplicate(ac, av))
+	else if (!check_overflow(--ac, ++av))
 	{
-		printf("duplicate\n");
-		return (0);
+		printf("error check_overflow\n");
+		exit(OVERFLOW_ERROR);
 	}
+	else if (!check_duplicate(ac, av))
+	{
+		printf("error deuplicate\n");
+		exit(DUPLICATE_ERROR);
+	}
+	printf("entry ok");
 	return (1);
 }

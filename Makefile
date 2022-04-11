@@ -6,14 +6,16 @@
 #    By: lchan <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/04/11 15:35:28 by lchan            ###   ########.fr        #
+#    Updated: 2022/04/11 16:42:38 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIB	= libraries/libft/libft.a
-PATHLIB = libraries/libft
 
-SRCS	=	ps_parsing_entrycheck.c\
+LIBPATH = ./libraries/libft
+LIB	= ./libraries/libft/libft.a
+
+SRCS	=	main.c\
+			ps_parsing_entrycheck.c\
 			ps_parsing_buildstack.c\
 			ps_utils_stacklen.c\
 			ps_utils_general.c\
@@ -31,15 +33,15 @@ SRCS	=	ps_parsing_entrycheck.c\
 			ps_opti_cost_tab.c\
 			ps_opti_mvtbook.c\
 			ps_free_struct.c\
-			main.c
+			del_test.c
 
 SRCSBONUS =	
 
 NAME		= push_swap
-
-INC			= push_swap.h
+HEADER		= push_swap.h
 
 OBJS		= ${SRCS:.c=.o}
+					
 OBJSBONUS	= ${SRCSBONUS:.c=.o}
 %.o: %.c
 			${CC} ${CFLAGS} -c $< -o $@
@@ -48,24 +50,28 @@ CC			= gcc
 MAKE		= make
 RM			= rm -f
 CFLAGS		= -Wall -Werror -Wextra
+DEBUGFLAGS	= -g3 -fsanitize=address
 
 
-AR			= ar
-ARFLAGS		= rcs
-RAN			= ranlib
+all:		${NAME} 
 
-
-all:		${NAME}
+${OBJS}:	${HEADER}
 
 $(NAME):	${OBJS}
-			${MAKE} bonus -C ${LIBPATH}
-			${AR} ${ARFLAGS} ${NAME} ${OBJS} ${LIB}
+			${MAKE} -C ${LIBPATH} all
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIB} -L${LIBPATH}
+
+debug:		${OBJS}
+			${MAKE} -C ${LIBPATH} all
+			${CC} ${DEBUGFLAGS} -o ${NAME} ${OBJS} ${LIB} -L${LIBPATH}
+
+
 
 bonus:		${NAME} ${OBJS} ${OBJSBONUS}
 			${AR} ${ARFLAGS} ${NAME} ${OBJSBONUS}
 
 cleanlib :	
-			${MAKE} clean -C ${LIBPATH}
+			${MAKE} -C ${LIBPATH} clean
 
 clean:		cleanlib	
 			${RM} ${OBJS} ${OBJSBONUS}
@@ -112,6 +118,8 @@ re:			fclean all
 #$*: The stem of the target filename. A stem is typically a filename 
 #	 without its suffix. Its use outside of pattern rules is discouraged.
 #
-#-C : open a make inside a folder (can also do --directory=dir (dir = folders name ./librairie/libft)) 
+#------------------------------man make ----------------------------------
+#-C : open a make inside a folder
+#	  (can also do --directory=dir (dir = folders name ./librairie/libft)) 
 #
 ##########################################################################

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 21:29:24 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/11 19:53:14 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <string.h>
 # include <stdio.h>
 # include <stdarg.h>
-# include "libraries/libft/libft.h"
+# include "./libraries/libft/libft.h"
 
 typedef struct s_stack
 {
@@ -37,9 +37,19 @@ typedef struct s_ps
 	t_list	*m;
 }t_ps;
 
+enum exit_code
+{
+	ARG_NBR_ERROR = 10,
+	ASCII_ERROR,
+	OVERFLOW_ERROR,
+	DUPLICATE_ERROR,
+	BUILDSTACK_ERROR,
+};
 
 //ps_utils_general.c (3)
 int		strchr_booleen(char c, char *str);
+int		ps_count_digit(char *tmp, int count);
+int		ps_count_firstarg_nbr(char *tmp);
 int		ft_ps_is_even_nbr(int nbr);
 int		ps_ab_val(int n);
 
