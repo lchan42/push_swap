@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:02:24 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 14:05:21 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 15:16:48 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	ps_print_mvt(t_list *m)
 {
 	while (m)
 	{
-		ft_putstr_fd(m->content, 1);
+		ft_putstr_fd((char *)m->content, 1);
 		ft_putstr_fd("\n", 1);
+		m = m->next;
 	}
 }
