@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:59:14 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/11 19:51:58 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 17:00:17 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,31 @@ int	ps_count_digit(char *tmp, int count)
  * useful in the funtion check_duplicate
  * *************************************/
 
-int	ps_count_firstarg_nbr(char *tmp)
+char	*find_next_nbr(char *current_position, int *line, char **av)
 {
-	int		count;
-	char	next;
+	char	*tmp;
 
-	count = 1;
-	while (tmp && *tmp)
-	{
-		next = *(tmp + 1);
-		if (*tmp == ' ' && next && next != ' ')
-			count++;
+	if (!current_position && *line == 0)
+		return (*(av + *line));
+	tmp = current_position;
+	while (tmp && *tmp == ' ')
 		tmp++;
+	while (tmp && (ft_isdigit(*tmp) || strchr_booleen(*tmp, "-+")))
+		tmp++;
+	while (tmp && *tmp == ' ')
+		tmp++;
+	if (tmp && *tmp)
+		return (tmp);
+	else
+	{
+		*line += 1;
+		return (*(av + *line));
 	}
-	return (count);	
 }
-/**************************************
- * used in the function entry_check
- * count the number of element separated by space in av[1]
- * ************************************/
+/**********************************************
+ * used in entrycheck and in buildstack
+ * go from one number to another.
+ * ********************************************/
 
 int	ft_ps_is_even_nbr(int n)
 {

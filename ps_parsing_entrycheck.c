@@ -6,11 +6,38 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 14:57:06 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 18:26:41 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ps_count_element(int ac, char **av)
+{
+	int		i;
+	char *	tmp;
+	int		count;
+
+	i = -1;
+	count = 0;
+	while (++i < ac)
+	{
+		tmp = av[i];
+		while (tmp && *tmp)
+		{
+			while (tmp && *tmp && *tmp == ' ')
+				tmp++;
+			if (*tmp && *tmp != ' ')
+				count++;
+			while (*tmp && *tmp != ' ')
+				tmp++;
+		}
+	}
+	return (count);
+}
+/**************************************************
+ * count nbr of element separated by a space in av.
+ * ************************************************/
 
 int	check_ascii(char **av)
 {
@@ -31,6 +58,8 @@ int	check_ascii(char **av)
 				return (0);
 			while (ft_isdigit(av[i][j]))
 				j++;
+			if (av[i][j] != ' ' && av[i][j] != '\0')
+				return (0);
 			while (av[i][j] == ' ')
 				j++;
 		}
@@ -44,31 +73,6 @@ int	check_ascii(char **av)
  * 		there's only sign and no digit
  * 		non_digit ascii is encountered
  * ****************************************************/
-
-char	*find_next_nbr(char *current_position, int *line, char **av)
-{
-	char	*tmp;
-
-	if (!current_position && *line == 0)
-		return (*(av + *line));
-	tmp = current_position;
-	while (tmp && *tmp == ' ')
-		tmp++;
-	while (tmp && (ft_isdigit(*tmp) || strchr_booleen(*tmp, "-+")))
-		tmp++;
-	while (tmp && *tmp == ' ')
-		tmp++;
-	if (tmp && *tmp)
-		return (tmp);
-	else
-	{
-		*line += 1;
-		return (*(av + *line));
-	}
-}
-/*****************************************************************
- * purpose: get the next number in the char *str or the char **str
- * ***************************************************************/
 
 int	check_overflow(int ac, char **av)
 {
@@ -113,12 +117,15 @@ int	check_duplicate(int ac, char **av)
 	tmp = NULL;
 	while (i < ac)
 	{
+		printf("ac = %d\n", ac);
 		tmp = find_next_nbr(tmp, &i, av);
+		printf("tmp = %s\n", tmp);
 		j = i;
 		tmp2 = find_next_nbr(tmp, &j, av);
+		printf("tmp2 = %s\n", tmp2);
 		while (tmp && tmp2 && *tmp2)
 		{
-			if (ft_atoi(tmp2) == ft_atoi(tmp))
+			if (*tmp && *tmp2 && ft_atoi(tmp2) == ft_atoi(tmp))
 				return (0);
 			tmp2 = find_next_nbr(tmp2, &j, av);
 		}
@@ -131,25 +138,26 @@ int	check_duplicate(int ac, char **av)
 
 int	entry_check(int ac, char **av)
 {
-	if (ac < 2 || (ac == 2 && ps_count_firstarg_nbr(*(av + 1)) < 2))
+	if (ps_count_element(--ac, ++av) < 2)
 	{
-		printf("error ARG_NBR_ERROR");
-		exit(ARG_NBR_ERROR);
+		//printf("error ARG_NBR_ERROR");
+		ps_exit_error(ARG_NBR_ERROR);
 	}
-	else if (!check_ascii(av + 1))
+	else if (!check_ascii(av))
 	{
-		printf("error ascii\n");
-		exit(ASCII_ERROR);
+	//	printf("error ascii\n");
+		ps_exit_error(ASCII_ERROR);
 	}
-	else if (!check_overflow(--ac, ++av))
+	else if (!check_overflow(ac, av))
 	{
-		printf("error check_overflow\n");
-		exit(OVERFLOW_ERROR);
+	//	printf("error check_overflow\n");
+		ps_exit_error(OVERFLOW_ERROR);
 	}
 	else if (!check_duplicate(ac, av))
 	{
-		printf("error duplicate\n");
-		exit(DUPLICATE_ERROR);
+	//	printf("error duplicate\n");
+		ps_exit_error(DUPLICATE_ERROR);
 	}
+	printf("entry is ok\n");
 	return (1);
 }

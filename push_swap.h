@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 15:14:59 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 18:26:46 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ enum exit_code
 //ps_utils_general.c (3)
 int		strchr_booleen(char c, char *str);
 int		ps_count_digit(char *tmp, int count);
-int		ps_count_firstarg_nbr(char *tmp);
+char	*find_next_nbr(char *current_position, int *line, char **av);
 int		ft_ps_is_even_nbr(int nbr);
 int		ps_ab_val(int n);
 
@@ -59,7 +59,7 @@ int		ft_ps_stacklen(t_stack *head);
 int		ft_ps_chunck_len(t_stack *head);
 
 //ps_parsing_entrycheck.c (5)
-char	*find_next_nbr(char *current_position, int *line, char **av);
+int		ps_count_element(int ac, char **av);
 int		entry_check(int ac, char **av);
 
 //ps_parcing_buildstack.c (4)
@@ -130,6 +130,10 @@ void	ps_free_t_stack(t_stack **a);
 
 //ps_print_mvt.c
 void	ps_print_mvt(t_list *m);
+
+//ps_exit_error.c
+void	ps_error(int exitcode);
+void	ps_error_free(t_stack **a, t_stack **b, t_list **m, int exitcode);
 
 //push_swap_del.c
 void	del_print_mvtbook(t_list *mvtbook);

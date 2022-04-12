@@ -6,7 +6,7 @@
 #    By: lchan <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/02 20:57:58 by lchan             #+#    #+#              #
-#    Updated: 2022/04/12 15:16:17 by lchan            ###   ########.fr        #
+#    Updated: 2022/04/12 18:22:42 by lchan            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS	=	main.c\
 			ps_opti_mvtbook.c\
 			ps_free_struct.c\
 			ps_print_mvt.c\
+			ps_exit_error.c\
 			del_test.c
 
 SRCSBONUS =	
