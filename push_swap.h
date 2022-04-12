@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 23:05:03 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 23:18:29 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_ps
 	t_stack *a;
 	t_stack *b;
 	t_list	*m;
-}t_ps;
+}sk;
 
 enum exit_code
 {
@@ -66,10 +66,10 @@ int		entry_check(int ac, char **av);
 t_stack *ft_ps_buildstack(int ac, char **av);
 
 //ps_mvt_a.c (4)
-void	ft_ps_swap_a(t_stack **head, t_list **mvtbook);
+void	ft_ps_swap_a(t_stack **a, t_list **m);
 void	ft_ps_push_a(t_stack **dst, t_stack **src, t_list **mvtbook);
-void	ft_ps_rotate_a(t_stack **head, t_list **mvtbook);
-void	ft_ps_reverse_a(t_stack **head, t_list **mvtbook);
+void	ft_ps_rotate_a(t_stack **a, t_list **m);
+void	ft_ps_reverse_a(t_stack **a, t_list **m);
 
 //ps_mvt_b.c (4)
 void	ft_ps_swap_b(t_stack **head, t_list **mvtbook);

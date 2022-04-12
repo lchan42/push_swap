@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 22:59:01 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 23:15:47 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,22 +144,22 @@ int	entry_check(int ac, char **av)
 		return (0);
 	if (ps_count_element(--ac, ++av) < 2)
 	{
-		printf("error ARG_NBR_ERROR");///////////////
+//		printf("error ARG_NBR_ERROR");///////////////
 		ps_exit_error(ARG_NBR_ERROR);
 	}
 	else if (!check_ascii(av))
 	{
-		printf("error ascii\n");/////////////////
+//		printf("error ascii\n");/////////////////
 		ps_exit_error(ASCII_ERROR);
 	}
 	else if (!check_overflow(ac, av))
 	{
-		printf("error check_overflow\n");/////////////
+//		printf("error check_overflow\n");/////////////
 		ps_exit_error(OVERFLOW_ERROR);
 	}
 	else if (!check_duplicate(ac, av))
 	{
-		printf("error duplicate\n");////////////////
+//		printf("error duplicate\n");////////////////
 		ps_exit_error(DUPLICATE_ERROR);
 	}
 //	printf("entry is ok\n");////////////////////

@@ -6,36 +6,36 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 19:03:35 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 23:23:23 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_ps_swap_b(t_stack **head, t_list **mvtbook)
+void	ft_ps_swap_b(t_stack **b, t_list **m)
 {
 	int		int_tmp;
 	t_stack	*lst_tmp;
 
-	if (!*head)
+	if (!*b)
 		return ;
-	lst_tmp = (*head)->next;
-	if (*head != lst_tmp)
+	lst_tmp = (*b)->next;
+	if (*b != lst_tmp)
 	{
-		int_tmp = (*head)->value;
-		(*head)->value = lst_tmp->value;
+		int_tmp = (*b)->value;
+		(*b)->value = lst_tmp->value;
 		lst_tmp->value = int_tmp;
-		int_tmp = (*head)->rank;
-		(*head)->rank = lst_tmp->rank;
+		int_tmp = (*b)->rank;
+		(*b)->rank = lst_tmp->rank;
 		lst_tmp->rank = int_tmp;
-		int_tmp = (*head)->index;
-		(*head)->index = lst_tmp->index;
+		int_tmp = (*b)->index;
+		(*b)->index = lst_tmp->index;
 		lst_tmp->index = int_tmp;
-		ft_lstadd_back(mvtbook, ft_lstnew("sb"));
+		ft_lstadd_back(m, ft_lstnew("sb"));
 	}
 }
 
-void	ft_ps_push_b(t_stack **dst, t_stack **src, t_list **mvtbook)
+void	ft_ps_push_b(t_stack **dst, t_stack **src, t_list **m)
 {
 	t_stack	*tmp;
 
@@ -60,30 +60,30 @@ void	ft_ps_push_b(t_stack **dst, t_stack **src, t_list **mvtbook)
 			(*dst)->previous = tmp;
 		}
 		*dst = tmp;
-		ft_lstadd_back(mvtbook, ft_lstnew("pb"));
+		ft_lstadd_back(m, ft_lstnew("pb"));
 	}
 }
 
-void	ft_ps_rotate_b(t_stack **head, t_list **mvtbook)
+void	ft_ps_rotate_b(t_stack **b, t_list **m)
 {
-	if (head && *head)
+	if (b && *b)
 	{
-		if ((*head)->next != *head)
+		if ((*b)->next != *b)
 		{
-			*head = (*head)->next;
-			ft_lstadd_back(mvtbook, ft_lstnew("rb"));
+			*b = (*b)->next;
+			ft_lstadd_back(m, ft_lstnew("rb"));
 		}
 	}
 }
 
-void	ft_ps_reverse_b(t_stack **head, t_list **mvtbook)
+void	ft_ps_reverse_b(t_stack **b, t_list **m)
 {
-	if (head && *head)
+	if (b && *b)
 	{
-		if ((*head)->next != *head)
+		if ((*b)->next != *b)
 		{
-			*head = (*head)->previous;
-			ft_lstadd_back(mvtbook, ft_lstnew("rrb"));
+			*b = (*b)->previous;
+			ft_lstadd_back(m, ft_lstnew("rrb"));
 		}
 	}
 }

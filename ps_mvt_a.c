@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 23:04:58 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 23:21:17 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,26 @@ void	ps_lstadd_back_mvt(t_stack **a, t_stack **b, t_list **m, char *mvt)
 	ft_lstadd_back(m, tmp);
 }
 
-void	ft_ps_swap_a(t_stack **head, t_list **mvtbook)
+void	ft_ps_swap_a(t_stack **a, t_list **m)
 {
 	int		int_tmp;
 	t_stack	*lst_tmp;
 	
-	if (!*head)
+	if (!*a)
 		return;
-	lst_tmp = (*head)->next;
-	if (*head != lst_tmp)
+	lst_tmp = (*a)->next;
+	if (*a != lst_tmp)
 	{
-		int_tmp = (*head)->value;
-		(*head)->value = lst_tmp->value;
+		int_tmp = (*a)->value;
+		(*a)->value = lst_tmp->value;
 		lst_tmp->value = int_tmp;
-		int_tmp = (*head)->rank;
-		(*head)->rank = lst_tmp->rank;
+		int_tmp = (*a)->rank;
+		(*a)->rank = lst_tmp->rank;
 		lst_tmp->rank = int_tmp;
-		int_tmp = (*head)->index;
-		(*head)->index = lst_tmp->index;
+		int_tmp = (*a)->index;
+		(*a)->index = lst_tmp->index;
 		lst_tmp->index = int_tmp;
-		ft_lstadd_back(mvtbook, ft_lstnew("sa"));
+		ft_lstadd_back(m, ft_lstnew("sa"));
 	}
 }
 /*********************************************************
@@ -53,7 +53,7 @@ void	ft_ps_swap_a(t_stack **head, t_list **mvtbook)
  * 		there is at least 2 elements in the circular list
  * *******************************************************/
 
-void	ft_ps_push_a(t_stack **dst, t_stack **src, t_list **mvtbook)
+void	ft_ps_push_a(t_stack **dst, t_stack **src, t_list **m)
 {
 	t_stack	*tmp;
 
@@ -78,28 +78,28 @@ void	ft_ps_push_a(t_stack **dst, t_stack **src, t_list **mvtbook)
 			(*dst)->previous = tmp;
 		}
 		*dst = tmp;
-		ps_lstadd_back_mvt(dst, src, mvtbook, "pa");
-		//ft_lstadd_back(mvtbook, ft_lstnew("pa"));
+		ps_lstadd_back_mvt(dst, src, m, "pa");
+		//ft_lstadd_back(m, ft_lstnew("pa"));
 	}
 }
 
-void	ft_ps_rotate_a(t_stack **head, t_list **mvtbook) //need more check
+void	ft_ps_rotate_a(t_stack **a, t_list **m) //need more check
 {
-	if (head && *head)
+	if (a && *a)
 	{
-		if ((*head)->next != *head)
+		if ((*a)->next != *a)
 		{
-			*head = (*head)->next;
-			ft_lstadd_back(mvtbook, ft_lstnew("ra"));
+			*a = (*a)->next;
+			ft_lstadd_back(m, ft_lstnew("ra"));
 		}
 	}
 }
 
-void	ft_ps_reverse_a(t_stack **head, t_list **mvtbook)
+void	ft_ps_reverse_a(t_stack **a, t_list **m)
 {
-	if (head && *head && (*head)->next != *head)
+	if (a && *a && (*a)->next != *a)
 	{
-		*head = (*head)->previous;
-		ft_lstadd_back(mvtbook, ft_lstnew("rra"));
+		*a = (*a)->previous;
+		ft_lstadd_back(m, ft_lstnew("rra"));
 	}
 }
