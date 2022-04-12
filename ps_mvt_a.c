@@ -6,22 +6,20 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 15:11:26 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 23:04:58 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_add_back_mvt(t_stack **a, t_stack **b, t_list **m, char *mvt)
+void	ps_lstadd_back_mvt(t_stack **a, t_stack **b, t_list **m, char *mvt)
 {
 	t_list	*tmp;
 
 	tmp = ft_lstnew(mvt);
 	if (!tmp)
 	{
-		ps_free_t_stack(a);
-		ps_free_t_stack(b);
-		ps_free_tlist(m);
+		ps_free_env(a, b, m);
 		exit(MVTBOOK_ERROR);
 	}
 	ft_lstadd_back(m, tmp);
@@ -80,7 +78,8 @@ void	ft_ps_push_a(t_stack **dst, t_stack **src, t_list **mvtbook)
 			(*dst)->previous = tmp;
 		}
 		*dst = tmp;
-		ft_lstadd_back(mvtbook, ft_lstnew("pa"));
+		ps_lstadd_back_mvt(dst, src, mvtbook, "pa");
+		//ft_lstadd_back(mvtbook, ft_lstnew("pa"));
 	}
 }
 

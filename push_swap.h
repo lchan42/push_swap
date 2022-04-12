@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 18:26:46 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 23:05:03 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,14 @@ void	ps_emergencyfree_list(t_stack *head);
 t_list	**ps_free_tlist_nod(t_list **m, int nxt, int nbr);
 void	ps_free_tlist(t_list **m);
 void	ps_free_t_stack(t_stack **a);
+void	ps_free_env(t_stack **a, t_stack **b, t_list **m);
 
 //ps_print_mvt.c
 void	ps_print_mvt(t_list *m);
 
 //ps_exit_error.c
-void	ps_error(int exitcode);
-void	ps_error_free(t_stack **a, t_stack **b, t_list **m, int exitcode);
+void	ps_exit_error(int exitcode);
+void	ps_exit_error_free(t_stack **a, t_stack **b, t_list **m, int exitcode);
 
 //push_swap_del.c
 void	del_print_mvtbook(t_list *mvtbook);

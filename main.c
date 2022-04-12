@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 18:26:45 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 23:05:00 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ int     main(int ac, char **av)
 	t_stack	*b;
 	t_list	*m;
 
-	entry_check(ac, (av));
+	if (!entry_check(ac, (av)))
+		return (0);
 	a = ft_ps_buildstack(--ac, ++av);
 	b = NULL;
 	m = NULL;
 
-	del_print_circular_lst(a, 'a', 0);
-	del_print_circular_lst(b, 'b', 0);
+//	del_print_circular_lst(a, 'a', 0);
+//	del_print_circular_lst(b, 'b', 0);
 	if (ft_ps_stacklen(a) <= 6)
 		ft_ps_sort_a6_cir(&a, &b, &m);
 	else 
@@ -34,13 +35,14 @@ int     main(int ac, char **av)
 			return (0);
 		ps_opt_mvtbook(m);
 	}
-	del_print_circular_lst(a, 'a', 0);
-	del_print_circular_lst(b, 'b', 0);
-	del_print_mvtbook(m);
+//	del_print_circular_lst(a, 'a', 0);
+//	del_print_circular_lst(b, 'b', 0);
+//	del_print_mvtbook(m);
 	ps_print_mvt(m);
-	ps_free_tlist(&m);
-	ps_free_t_stack(&a);
-	ps_free_t_stack(&b);
+	ps_free_env(&a, &b, &m);
+//	ps_free_tlist(&m);
+//	ps_free_t_stack(&a);
+//	ps_free_t_stack(&b);
 }
 
 /*

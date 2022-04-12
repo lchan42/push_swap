@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 18:26:41 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 22:59:01 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,17 +117,19 @@ int	check_duplicate(int ac, char **av)
 	tmp = NULL;
 	while (i < ac)
 	{
-		printf("ac = %d\n", ac);
+//		printf("ac = %d\n", ac);/////////////////////
 		tmp = find_next_nbr(tmp, &i, av);
-		printf("tmp = %s\n", tmp);
+//		printf("i = %d  tmp = %s\n", i , tmp);/////////////////////
 		j = i;
-		tmp2 = find_next_nbr(tmp, &j, av);
-		printf("tmp2 = %s\n", tmp2);
-		while (tmp && tmp2 && *tmp2)
+		if (tmp)
+			tmp2 = find_next_nbr(tmp, &j, av);
+//		printf("i = %d tmp2 = %s\n", i, tmp2);////////////////////////
+		while (tmp && tmp2 /*&& *tmp2*/)/////////////////////////
 		{
 			if (*tmp && *tmp2 && ft_atoi(tmp2) == ft_atoi(tmp))
 				return (0);
 			tmp2 = find_next_nbr(tmp2, &j, av);
+//			printf("i = %d tmp2 = %s\n", i, tmp2);/////////////////
 		}
 	}
 	return (1);
@@ -138,26 +140,28 @@ int	check_duplicate(int ac, char **av)
 
 int	entry_check(int ac, char **av)
 {
+	if (ac < 2)
+		return (0);
 	if (ps_count_element(--ac, ++av) < 2)
 	{
-		//printf("error ARG_NBR_ERROR");
+		printf("error ARG_NBR_ERROR");///////////////
 		ps_exit_error(ARG_NBR_ERROR);
 	}
 	else if (!check_ascii(av))
 	{
-	//	printf("error ascii\n");
+		printf("error ascii\n");/////////////////
 		ps_exit_error(ASCII_ERROR);
 	}
 	else if (!check_overflow(ac, av))
 	{
-	//	printf("error check_overflow\n");
+		printf("error check_overflow\n");/////////////
 		ps_exit_error(OVERFLOW_ERROR);
 	}
 	else if (!check_duplicate(ac, av))
 	{
-	//	printf("error duplicate\n");
+		printf("error duplicate\n");////////////////
 		ps_exit_error(DUPLICATE_ERROR);
 	}
-	printf("entry is ok\n");
+//	printf("entry is ok\n");////////////////////
 	return (1);
 }

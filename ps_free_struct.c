@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:42:10 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 15:11:27 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 22:37:03 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,17 @@ void	ps_free_t_stack(t_stack **a)
 		tmp = NULL;
 	}
 	*a = NULL;
+}
+/******************************************
+ * making the list non circular before free
+ * ****************************************/
+
+void	ps_free_env(t_stack **a, t_stack **b, t_list **m)
+{
+	if (*a)
+		ps_free_t_stack(a);
+	if (*b)
+		ps_free_t_stack(b);
+	if (*m)
+		ps_free_tlist(m);
 }
