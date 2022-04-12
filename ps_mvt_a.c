@@ -6,11 +6,26 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 23:42:50 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 19:03:31 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 15:11:26 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ps_add_back_mvt(t_stack **a, t_stack **b, t_list **m, char *mvt)
+{
+	t_list	*tmp;
+
+	tmp = ft_lstnew(mvt);
+	if (!tmp)
+	{
+		ps_free_t_stack(a);
+		ps_free_t_stack(b);
+		ps_free_tlist(m);
+		exit(MVTBOOK_ERROR);
+	}
+	ft_lstadd_back(m, tmp);
+}
 
 void	ft_ps_swap_a(t_stack **head, t_list **mvtbook)
 {

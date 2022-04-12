@@ -6,11 +6,27 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:42:10 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 18:49:43 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 15:11:27 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ps_emergencyfree_list(t_stack *head)
+{
+	t_stack *tmp;
+
+	while (head)
+	{
+		tmp = head->next;
+		free(head);
+		head = tmp;
+	}
+	exit(BUILDSTACK_ERROR);
+}
+/****************************************
+ * used to protect nod init in buildstack
+ * **************************************/
 
 t_list **ps_free_tlist_nod(t_list **m, int skip, int nbr)
 {
@@ -68,5 +84,3 @@ void	ps_free_t_stack(t_stack **a)
 	}
 	*a = NULL;
 }
-
-

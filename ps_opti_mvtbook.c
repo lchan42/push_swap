@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 23:10:15 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/08 19:06:08 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 14:01:36 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,6 @@ void	ps_opt_cutnpatch_or_gonext(t_list **m)
 
 void	ps_opt_mvtbook(t_list *m)
 {
-	t_list *tmp;
-
-	tmp = m;
 	while (m)
 	{
 		if (ft_strncmp("ra", (char *)m->content, 2) == 0

@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 15:45:08 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/11 19:54:27 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 15:11:31 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int     main(int ac, char **av)
 	a = ft_ps_buildstack(--ac, ++av);
 	b = NULL;
 	m = NULL;
-	
+
 	del_print_circular_lst(a, 'a', 0);
 	del_print_circular_lst(b, 'b', 0);
 	if (ft_ps_stacklen(a) <= 6)

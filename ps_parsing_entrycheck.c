@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/11 19:52:10 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 14:57:06 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	check_ascii(char **av)
 	int	i;
 	int	j;
 
-//	if (!av[1])
-//		return (0);
 	i = -1;
 	j = 0;
 	while (av[++i])
@@ -91,8 +89,6 @@ int	check_overflow(int ac, char **av)
 		if (strchr_booleen(*(tmp + count), "-+"))
 			count++;
 		count = ps_count_digit(tmp, count);
-//		while (ft_isdigit(*(tmp + count)))
-//			count++;
 		if (count > 11)
 			return (0);
 		number = ft_atol(tmp);
@@ -135,8 +131,6 @@ int	check_duplicate(int ac, char **av)
 
 int	entry_check(int ac, char **av)
 {
-//	del_print_tab(av);
-	// need --ac and ++av;
 	if (ac < 2 || (ac == 2 && ps_count_firstarg_nbr(*(av + 1)) < 2))
 	{
 		printf("error ARG_NBR_ERROR");
@@ -154,9 +148,8 @@ int	entry_check(int ac, char **av)
 	}
 	else if (!check_duplicate(ac, av))
 	{
-		printf("error deuplicate\n");
+		printf("error duplicate\n");
 		exit(DUPLICATE_ERROR);
 	}
-	printf("entry ok");
 	return (1);
 }

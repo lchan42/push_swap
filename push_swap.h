@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/11 19:53:14 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 15:11:34 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ enum exit_code
 	OVERFLOW_ERROR,
 	DUPLICATE_ERROR,
 	BUILDSTACK_ERROR,
+	MVTBOOK_ERROR,
 };
 
 //ps_utils_general.c (3)
@@ -61,8 +62,8 @@ int		ft_ps_chunck_len(t_stack *head);
 char	*find_next_nbr(char *current_position, int *line, char **av);
 int		entry_check(int ac, char **av);
 
-//ps_parcing_buildstack.c (5)
-t_stack *ft_ps_buildstack(int ac, char **av); //there is a printf inside
+//ps_parcing_buildstack.c (4)
+t_stack *ft_ps_buildstack(int ac, char **av);
 
 //ps_mvt_a.c (4)
 void	ft_ps_swap_a(t_stack **head, t_list **mvtbook);
@@ -121,11 +122,14 @@ int		ps_smrtrot_target_a(t_stack **stack, t_list **m, int targ);
 int     ft_ps_smartrotation_a(t_stack **stack, t_list **m, int pivot);
 int     ft_ps_smartrotation_b(t_stack **stack, t_list **m, int pivot);
 
-// ps_free_struct.c (3)
+// ps_free_struct.c (4)
+void	ps_emergencyfree_list(t_stack *head);
 t_list	**ps_free_tlist_nod(t_list **m, int nxt, int nbr);
 void	ps_free_tlist(t_list **m);
 void	ps_free_t_stack(t_stack **a);
 
+//ps_print_mvt.c
+void	ps_print_mvt(t_list *m);
 
 //push_swap_del.c
 void	del_print_mvtbook(t_list *mvtbook);

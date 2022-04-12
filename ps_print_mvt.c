@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ps_print_mvt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 22:36:24 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 14:00:31 by lchan            ###   ########.fr       */
+/*   Created: 2022/04/12 14:02:24 by lchan             #+#    #+#             */
+/*   Updated: 2022/04/12 14:05:21 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ps_print_mvt(t_list *m)
 {
-	size_t			i;
-	unsigned char	*chr;
-
-	chr = (unsigned char *)s;
-	i = 0;
-	while (i < n)
+	while (m)
 	{
-		if (chr[i] == (unsigned char)c)
-			return (&chr[i]);
-		i++;
+		ft_putstr_fd(m->content, 1);
+		ft_putstr_fd("\n", 1);
 	}
-	return (NULL);
 }

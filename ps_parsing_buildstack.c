@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 14:58:49 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/11 19:54:23 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/12 14:54:08 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,6 @@ void	ft_ps_rank(t_stack **head, int lst_len)
 		while (rank < lst_len && min_nod->rank)
 			min_nod = min_nod->next;
 		tmp = *head;
-	}
-}
-
-void	ft_ps_free_list(t_stack *head)
-{
-	t_stack	*tmp;
-
-	while (head)
-	{
-		tmp = head->next;
-		printf("free : %p\n", head);
-		free(head);
-		head = tmp;
 	}
 }
 
@@ -78,19 +65,18 @@ t_stack	*ft_ps_stack_new_addback(t_stack **head, int value)
 			tmp = tmp->next;
 		tmp->next = ft_ps_nod_init(value);
 		if (!tmp->next)
-		{
-			ft_ps_free_list(*head);
-			return (NULL);
-		}
+			ps_emergencyfree_list(*head);
 		tmp->next->previous = tmp;
 		(*head)->previous = tmp->next;
 	}
 	return (*head);
 }
-/*********************************************************
- * if ft_ps_nod_init returns null, the whole list is freed
- * (*head)->previous = is set, however tmp->next->next is still null. Will be set at the end ft_ps_buildstack
- */
+/**********************************************
+ * if ft_ps_nod_init returns null, free + exit
+ * (*head)->previous = is set, 
+ * last_elem->next is still null.
+ * 		Will be set at the end ft_ps_buildstack
+ * ********************************************/
 
 t_stack	*ft_ps_buildstack(int ac, char **av)
 {
@@ -99,8 +85,6 @@ t_stack	*ft_ps_buildstack(int ac, char **av)
 	int			i;
 	int			j;
 
-//	if (!av[1])
-//		return (NULL);
 	i = 0;
 	j = 0;
 	stack = NULL;
@@ -108,21 +92,16 @@ t_stack	*ft_ps_buildstack(int ac, char **av)
 	while (j < ac)
 	{
 		tmp = find_next_nbr(tmp, &j, av);
-		if (tmp && ++i)
+		if (tmp && *tmp && ++i)
 			stack = ft_ps_stack_new_addback(&stack, ft_atoi(tmp));
-		if (!stack)
-			break ;
 	}
 	ft_ps_rank(&stack, i);
-	if (stack)
-		stack->previous->next = stack;
-	else
-		exit(BUILDSTACK_ERROR);
+	stack->previous->next = stack;
 	return (stack);
 }
-/**********************************************************
+/************************************************************
  * if malloc does not work stack is freed and the loop breaks.
  * i is used in ft_ps_rank as lst_len
  * the list is made circular at the end (easier that way) 
  * 		stack->previous = last element;
- */
+ * **********************************************************/
