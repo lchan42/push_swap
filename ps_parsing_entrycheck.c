@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:59 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 23:15:47 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/13 15:52:33 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,14 @@ int	entry_check(int ac, char **av)
 {
 	if (ac < 2)
 		return (0);
-	if (ps_count_element(--ac, ++av) < 2)
+	else if (ps_count_element(--ac, ++av) < 2 )
 	{
-//		printf("error ARG_NBR_ERROR");///////////////
-		ps_exit_error(ARG_NBR_ERROR);
+		if (!check_ascii(av))
+			ps_exit_error(ASCII_ERROR);
+		else if (!check_overflow(ac, av))
+			ps_exit_error(OVERFLOW_ERROR);
+		else
+			return (0);
 	}
 	else if (!check_ascii(av))
 	{

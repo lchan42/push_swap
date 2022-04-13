@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: lchan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:53 by lchan             #+#    #+#             */
-/*   Updated: 2022/04/12 23:18:29 by lchan            ###   ########.fr       */
+/*   Updated: 2022/04/13 15:52:36 by lchan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_ps
 
 enum exit_code
 {
-	ARG_NBR_ERROR = 10,
-	ASCII_ERROR,
+//	ARG_NBR_ERROR = 10,
+	ASCII_ERROR = 10,
 	OVERFLOW_ERROR,
 	DUPLICATE_ERROR,
 	BUILDSTACK_ERROR,
